@@ -1,0 +1,10 @@
+<%= form_for @user do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name, type: 'email' %>
+  </div>
+
+  <div class="submit-field">
+    <%= form.submit %>
+  </div>
+<% end %>

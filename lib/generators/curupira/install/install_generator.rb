@@ -6,6 +6,18 @@ module Curupira
       include Rails::Generators::Migration
       source_root File.expand_path('../templates', __FILE__)
 
+      def create_routes
+        invoke "curupira:routes"
+      end
+
+      def create_controlers
+        invoke "curupira:controllers"
+      end
+
+      def create_views
+        invoke "curupira:views"
+      end
+
       def create_user_model
         if File.exist? "app/models/user.rb"
           inject_into_file(
