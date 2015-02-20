@@ -31,4 +31,19 @@ class InstallGeneratorTest < Rails::Generators::TestCase
     run_generator
     assert_migration "db/migrate/create_roles_users.rb"
   end
+
+  test "model feature is created" do
+    run_generator
+    assert_file "app/models/feature.rb"
+  end
+
+  test "feature migration is created" do
+    run_generator
+    assert_migration "db/migrate/create_features.rb"
+  end
+
+  test "roles_features migration is created" do
+    run_generator
+    assert_migration "db/migrate/create_roles_features.rb"
+  end
 end
