@@ -1,7 +1,7 @@
 module Curupira
   module Generators
     class ControllersGenerator < Rails::Generators::Base
-      source_root File.expand_path("../../../../../", __FILE__)
+      source_root File.expand_path("../" * 4, __FILE__)
 
       def create_role_controller
         controllers.each do |controller|
