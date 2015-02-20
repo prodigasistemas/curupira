@@ -8,13 +8,25 @@ module Curupira
 
       def create_user_model
         if File.exist? "app/models/user.rb"
-          # inject_into_file(
-          #   "app/models/user.rb",
-          #   "include Clearance::User\n\n",
-          #   after: "class User < ActiveRecord::Base\n"
-          # )
+          inject_into_file(
+            "app/models/user.rb",
+            "has_and_belongs_to_many :roles\n\n",
+            after: "class User < ActiveRecord::Base\n"
+          )
         else
           copy_file 'user.rb', 'app/models/user.rb'
+        end
+      end
+
+      def create_role_model
+        if File.exist? "app/models/role.rb"
+          inject_into_file(
+            "app/models/role.rb",
+            "has_and_belongs_to_many :users\n\n",
+            after: "class Role < ActiveRecord::Base\n"
+          )
+        else
+          copy_file 'role.rb', 'app/models/role.rb'
         end
       end
 
@@ -25,6 +37,14 @@ module Curupira
         #   copy_migration 'create_users.rb'
         # end
         copy_migration 'create_users.rb'
+      end
+
+      def create_role_migration
+        copy_migration 'create_roles.rb'
+      end
+
+      def create_roles_users_migration
+        copy_migration 'create_roles_users.rb'
       end
 
       private
@@ -46,7 +66,7 @@ module Curupira
           "db/migrate/#{migration_name}"
         )
       end
-      
+
       def self.next_migration_number(dir)
         ActiveRecord::Generators::Base.next_migration_number(dir)
       end
