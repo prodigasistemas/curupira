@@ -1,0 +1,10 @@
+<%= form_for @role do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name, id: 'name' %>
+  </div>
+
+  <div class="submit-field">
+    <%= form.submit %>
+  </div>
+<% end %>

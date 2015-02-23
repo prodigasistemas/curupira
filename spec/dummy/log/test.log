@@ -1,0 +1,2163 @@
+  [1m[36m (1.4ms)[0m  [1mCREATE TABLE "features" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar NOT NULL, "controller" varchar NOT NULL, "action" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (1.0ms)[0m  select sqlite_version(*)
+  [1m[36m (1.4ms)[0m  [1mCREATE  INDEX "index_features_on_description" ON "features" ("description")[0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.2ms)[0m  [1mCREATE  INDEX "index_roles_on_name" ON "roles" ("name")[0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "roles_features" ("role_id" integer NOT NULL, "feature_id" integer NOT NULL) 
+  [1m[36m (1.3ms)[0m  [1mCREATE UNIQUE INDEX "roles_features_ids" ON "roles_features" ("role_id", "feature_id")[0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "roles_users" ("role_id" integer NOT NULL, "user_id" integer NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE UNIQUE INDEX "roles_users_ids" ON "roles_users" ("role_id", "user_id")[0m
+  [1m[35m (1.9ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar NOT NULL, "name" varchar NOT NULL, "active" boolean DEFAULT 't', "username" varchar, "crypted_password" varchar, "salt" varchar, "created_at" datetime, "updated_at" datetime, "reset_password_token" varchar, "reset_password_token_expires_at" datetime, "reset_password_email_sent_at" datetime, "last_login_at" datetime, "last_logout_at" datetime, "last_activity_at" datetime, "last_login_from_ip_address" varchar) 
+  [1m[36m (1.7ms)[0m  [1mCREATE  INDEX "index_users_on_last_logout_at_and_last_activity_at" ON "users" ("last_logout_at", "last_activity_at")[0m
+  [1m[35m (0.3ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+
+  [1m[36m (2.0ms)[0m  [1mCREATE  INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+[0m
+  [1m[35m (1.6ms)[0m  CREATE UNIQUE INDEX "index_users_on_username" ON "users" ("username")
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (1.0ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174609')
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051127')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051128')
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051129')[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051130')
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150223174607')[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174608')
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+------------------------------------------
+UsersControllerTest: test_should_get_index
+------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+------------------------
+CurupiraTest: test_truth
+------------------------
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+------------------------------------------------
+InstallGeneratorTest: test_model_role_is_created
+------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+---------------------------------------------------
+InstallGeneratorTest: test_model_feature_is_created
+---------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+----------------------------------------------------
+InstallGeneratorTest: test_role_migration_is_created
+----------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+-------------------------------------------------------
+InstallGeneratorTest: test_feature_migration_is_created
+-------------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+-----------------------------------------------------------
+InstallGeneratorTest: test_roles_users_migration_is_created
+-----------------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+--------------------------------------------------------------
+InstallGeneratorTest: test_roles_features_migration_is_created
+--------------------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+------------------------------------------------
+InstallGeneratorTest: test_model_user_is_created
+------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+----------------------------------------------------
+InstallGeneratorTest: test_user_migration_is_created
+----------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+--------------------------------------
+CreateRoleTest: test_create_a_new_role
+--------------------------------------
+Started GET "/roles/new" for 127.0.0.1 at 2015-02-23 16:59:48 -0300
+Processing by RolesController#new as HTML
+  Rendered roles/_form.html.erb (28.3ms)
+  Rendered roles/new.html.erb within layouts/application (36.4ms)
+Completed 200 OK in 181ms (Views: 158.5ms | ActiveRecord: 0.4ms)
+Started POST "/roles" for 127.0.0.1 at 2015-02-23 16:59:48 -0300
+Processing by RolesController#create as HTML
+  Parameters: {"role"=>{"name"=>"Admin"}}
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "roles" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Admin"], ["created_at", "2015-02-23 19:59:48.414248"], ["updated_at", "2015-02-23 19:59:48.414248"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/roles
+Completed 302 Found in 6ms (ActiveRecord: 0.6ms)
+Started GET "/roles" for 127.0.0.1 at 2015-02-23 16:59:48 -0300
+Processing by RolesController#index as HTML
+  [1m[35mRole Load (0.1ms)[0m  SELECT "roles".* FROM "roles"
+  Rendered roles/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 28ms (Views: 27.3ms | ActiveRecord: 0.1ms)
+  [1m[36m (1.2ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (1.5ms)[0m  [1mCREATE TABLE "features" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar NOT NULL, "controller" varchar NOT NULL, "action" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  select sqlite_version(*)
+  [1m[36m (1.1ms)[0m  [1mCREATE  INDEX "index_features_on_description" ON "features" ("description")[0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mCREATE  INDEX "index_roles_on_name" ON "roles" ("name")[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "roles_features" ("role_id" integer NOT NULL, "feature_id" integer NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "roles_features_ids" ON "roles_features" ("role_id", "feature_id")[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "roles_users" ("role_id" integer NOT NULL, "user_id" integer NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE UNIQUE INDEX "roles_users_ids" ON "roles_users" ("role_id", "user_id")[0m
+  [1m[35m (1.4ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar NOT NULL, "name" varchar NOT NULL, "active" boolean DEFAULT 't', "username" varchar, "crypted_password" varchar, "salt" varchar, "created_at" datetime, "updated_at" datetime, "reset_password_token" varchar, "reset_password_token_expires_at" datetime, "reset_password_email_sent_at" datetime, "last_login_at" datetime, "last_logout_at" datetime, "last_activity_at" datetime, "last_login_from_ip_address" varchar) 
+  [1m[36m (1.2ms)[0m  [1mCREATE  INDEX "index_users_on_last_logout_at_and_last_activity_at" ON "users" ("last_logout_at", "last_activity_at")[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+
+  [1m[36m (1.2ms)[0m  [1mCREATE  INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+[0m
+  [1m[35m (1.2ms)[0m  CREATE UNIQUE INDEX "index_users_on_username" ON "users" ("username")
+  [1m[36m (1.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (1.4ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (2.7ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174609')
+  [1m[36m (0.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051127')[0m
+  [1m[35m (1.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051128')
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051129')[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051130')
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150223174607')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174608')
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+--------------------------------------
+CreateRoleTest: test_create_a_new_role
+--------------------------------------
+Started GET "/roles/new" for 127.0.0.1 at 2015-02-23 17:01:54 -0300
+Processing by RolesController#new as HTML
+  Rendered roles/_form.html.erb (32.3ms)
+  Rendered roles/new.html.erb within layouts/application (45.7ms)
+Completed 200 OK in 108ms (Views: 85.9ms | ActiveRecord: 0.5ms)
+Started POST "/roles" for 127.0.0.1 at 2015-02-23 17:01:54 -0300
+Processing by RolesController#create as HTML
+  Parameters: {"role"=>{"name"=>"Admin"}}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "roles" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Admin"], ["created_at", "2015-02-23 20:01:54.729533"], ["updated_at", "2015-02-23 20:01:54.729533"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/roles
+Completed 302 Found in 7ms (ActiveRecord: 0.8ms)
+Started GET "/roles" for 127.0.0.1 at 2015-02-23 17:01:54 -0300
+Processing by RolesController#index as HTML
+  [1m[36mRole Load (0.1ms)[0m  [1mSELECT "roles".* FROM "roles"[0m
+  Rendered roles/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 5ms (Views: 4.1ms | ActiveRecord: 0.1ms)
+  [1m[35m (0.6ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+---------------------------------------------------
+InstallGeneratorTest: test_model_feature_is_created
+---------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+----------------------------------------------------
+InstallGeneratorTest: test_user_migration_is_created
+----------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+-----------------------------------------------------------
+InstallGeneratorTest: test_roles_users_migration_is_created
+-----------------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+--------------------------------------------------------------
+InstallGeneratorTest: test_roles_features_migration_is_created
+--------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+----------------------------------------------------
+InstallGeneratorTest: test_role_migration_is_created
+----------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+-------------------------------------------------------
+InstallGeneratorTest: test_feature_migration_is_created
+-------------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------------------------------
+InstallGeneratorTest: test_model_user_is_created
+------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------------------------------
+InstallGeneratorTest: test_model_role_is_created
+------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------
+CurupiraTest: test_truth
+------------------------
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------------------------
+UsersControllerTest: test_should_get_index
+------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (1.3ms)[0m  [1mCREATE TABLE "features" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar NOT NULL, "controller" varchar NOT NULL, "action" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.3ms)[0m  [1mCREATE  INDEX "index_features_on_description" ON "features" ("description")[0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.2ms)[0m  [1mCREATE  INDEX "index_roles_on_name" ON "roles" ("name")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "roles_features" ("role_id" integer NOT NULL, "feature_id" integer NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE UNIQUE INDEX "roles_features_ids" ON "roles_features" ("role_id", "feature_id")[0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "roles_users" ("role_id" integer NOT NULL, "user_id" integer NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "roles_users_ids" ON "roles_users" ("role_id", "user_id")[0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar NOT NULL, "name" varchar NOT NULL, "active" boolean DEFAULT 't', "username" varchar, "crypted_password" varchar, "salt" varchar, "created_at" datetime, "updated_at" datetime, "reset_password_token" varchar, "reset_password_token_expires_at" datetime, "reset_password_email_sent_at" datetime, "last_login_at" datetime, "last_logout_at" datetime, "last_activity_at" datetime, "last_login_from_ip_address" varchar) 
+  [1m[36m (1.0ms)[0m  [1mCREATE  INDEX "index_users_on_last_logout_at_and_last_activity_at" ON "users" ("last_logout_at", "last_activity_at")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+
+  [1m[36m (1.1ms)[0m  [1mCREATE  INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+[0m
+  [1m[35m (1.2ms)[0m  CREATE UNIQUE INDEX "index_users_on_username" ON "users" ("username")
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (1.1ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174609')
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051127')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051128')
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051129')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051130')
+  [1m[36m (1.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150223174607')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174608')
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------------------------
+UsersControllerTest: test_should_get_index
+------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+---------------------------------------------------
+InstallGeneratorTest: test_model_feature_is_created
+---------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------------------------------
+InstallGeneratorTest: test_model_role_is_created
+------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+-------------------------------------------------------
+InstallGeneratorTest: test_feature_migration_is_created
+-------------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+--------------------------------------------------------------
+InstallGeneratorTest: test_roles_features_migration_is_created
+--------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+----------------------------------------------------
+InstallGeneratorTest: test_role_migration_is_created
+----------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------------------------------
+InstallGeneratorTest: test_model_user_is_created
+------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+-----------------------------------------------------------
+InstallGeneratorTest: test_roles_users_migration_is_created
+-----------------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+----------------------------------------------------
+InstallGeneratorTest: test_user_migration_is_created
+----------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+--------------------------------------
+CreateRoleTest: test_create_a_new_role
+--------------------------------------
+Started GET "/roles/new" for 127.0.0.1 at 2015-02-23 17:03:36 -0300
+Processing by RolesController#new as HTML
+  Rendered roles/_form.html.erb (26.0ms)
+  Rendered roles/new.html.erb within layouts/application (33.7ms)
+Completed 200 OK in 93ms (Views: 72.9ms | ActiveRecord: 0.4ms)
+Started POST "/roles" for 127.0.0.1 at 2015-02-23 17:03:36 -0300
+Processing by RolesController#create as HTML
+  Parameters: {"role"=>{"name"=>"Admin"}}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "roles" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Admin"], ["created_at", "2015-02-23 20:03:36.358480"], ["updated_at", "2015-02-23 20:03:36.358480"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/roles
+Completed 302 Found in 7ms (ActiveRecord: 0.7ms)
+Started GET "/roles" for 127.0.0.1 at 2015-02-23 17:03:36 -0300
+Processing by RolesController#index as HTML
+  [1m[36mRole Load (0.1ms)[0m  [1mSELECT "roles".* FROM "roles"[0m
+  Rendered roles/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 5ms (Views: 4.6ms | ActiveRecord: 0.1ms)
+  [1m[35m (0.5ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------
+CurupiraTest: test_truth
+------------------------
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (1.4ms)[0m  [1mCREATE TABLE "features" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar NOT NULL, "controller" varchar NOT NULL, "action" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.1ms)[0m  [1mCREATE  INDEX "index_features_on_description" ON "features" ("description")[0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mCREATE  INDEX "index_roles_on_name" ON "roles" ("name")[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "roles_features" ("role_id" integer NOT NULL, "feature_id" integer NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE UNIQUE INDEX "roles_features_ids" ON "roles_features" ("role_id", "feature_id")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "roles_users" ("role_id" integer NOT NULL, "user_id" integer NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "roles_users_ids" ON "roles_users" ("role_id", "user_id")[0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar NOT NULL, "name" varchar NOT NULL, "active" boolean DEFAULT 't', "username" varchar, "crypted_password" varchar, "salt" varchar, "created_at" datetime, "updated_at" datetime, "reset_password_token" varchar, "reset_password_token_expires_at" datetime, "reset_password_email_sent_at" datetime, "last_login_at" datetime, "last_logout_at" datetime, "last_activity_at" datetime, "last_login_from_ip_address" varchar) 
+  [1m[36m (1.1ms)[0m  [1mCREATE  INDEX "index_users_on_last_logout_at_and_last_activity_at" ON "users" ("last_logout_at", "last_activity_at")[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+
+  [1m[36m (1.1ms)[0m  [1mCREATE  INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+[0m
+  [1m[35m (1.2ms)[0m  CREATE UNIQUE INDEX "index_users_on_username" ON "users" ("username")
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (1.3ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174609')
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051127')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051128')
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051129')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051130')
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150223174607')[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174608')
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+--------------------------------------
+CreateRoleTest: test_create_a_new_role
+--------------------------------------
+Started GET "/roles/new" for 127.0.0.1 at 2015-02-23 17:05:52 -0300
+Processing by RolesController#new as HTML
+  Rendered roles/_form.html.erb (24.7ms)
+  Rendered roles/new.html.erb within layouts/application (33.1ms)
+Completed 200 OK in 95ms (Views: 73.7ms | ActiveRecord: 0.4ms)
+Started POST "/roles" for 127.0.0.1 at 2015-02-23 17:05:52 -0300
+Processing by RolesController#create as HTML
+  Parameters: {"role"=>{"name"=>"Admin"}}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "roles" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Admin"], ["created_at", "2015-02-23 20:05:52.717682"], ["updated_at", "2015-02-23 20:05:52.717682"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/roles
+Completed 302 Found in 7ms (ActiveRecord: 0.7ms)
+Started GET "/roles" for 127.0.0.1 at 2015-02-23 17:05:52 -0300
+Processing by RolesController#index as HTML
+  [1m[36mRole Load (0.1ms)[0m  [1mSELECT "roles".* FROM "roles"[0m
+  Rendered roles/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 5ms (Views: 4.4ms | ActiveRecord: 0.1ms)
+  [1m[35m (0.5ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------
+CurupiraTest: test_truth
+------------------------
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------------------------------
+InstallGeneratorTest: test_model_user_is_created
+------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+--------------------------------------------------------------
+InstallGeneratorTest: test_roles_features_migration_is_created
+--------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------------------------------
+InstallGeneratorTest: test_model_role_is_created
+------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+----------------------------------------------------
+InstallGeneratorTest: test_role_migration_is_created
+----------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+---------------------------------------------------
+InstallGeneratorTest: test_model_feature_is_created
+---------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+-----------------------------------------------------------
+InstallGeneratorTest: test_roles_users_migration_is_created
+-----------------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+----------------------------------------------------
+InstallGeneratorTest: test_user_migration_is_created
+----------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+-------------------------------------------------------
+InstallGeneratorTest: test_feature_migration_is_created
+-------------------------------------------------------
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+------------------------------------------
+UsersControllerTest: test_should_get_index
+------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (1.9ms)[0m  [1mCREATE TABLE "features" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar NOT NULL, "controller" varchar NOT NULL, "action" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  select sqlite_version(*)
+  [1m[36m (1.3ms)[0m  [1mCREATE  INDEX "index_features_on_description" ON "features" ("description")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE  INDEX "index_roles_on_name" ON "roles" ("name")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "roles_features" ("role_id" integer NOT NULL, "feature_id" integer NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE UNIQUE INDEX "roles_features_ids" ON "roles_features" ("role_id", "feature_id")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "roles_users" ("role_id" integer NOT NULL, "user_id" integer NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE UNIQUE INDEX "roles_users_ids" ON "roles_users" ("role_id", "user_id")[0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar NOT NULL, "name" varchar NOT NULL, "active" boolean DEFAULT 't', "username" varchar, "crypted_password" varchar, "salt" varchar, "created_at" datetime, "updated_at" datetime, "reset_password_token" varchar, "reset_password_token_expires_at" datetime, "reset_password_email_sent_at" datetime, "last_login_at" datetime, "last_logout_at" datetime, "last_activity_at" datetime, "last_login_from_ip_address" varchar) 
+  [1m[36m (1.0ms)[0m  [1mCREATE  INDEX "index_users_on_last_logout_at_and_last_activity_at" ON "users" ("last_logout_at", "last_activity_at")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+
+  [1m[36m (1.0ms)[0m  [1mCREATE  INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+[0m
+  [1m[35m (1.0ms)[0m  CREATE UNIQUE INDEX "index_users_on_username" ON "users" ("username")
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (1.0ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174609')
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051127')[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051128')
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051129')[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051130')
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150223174607')[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174608')
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------
+CurupiraTest: test_truth
+------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------------------------
+UsersControllerTest: test_should_get_index
+------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+--------------------------------------
+CreateRoleTest: test_create_a_new_role
+--------------------------------------
+Started GET "/roles/new" for 127.0.0.1 at 2015-02-23 17:07:20 -0300
+Processing by RolesController#new as HTML
+  Rendered roles/_form.html.erb (24.0ms)
+  Rendered roles/new.html.erb within layouts/application (32.4ms)
+Completed 200 OK in 89ms (Views: 69.8ms | ActiveRecord: 0.3ms)
+Started POST "/roles" for 127.0.0.1 at 2015-02-23 17:07:20 -0300
+Processing by RolesController#create as HTML
+  Parameters: {"role"=>{"name"=>"Admin"}}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "roles" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Admin"], ["created_at", "2015-02-23 20:07:20.333844"], ["updated_at", "2015-02-23 20:07:20.333844"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/roles
+Completed 302 Found in 7ms (ActiveRecord: 0.7ms)
+Started GET "/roles" for 127.0.0.1 at 2015-02-23 17:07:20 -0300
+Processing by RolesController#index as HTML
+  [1m[36mRole Load (0.1ms)[0m  [1mSELECT "roles".* FROM "roles"[0m
+  Rendered roles/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 5ms (Views: 4.8ms | ActiveRecord: 0.1ms)
+  [1m[35m (0.6ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+-----------------------------------------------------------
+InstallGeneratorTest: test_roles_users_migration_is_created
+-----------------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------------------------------
+InstallGeneratorTest: test_model_role_is_created
+------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+----------------------------------------------------
+InstallGeneratorTest: test_user_migration_is_created
+----------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+---------------------------------------------------
+InstallGeneratorTest: test_model_feature_is_created
+---------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+--------------------------------------------------------------
+InstallGeneratorTest: test_roles_features_migration_is_created
+--------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------------------------------
+InstallGeneratorTest: test_model_user_is_created
+------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+----------------------------------------------------
+InstallGeneratorTest: test_role_migration_is_created
+----------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+-------------------------------------------------------
+InstallGeneratorTest: test_feature_migration_is_created
+-------------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (1.7ms)[0m  [1mCREATE TABLE "features" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar NOT NULL, "controller" varchar NOT NULL, "action" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  select sqlite_version(*)
+  [1m[36m (1.3ms)[0m  [1mCREATE  INDEX "index_features_on_description" ON "features" ("description")[0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE  INDEX "index_roles_on_name" ON "roles" ("name")[0m
+  [1m[35m (1.4ms)[0m  CREATE TABLE "roles_features" ("role_id" integer NOT NULL, "feature_id" integer NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE UNIQUE INDEX "roles_features_ids" ON "roles_features" ("role_id", "feature_id")[0m
+  [1m[35m (12.4ms)[0m  CREATE TABLE "roles_users" ("role_id" integer NOT NULL, "user_id" integer NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "roles_users_ids" ON "roles_users" ("role_id", "user_id")[0m
+  [1m[35m (1.7ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar NOT NULL, "name" varchar NOT NULL, "active" boolean DEFAULT 't', "username" varchar, "crypted_password" varchar, "salt" varchar, "created_at" datetime, "updated_at" datetime, "reset_password_token" varchar, "reset_password_token_expires_at" datetime, "reset_password_email_sent_at" datetime, "last_login_at" datetime, "last_logout_at" datetime, "last_activity_at" datetime, "last_login_from_ip_address" varchar) 
+  [1m[36m (2.6ms)[0m  [1mCREATE  INDEX "index_users_on_last_logout_at_and_last_activity_at" ON "users" ("last_logout_at", "last_activity_at")[0m
+  [1m[35m (0.3ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+
+  [1m[36m (1.6ms)[0m  [1mCREATE  INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.3ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+[0m
+  [1m[35m (2.9ms)[0m  CREATE UNIQUE INDEX "index_users_on_username" ON "users" ("username")
+  [1m[36m (1.5ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (1.0ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174609')
+  [1m[36m (1.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051127')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051128')
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051129')[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051130')
+  [1m[36m (1.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150223174607')[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174608')
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------
+CurupiraTest: test_truth
+------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+--------------------------------------
+CreateRoleTest: test_create_a_new_role
+--------------------------------------
+Started GET "/roles/new" for 127.0.0.1 at 2015-02-23 17:07:32 -0300
+Processing by RolesController#new as HTML
+  Rendered roles/_form.html.erb (29.9ms)
+  Rendered roles/new.html.erb within layouts/application (39.3ms)
+Completed 200 OK in 99ms (Views: 77.8ms | ActiveRecord: 0.6ms)
+Started POST "/roles" for 127.0.0.1 at 2015-02-23 17:07:33 -0300
+Processing by RolesController#create as HTML
+  Parameters: {"role"=>{"name"=>"Admin"}}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "roles" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Admin"], ["created_at", "2015-02-23 20:07:33.112800"], ["updated_at", "2015-02-23 20:07:33.112800"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/roles
+Completed 302 Found in 8ms (ActiveRecord: 0.8ms)
+Started GET "/roles" for 127.0.0.1 at 2015-02-23 17:07:33 -0300
+Processing by RolesController#index as HTML
+  [1m[36mRole Load (0.2ms)[0m  [1mSELECT "roles".* FROM "roles"[0m
+  Rendered roles/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 5ms (Views: 4.7ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.7ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------------------------
+UsersControllerTest: test_should_get_index
+------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+---------------------------------------------------
+InstallGeneratorTest: test_model_feature_is_created
+---------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+----------------------------------------------------
+InstallGeneratorTest: test_role_migration_is_created
+----------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------------------------------
+InstallGeneratorTest: test_model_role_is_created
+------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+--------------------------------------------------------------
+InstallGeneratorTest: test_roles_features_migration_is_created
+--------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+----------------------------------------------------
+InstallGeneratorTest: test_user_migration_is_created
+----------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------------------------------
+InstallGeneratorTest: test_model_user_is_created
+------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+-------------------------------------------------------
+InstallGeneratorTest: test_feature_migration_is_created
+-------------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+-----------------------------------------------------------
+InstallGeneratorTest: test_roles_users_migration_is_created
+-----------------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (1.3ms)[0m  [1mCREATE TABLE "features" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar NOT NULL, "controller" varchar NOT NULL, "action" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (2.2ms)[0m  [1mCREATE  INDEX "index_features_on_description" ON "features" ("description")[0m
+  [1m[35m (6.4ms)[0m  CREATE TABLE "roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.3ms)[0m  [1mCREATE  INDEX "index_roles_on_name" ON "roles" ("name")[0m
+  [1m[35m (1.4ms)[0m  CREATE TABLE "roles_features" ("role_id" integer NOT NULL, "feature_id" integer NOT NULL) 
+  [1m[36m (1.5ms)[0m  [1mCREATE UNIQUE INDEX "roles_features_ids" ON "roles_features" ("role_id", "feature_id")[0m
+  [1m[35m (2.0ms)[0m  CREATE TABLE "roles_users" ("role_id" integer NOT NULL, "user_id" integer NOT NULL) 
+  [1m[36m (1.5ms)[0m  [1mCREATE UNIQUE INDEX "roles_users_ids" ON "roles_users" ("role_id", "user_id")[0m
+  [1m[35m (1.6ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar NOT NULL, "name" varchar NOT NULL, "active" boolean DEFAULT 't', "username" varchar, "crypted_password" varchar, "salt" varchar, "created_at" datetime, "updated_at" datetime, "reset_password_token" varchar, "reset_password_token_expires_at" datetime, "reset_password_email_sent_at" datetime, "last_login_at" datetime, "last_logout_at" datetime, "last_activity_at" datetime, "last_login_from_ip_address" varchar) 
+  [1m[36m (1.4ms)[0m  [1mCREATE  INDEX "index_users_on_last_logout_at_and_last_activity_at" ON "users" ("last_logout_at", "last_activity_at")[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+
+  [1m[36m (1.1ms)[0m  [1mCREATE  INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+[0m
+  [1m[35m (1.1ms)[0m  CREATE UNIQUE INDEX "index_users_on_username" ON "users" ("username")
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (1.2ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174609')
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051127')[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051128')
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051129')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051130')
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150223174607')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174608')
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------------------------------
+InstallGeneratorTest: test_model_role_is_created
+------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+----------------------------------------------------
+InstallGeneratorTest: test_user_migration_is_created
+----------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+--------------------------------------------------------------
+InstallGeneratorTest: test_roles_features_migration_is_created
+--------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------------------------------
+InstallGeneratorTest: test_model_user_is_created
+------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+----------------------------------------------------
+InstallGeneratorTest: test_role_migration_is_created
+----------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+-------------------------------------------------------
+InstallGeneratorTest: test_feature_migration_is_created
+-------------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+-----------------------------------------------------------
+InstallGeneratorTest: test_roles_users_migration_is_created
+-----------------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+---------------------------------------------------
+InstallGeneratorTest: test_model_feature_is_created
+---------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+----------------------------------------------------
+Curupira::UsersControllerTest: test_should_get_index
+----------------------------------------------------
+Processing by Curupira::UsersController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users"
+  Rendered curupira/users/index.html.erb within layouts/application (4.9ms)
+Completed 200 OK in 62ms (Views: 29.8ms | ActiveRecord: 0.4ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+------------------------
+CurupiraTest: test_truth
+------------------------
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+--------------------------------------
+CreateRoleTest: test_create_a_new_role
+--------------------------------------
+Started GET "/roles/new" for 127.0.0.1 at 2015-02-23 17:09:57 -0300
+Processing by RolesController#new as HTML
+  Rendered roles/_form.html.erb (24.4ms)
+  Rendered roles/new.html.erb within layouts/application (32.2ms)
+Completed 200 OK in 65ms (Views: 55.7ms | ActiveRecord: 0.4ms)
+Started POST "/roles" for 127.0.0.1 at 2015-02-23 17:09:57 -0300
+Processing by RolesController#create as HTML
+  Parameters: {"role"=>{"name"=>"Admin"}}
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "roles" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Admin"], ["created_at", "2015-02-23 20:09:57.258785"], ["updated_at", "2015-02-23 20:09:57.258785"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/roles
+Completed 302 Found in 7ms (ActiveRecord: 0.7ms)
+Started GET "/roles" for 127.0.0.1 at 2015-02-23 17:09:57 -0300
+Processing by RolesController#index as HTML
+  [1m[35mRole Load (0.1ms)[0m  SELECT "roles".* FROM "roles"
+  Rendered roles/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 5ms (Views: 4.8ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.6ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (1.8ms)[0m  [1mCREATE TABLE "features" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar NOT NULL, "controller" varchar NOT NULL, "action" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.1ms)[0m  [1mCREATE  INDEX "index_features_on_description" ON "features" ("description")[0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mCREATE  INDEX "index_roles_on_name" ON "roles" ("name")[0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "roles_features" ("role_id" integer NOT NULL, "feature_id" integer NOT NULL) 
+  [1m[36m (1.2ms)[0m  [1mCREATE UNIQUE INDEX "roles_features_ids" ON "roles_features" ("role_id", "feature_id")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "roles_users" ("role_id" integer NOT NULL, "user_id" integer NOT NULL) 
+  [1m[36m (1.2ms)[0m  [1mCREATE UNIQUE INDEX "roles_users_ids" ON "roles_users" ("role_id", "user_id")[0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar NOT NULL, "name" varchar NOT NULL, "active" boolean DEFAULT 't', "username" varchar, "crypted_password" varchar, "salt" varchar, "created_at" datetime, "updated_at" datetime, "reset_password_token" varchar, "reset_password_token_expires_at" datetime, "reset_password_email_sent_at" datetime, "last_login_at" datetime, "last_logout_at" datetime, "last_activity_at" datetime, "last_login_from_ip_address" varchar) 
+  [1m[36m (1.0ms)[0m  [1mCREATE  INDEX "index_users_on_last_logout_at_and_last_activity_at" ON "users" ("last_logout_at", "last_activity_at")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+
+  [1m[36m (1.0ms)[0m  [1mCREATE  INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+[0m
+  [1m[35m (1.0ms)[0m  CREATE UNIQUE INDEX "index_users_on_username" ON "users" ("username")
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (1.2ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174609')
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051127')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051128')
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051129')[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051130')
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150223174607')[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174608')
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (1.8ms)[0m  [1mCREATE TABLE "features" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar NOT NULL, "controller" varchar NOT NULL, "action" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (4.1ms)[0m  [1mCREATE  INDEX "index_features_on_description" ON "features" ("description")[0m
+  [1m[35m (2.2ms)[0m  CREATE TABLE "roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.2ms)[0m  [1mCREATE  INDEX "index_roles_on_name" ON "roles" ("name")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "roles_features" ("role_id" integer NOT NULL, "feature_id" integer NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE UNIQUE INDEX "roles_features_ids" ON "roles_features" ("role_id", "feature_id")[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "roles_users" ("role_id" integer NOT NULL, "user_id" integer NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "roles_users_ids" ON "roles_users" ("role_id", "user_id")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar NOT NULL, "name" varchar NOT NULL, "active" boolean DEFAULT 't', "username" varchar, "crypted_password" varchar, "salt" varchar, "created_at" datetime, "updated_at" datetime, "reset_password_token" varchar, "reset_password_token_expires_at" datetime, "reset_password_email_sent_at" datetime, "last_login_at" datetime, "last_logout_at" datetime, "last_activity_at" datetime, "last_login_from_ip_address" varchar) 
+  [1m[36m (1.1ms)[0m  [1mCREATE  INDEX "index_users_on_last_logout_at_and_last_activity_at" ON "users" ("last_logout_at", "last_activity_at")[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+
+  [1m[36m (1.2ms)[0m  [1mCREATE  INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+[0m
+  [1m[35m (1.2ms)[0m  CREATE UNIQUE INDEX "index_users_on_username" ON "users" ("username")
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (1.2ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174609')
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051127')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051128')
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051129')[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051130')
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150223174607')[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174608')
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (1.4ms)[0m  [1mCREATE TABLE "features" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar NOT NULL, "controller" varchar NOT NULL, "action" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  select sqlite_version(*)
+  [1m[36m (1.5ms)[0m  [1mCREATE  INDEX "index_features_on_description" ON "features" ("description")[0m
+  [1m[35m (1.5ms)[0m  CREATE TABLE "roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.3ms)[0m  [1mCREATE  INDEX "index_roles_on_name" ON "roles" ("name")[0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "roles_features" ("role_id" integer NOT NULL, "feature_id" integer NOT NULL) 
+  [1m[36m (1.3ms)[0m  [1mCREATE UNIQUE INDEX "roles_features_ids" ON "roles_features" ("role_id", "feature_id")[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "roles_users" ("role_id" integer NOT NULL, "user_id" integer NOT NULL) 
+  [1m[36m (1.3ms)[0m  [1mCREATE UNIQUE INDEX "roles_users_ids" ON "roles_users" ("role_id", "user_id")[0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar NOT NULL, "name" varchar NOT NULL, "active" boolean DEFAULT 't', "username" varchar, "crypted_password" varchar, "salt" varchar, "created_at" datetime, "updated_at" datetime, "reset_password_token" varchar, "reset_password_token_expires_at" datetime, "reset_password_email_sent_at" datetime, "last_login_at" datetime, "last_logout_at" datetime, "last_activity_at" datetime, "last_login_from_ip_address" varchar) 
+  [1m[36m (2.4ms)[0m  [1mCREATE  INDEX "index_users_on_last_logout_at_and_last_activity_at" ON "users" ("last_logout_at", "last_activity_at")[0m
+  [1m[35m (0.3ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+
+  [1m[36m (1.4ms)[0m  [1mCREATE  INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+[0m
+  [1m[35m (2.9ms)[0m  CREATE UNIQUE INDEX "index_users_on_username" ON "users" ("username")
+  [1m[36m (1.7ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (1.3ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174609')
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051127')[0m
+  [1m[35m (1.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051128')
+  [1m[36m (2.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051129')[0m
+  [1m[35m (1.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051130')
+  [1m[36m (1.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150223174607')[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174608')
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (1.3ms)[0m  [1mCREATE TABLE "features" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar NOT NULL, "controller" varchar NOT NULL, "action" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.3ms)[0m  [1mCREATE  INDEX "index_features_on_description" ON "features" ("description")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.2ms)[0m  [1mCREATE  INDEX "index_roles_on_name" ON "roles" ("name")[0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "roles_features" ("role_id" integer NOT NULL, "feature_id" integer NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE UNIQUE INDEX "roles_features_ids" ON "roles_features" ("role_id", "feature_id")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "roles_users" ("role_id" integer NOT NULL, "user_id" integer NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE UNIQUE INDEX "roles_users_ids" ON "roles_users" ("role_id", "user_id")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar NOT NULL, "name" varchar NOT NULL, "active" boolean DEFAULT 't', "username" varchar, "crypted_password" varchar, "salt" varchar, "created_at" datetime, "updated_at" datetime, "reset_password_token" varchar, "reset_password_token_expires_at" datetime, "reset_password_email_sent_at" datetime, "last_login_at" datetime, "last_logout_at" datetime, "last_activity_at" datetime, "last_login_from_ip_address" varchar) 
+  [1m[36m (1.0ms)[0m  [1mCREATE  INDEX "index_users_on_last_logout_at_and_last_activity_at" ON "users" ("last_logout_at", "last_activity_at")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+
+  [1m[36m (1.0ms)[0m  [1mCREATE  INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+[0m
+  [1m[35m (1.0ms)[0m  CREATE UNIQUE INDEX "index_users_on_username" ON "users" ("username")
+  [1m[36m (1.4ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (1.2ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174609')
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051127')[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051128')
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051129')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051130')
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150223174607')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174608')
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+--------------------------------------------------------------
+InstallGeneratorTest: test_roles_features_migration_is_created
+--------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.3ms)[0m  [1mbegin transaction[0m
+---------------------------------------------------
+InstallGeneratorTest: test_model_feature_is_created
+---------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+-----------------------------------------------------------
+InstallGeneratorTest: test_roles_users_migration_is_created
+-----------------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------------------------------
+InstallGeneratorTest: test_model_user_is_created
+------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+----------------------------------------------------
+InstallGeneratorTest: test_user_migration_is_created
+----------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------------------------------
+InstallGeneratorTest: test_model_role_is_created
+------------------------------------------------
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+-------------------------------------------------------
+InstallGeneratorTest: test_feature_migration_is_created
+-------------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+----------------------------------------------------
+InstallGeneratorTest: test_role_migration_is_created
+----------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+--------------------------------------
+CreateRoleTest: test_create_a_new_role
+--------------------------------------
+Started GET "/roles/new" for 127.0.0.1 at 2015-02-23 17:17:28 -0300
+Processing by RolesController#new as HTML
+  Rendered roles/_form.html.erb (31.2ms)
+  Rendered roles/new.html.erb within layouts/application (39.1ms)
+Completed 200 OK in 122ms (Views: 103.5ms | ActiveRecord: 0.4ms)
+Started POST "/roles" for 127.0.0.1 at 2015-02-23 17:17:28 -0300
+Processing by RolesController#create as HTML
+  Parameters: {"role"=>{"name"=>"Admin"}}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "roles" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Admin"], ["created_at", "2015-02-23 20:17:28.967598"], ["updated_at", "2015-02-23 20:17:28.967598"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/roles
+Completed 302 Found in 7ms (ActiveRecord: 0.6ms)
+Started GET "/roles" for 127.0.0.1 at 2015-02-23 17:17:28 -0300
+Processing by RolesController#index as HTML
+  [1m[36mRole Load (0.1ms)[0m  [1mSELECT "roles".* FROM "roles"[0m
+  Rendered roles/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 5ms (Views: 4.9ms | ActiveRecord: 0.1ms)
+  [1m[35m (0.6ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------
+CurupiraTest: test_truth
+------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+-----------------------------------------------------
+Curupira::UsersControllerTest: test_returns_all_users
+-----------------------------------------------------
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "users" ("name", "email", "username", "salt", "crypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "User 1"], ["email", "email1@curupira.com"], ["username", "user_1"], ["salt", "J7NwPhqj7pSqbPECmwoh"], ["crypted_password", "$2a$10$dYkMjFQmRpDFFSx7MoKsn.2L/7LlSIcWYR5sZbOEwfln7lYiqYtzu"], ["created_at", "2015-02-23 20:17:29.218090"], ["updated_at", "2015-02-23 20:17:29.218090"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("name", "email", "username", "salt", "crypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["name", "User 2"], ["email", "email2@curupira.com"], ["username", "user_2"], ["salt", "7qs8p1VK4xDABciiHYYU"], ["crypted_password", "$2a$10$/XMO8LlIn9nWN92s8K.ujOiGXN/jmVCvJyzUuoJ9uq5/Bxk18WTU2"], ["created_at", "2015-02-23 20:17:29.434147"], ["updated_at", "2015-02-23 20:17:29.434147"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by Curupira::UsersController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users"
+  Rendered curupira/users/index.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 12ms (Views: 11.1ms | ActiveRecord: 0.2ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.8ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+----------------------------------------------------
+Curupira::UsersControllerTest: test_should_get_index
+----------------------------------------------------
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("name", "email", "username", "salt", "crypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "User 3"], ["email", "email3@curupira.com"], ["username", "user_3"], ["salt", "63KCQ78KxpcfhPeo1PAw"], ["crypted_password", "$2a$10$8fJ9FEyqMeNhDUOoLxmsNOsa4O6N2r/U/l9roB8kyQgCkeMSSaJ/a"], ["created_at", "2015-02-23 20:17:29.671148"], ["updated_at", "2015-02-23 20:17:29.671148"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("name", "email", "username", "salt", "crypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["name", "User 4"], ["email", "email4@curupira.com"], ["username", "user_4"], ["salt", "TFKqxsdaDaLR6Dbu5dGi"], ["crypted_password", "$2a$10$LJBye406fkwJ7U.jwMmHhOtyATHlkLgP6VDw6VpBgT6SunKcUKe9S"], ["created_at", "2015-02-23 20:17:29.891596"], ["updated_at", "2015-02-23 20:17:29.891596"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by Curupira::UsersController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users"
+  Rendered curupira/users/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.2ms)
+  [1m[36m (0.6ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (1.5ms)[0m  [1mCREATE TABLE "features" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar NOT NULL, "controller" varchar NOT NULL, "action" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  select sqlite_version(*)
+  [1m[36m (1.1ms)[0m  [1mCREATE  INDEX "index_features_on_description" ON "features" ("description")[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mCREATE  INDEX "index_roles_on_name" ON "roles" ("name")[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "roles_features" ("role_id" integer NOT NULL, "feature_id" integer NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "roles_features_ids" ON "roles_features" ("role_id", "feature_id")[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "roles_users" ("role_id" integer NOT NULL, "user_id" integer NOT NULL) 
+  [1m[36m (1.3ms)[0m  [1mCREATE UNIQUE INDEX "roles_users_ids" ON "roles_users" ("role_id", "user_id")[0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar NOT NULL, "name" varchar NOT NULL, "active" boolean DEFAULT 't', "username" varchar, "crypted_password" varchar, "salt" varchar, "created_at" datetime, "updated_at" datetime, "reset_password_token" varchar, "reset_password_token_expires_at" datetime, "reset_password_email_sent_at" datetime, "last_login_at" datetime, "last_logout_at" datetime, "last_activity_at" datetime, "last_login_from_ip_address" varchar) 
+  [1m[36m (1.0ms)[0m  [1mCREATE  INDEX "index_users_on_last_logout_at_and_last_activity_at" ON "users" ("last_logout_at", "last_activity_at")[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+
+  [1m[36m (1.1ms)[0m  [1mCREATE  INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+[0m
+  [1m[35m (1.1ms)[0m  CREATE UNIQUE INDEX "index_users_on_username" ON "users" ("username")
+  [1m[36m (1.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.9ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174609')
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051127')[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051128')
+  [1m[36m (0.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051129')[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051130')
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150223174607')[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174608')
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (1.4ms)[0m  [1mCREATE TABLE "features" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar NOT NULL, "controller" varchar NOT NULL, "action" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  select sqlite_version(*)
+  [1m[36m (1.2ms)[0m  [1mCREATE  INDEX "index_features_on_description" ON "features" ("description")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE  INDEX "index_roles_on_name" ON "roles" ("name")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "roles_features" ("role_id" integer NOT NULL, "feature_id" integer NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE UNIQUE INDEX "roles_features_ids" ON "roles_features" ("role_id", "feature_id")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "roles_users" ("role_id" integer NOT NULL, "user_id" integer NOT NULL) 
+  [1m[36m (1.2ms)[0m  [1mCREATE UNIQUE INDEX "roles_users_ids" ON "roles_users" ("role_id", "user_id")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar NOT NULL, "name" varchar NOT NULL, "active" boolean DEFAULT 't', "username" varchar, "crypted_password" varchar, "salt" varchar, "created_at" datetime, "updated_at" datetime, "reset_password_token" varchar, "reset_password_token_expires_at" datetime, "reset_password_email_sent_at" datetime, "last_login_at" datetime, "last_logout_at" datetime, "last_activity_at" datetime, "last_login_from_ip_address" varchar) 
+  [1m[36m (1.2ms)[0m  [1mCREATE  INDEX "index_users_on_last_logout_at_and_last_activity_at" ON "users" ("last_logout_at", "last_activity_at")[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+
+  [1m[36m (1.1ms)[0m  [1mCREATE  INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+[0m
+  [1m[35m (1.4ms)[0m  CREATE UNIQUE INDEX "index_users_on_username" ON "users" ("username")
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (1.2ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174609')
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051127')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051128')
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051129')[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051130')
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150223174607')[0m
+  [1m[35m (1.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174608')
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (1.8ms)[0m  [1mCREATE TABLE "features" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar NOT NULL, "controller" varchar NOT NULL, "action" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.2ms)[0m  [1mCREATE  INDEX "index_features_on_description" ON "features" ("description")[0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE  INDEX "index_roles_on_name" ON "roles" ("name")[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "roles_features" ("role_id" integer NOT NULL, "feature_id" integer NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE UNIQUE INDEX "roles_features_ids" ON "roles_features" ("role_id", "feature_id")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "roles_users" ("role_id" integer NOT NULL, "user_id" integer NOT NULL) 
+  [1m[36m (1.2ms)[0m  [1mCREATE UNIQUE INDEX "roles_users_ids" ON "roles_users" ("role_id", "user_id")[0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar NOT NULL, "name" varchar NOT NULL, "active" boolean DEFAULT 't', "username" varchar, "crypted_password" varchar, "salt" varchar, "created_at" datetime, "updated_at" datetime, "reset_password_token" varchar, "reset_password_token_expires_at" datetime, "reset_password_email_sent_at" datetime, "last_login_at" datetime, "last_logout_at" datetime, "last_activity_at" datetime, "last_login_from_ip_address" varchar) 
+  [1m[36m (1.0ms)[0m  [1mCREATE  INDEX "index_users_on_last_logout_at_and_last_activity_at" ON "users" ("last_logout_at", "last_activity_at")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+
+  [1m[36m (1.0ms)[0m  [1mCREATE  INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+[0m
+  [1m[35m (1.1ms)[0m  CREATE UNIQUE INDEX "index_users_on_username" ON "users" ("username")
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (1.1ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174609')
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051127')[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051128')
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051129')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051130')
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150223174607')[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174608')
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "features" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar NOT NULL, "controller" varchar NOT NULL, "action" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.3ms)[0m  [1mCREATE  INDEX "index_features_on_description" ON "features" ("description")[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mCREATE  INDEX "index_roles_on_name" ON "roles" ("name")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "roles_features" ("role_id" integer NOT NULL, "feature_id" integer NOT NULL) 
+  [1m[36m (1.2ms)[0m  [1mCREATE UNIQUE INDEX "roles_features_ids" ON "roles_features" ("role_id", "feature_id")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "roles_users" ("role_id" integer NOT NULL, "user_id" integer NOT NULL) 
+  [1m[36m (1.2ms)[0m  [1mCREATE UNIQUE INDEX "roles_users_ids" ON "roles_users" ("role_id", "user_id")[0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar NOT NULL, "name" varchar NOT NULL, "active" boolean DEFAULT 't', "username" varchar, "crypted_password" varchar, "salt" varchar, "created_at" datetime, "updated_at" datetime, "reset_password_token" varchar, "reset_password_token_expires_at" datetime, "reset_password_email_sent_at" datetime, "last_login_at" datetime, "last_logout_at" datetime, "last_activity_at" datetime, "last_login_from_ip_address" varchar) 
+  [1m[36m (1.0ms)[0m  [1mCREATE  INDEX "index_users_on_last_logout_at_and_last_activity_at" ON "users" ("last_logout_at", "last_activity_at")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+
+  [1m[36m (1.0ms)[0m  [1mCREATE  INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+[0m
+  [1m[35m (1.0ms)[0m  CREATE UNIQUE INDEX "index_users_on_username" ON "users" ("username")
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (1.0ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174609')
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051127')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051128')
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051129')[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051130')
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150223174607')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174608')
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (1.4ms)[0m  [1mCREATE TABLE "features" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar NOT NULL, "controller" varchar NOT NULL, "action" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.2ms)[0m  [1mCREATE  INDEX "index_features_on_description" ON "features" ("description")[0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE  INDEX "index_roles_on_name" ON "roles" ("name")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "roles_features" ("role_id" integer NOT NULL, "feature_id" integer NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE UNIQUE INDEX "roles_features_ids" ON "roles_features" ("role_id", "feature_id")[0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "roles_users" ("role_id" integer NOT NULL, "user_id" integer NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "roles_users_ids" ON "roles_users" ("role_id", "user_id")[0m
+  [1m[35m (1.4ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar NOT NULL, "name" varchar NOT NULL, "active" boolean DEFAULT 't', "username" varchar, "crypted_password" varchar, "salt" varchar, "created_at" datetime, "updated_at" datetime, "reset_password_token" varchar, "reset_password_token_expires_at" datetime, "reset_password_email_sent_at" datetime, "last_login_at" datetime, "last_logout_at" datetime, "last_activity_at" datetime, "last_login_from_ip_address" varchar) 
+  [1m[36m (1.3ms)[0m  [1mCREATE  INDEX "index_users_on_last_logout_at_and_last_activity_at" ON "users" ("last_logout_at", "last_activity_at")[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+
+  [1m[36m (1.3ms)[0m  [1mCREATE  INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+[0m
+  [1m[35m (1.2ms)[0m  CREATE UNIQUE INDEX "index_users_on_username" ON "users" ("username")
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (1.1ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174609')
+  [1m[36m (0.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051127')[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051128')
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051129')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051130')
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150223174607')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174608')
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+--------------------------------------
+CreateRoleTest: test_create_a_new_role
+--------------------------------------
+Started GET "/roles/new" for 127.0.0.1 at 2015-02-23 17:24:33 -0300
+Processing by RolesController#new as HTML
+  Rendered roles/_form.html.erb (27.9ms)
+  Rendered roles/new.html.erb within layouts/application (35.8ms)
+Completed 200 OK in 97ms (Views: 76.1ms | ActiveRecord: 0.5ms)
+Started POST "/roles" for 127.0.0.1 at 2015-02-23 17:24:33 -0300
+Processing by RolesController#create as HTML
+  Parameters: {"role"=>{"name"=>"Admin"}}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "roles" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Admin"], ["created_at", "2015-02-23 20:24:33.954191"], ["updated_at", "2015-02-23 20:24:33.954191"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/roles
+Completed 302 Found in 7ms (ActiveRecord: 0.7ms)
+Started GET "/roles" for 127.0.0.1 at 2015-02-23 17:24:33 -0300
+Processing by RolesController#index as HTML
+  [1m[36mRole Load (0.1ms)[0m  [1mSELECT "roles".* FROM "roles"[0m
+  Rendered roles/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 5ms (Views: 5.0ms | ActiveRecord: 0.1ms)
+  [1m[35m (0.6ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+-----------------------------------------------------------
+InstallGeneratorTest: test_roles_users_migration_is_created
+-----------------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+---------------------------------------------------
+InstallGeneratorTest: test_model_feature_is_created
+---------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+--------------------------------------------------------------
+InstallGeneratorTest: test_roles_features_migration_is_created
+--------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------------------------------
+InstallGeneratorTest: test_model_user_is_created
+------------------------------------------------
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------------------------------
+InstallGeneratorTest: test_model_role_is_created
+------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+-------------------------------------------------------
+InstallGeneratorTest: test_feature_migration_is_created
+-------------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+----------------------------------------------------
+InstallGeneratorTest: test_role_migration_is_created
+----------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+----------------------------------------------------
+InstallGeneratorTest: test_user_migration_is_created
+----------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------
+CurupiraTest: test_truth
+------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("name", "email", "username", "salt", "crypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["name", "User 1"], ["email", "email1@curupira.com"], ["username", "user_1"], ["salt", "SpSigs9aq5bV92yMy4Bz"], ["crypted_password", "$2a$10$vIWHifrpaLhXw4Nd/X.p0ukKCwH43pIkPvF33ixnxIs1wP01.k01K"], ["created_at", "2015-02-23 20:24:34.430270"], ["updated_at", "2015-02-23 20:24:34.430270"]]
+  [1m[36m (2.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("name", "email", "username", "salt", "crypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "User 2"], ["email", "email2@curupira.com"], ["username", "user_2"], ["salt", "dT12RP1EcaznAcAnApLa"], ["crypted_password", "$2a$10$i8lMALoEnjuTW6umo4cIQ.z7X/RoFU0GAA2N0vgHqUB8cj7zT78zK"], ["created_at", "2015-02-23 20:24:34.650939"], ["updated_at", "2015-02-23 20:24:34.650939"]]
+  [1m[35m (2.5ms)[0m  commit transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("name", "email", "username", "salt", "crypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["name", "User 3"], ["email", "email3@curupira.com"], ["username", "user_3"], ["salt", "ET19uTucywa37N2BsRCs"], ["crypted_password", "$2a$10$/Qkmr3.Jd1ODCNOFgZlJRuT8GTQaswwgfVRzUsQ5KyMuObMtRmq5i"], ["created_at", "2015-02-23 20:24:34.864295"], ["updated_at", "2015-02-23 20:24:34.864295"]]
+  [1m[36m (2.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("name", "email", "username", "salt", "crypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "User 4"], ["email", "email4@curupira.com"], ["username", "user_4"], ["salt", "dMM79gyu1B42qQWqGFjU"], ["crypted_password", "$2a$10$C2TRqrqBB0e6TKXVLoOCoe1VjzAZmkqzzFhcTBc3mnf/kQdXRb6Ga"], ["created_at", "2015-02-23 20:24:35.073662"], ["updated_at", "2015-02-23 20:24:35.073662"]]
+  [1m[35m (2.7ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (1.3ms)[0m  [1mCREATE TABLE "features" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar NOT NULL, "controller" varchar NOT NULL, "action" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.3ms)[0m  [1mCREATE  INDEX "index_features_on_description" ON "features" ("description")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.2ms)[0m  [1mCREATE  INDEX "index_roles_on_name" ON "roles" ("name")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "roles_features" ("role_id" integer NOT NULL, "feature_id" integer NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE UNIQUE INDEX "roles_features_ids" ON "roles_features" ("role_id", "feature_id")[0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "roles_users" ("role_id" integer NOT NULL, "user_id" integer NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "roles_users_ids" ON "roles_users" ("role_id", "user_id")[0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar NOT NULL, "name" varchar NOT NULL, "active" boolean DEFAULT 't', "username" varchar, "crypted_password" varchar, "salt" varchar, "created_at" datetime, "updated_at" datetime, "reset_password_token" varchar, "reset_password_token_expires_at" datetime, "reset_password_email_sent_at" datetime, "last_login_at" datetime, "last_logout_at" datetime, "last_activity_at" datetime, "last_login_from_ip_address" varchar) 
+  [1m[36m (1.0ms)[0m  [1mCREATE  INDEX "index_users_on_last_logout_at_and_last_activity_at" ON "users" ("last_logout_at", "last_activity_at")[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+
+  [1m[36m (1.2ms)[0m  [1mCREATE  INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+[0m
+  [1m[35m (1.1ms)[0m  CREATE UNIQUE INDEX "index_users_on_username" ON "users" ("username")
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.9ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174609')
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051127')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051128')
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051129')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051130')
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150223174607')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174608')
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------
+CurupiraTest: test_truth
+------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+--------------------------------------------------------------
+InstallGeneratorTest: test_roles_features_migration_is_created
+--------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------------------------------
+InstallGeneratorTest: test_model_user_is_created
+------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------------------------------
+InstallGeneratorTest: test_model_role_is_created
+------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+----------------------------------------------------
+InstallGeneratorTest: test_user_migration_is_created
+----------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+-----------------------------------------------------------
+InstallGeneratorTest: test_roles_users_migration_is_created
+-----------------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+----------------------------------------------------
+InstallGeneratorTest: test_role_migration_is_created
+----------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+---------------------------------------------------
+InstallGeneratorTest: test_model_feature_is_created
+---------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+-------------------------------------------------------
+InstallGeneratorTest: test_feature_migration_is_created
+-------------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "users" ("name", "email", "username", "salt", "crypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["name", "User 1"], ["email", "email1@curupira.com"], ["username", "user_1"], ["salt", "fHMSEyxJMqsSYa6bmQPW"], ["crypted_password", "$2a$10$wM/89s32N5JJpvJcVxBf7ORP.2h1V9wW3vePxe9kGi5F2Uzc66sUS"], ["created_at", "2015-02-23 20:25:50.175696"], ["updated_at", "2015-02-23 20:25:50.175696"]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("name", "email", "username", "salt", "crypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "User 2"], ["email", "email2@curupira.com"], ["username", "user_2"], ["salt", "p6zo7jyCUCzsi1AmvPAT"], ["crypted_password", "$2a$10$UUI9gS5DHSi7Izg2.MGoKuIWR0vT0UfgahrFTdKmeb8fuT0BXjReW"], ["created_at", "2015-02-23 20:25:50.390212"], ["updated_at", "2015-02-23 20:25:50.390212"]]
+  [1m[35m (2.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (5.2ms)[0m  INSERT INTO "users" ("name", "email", "username", "salt", "crypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["name", "User 3"], ["email", "email3@curupira.com"], ["username", "user_3"], ["salt", "qokpHeL71YYNCQB8h5FK"], ["crypted_password", "$2a$10$AhvWEWKJkxZCSFh9TyqhJeBPhvJxLNK4uRCJhMZP8nlAwaegBWcYe"], ["created_at", "2015-02-23 20:25:50.607615"], ["updated_at", "2015-02-23 20:25:50.607615"]]
+  [1m[36m (5.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("name", "email", "username", "salt", "crypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "User 4"], ["email", "email4@curupira.com"], ["username", "user_4"], ["salt", "XbLofxPgjvbGxpstgTDz"], ["crypted_password", "$2a$10$PwiH0l2NoMDP3t9XFZJY3eNjt2pw4V3diceL.YfSSRMJhZYi.I2mm"], ["created_at", "2015-02-23 20:25:50.839344"], ["updated_at", "2015-02-23 20:25:50.839344"]]
+  [1m[35m (2.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+--------------------------------------
+CreateRoleTest: test_create_a_new_role
+--------------------------------------
+Started GET "/roles/new" for 127.0.0.1 at 2015-02-23 17:25:50 -0300
+Processing by RolesController#new as HTML
+  Rendered roles/_form.html.erb (21.7ms)
+  Rendered roles/new.html.erb within layouts/application (29.5ms)
+Completed 200 OK in 78ms (Views: 69.0ms | ActiveRecord: 0.2ms)
+Started POST "/roles" for 127.0.0.1 at 2015-02-23 17:25:50 -0300
+Processing by RolesController#create as HTML
+  Parameters: {"role"=>{"name"=>"Admin"}}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "roles" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Admin"], ["created_at", "2015-02-23 20:25:50.950429"], ["updated_at", "2015-02-23 20:25:50.950429"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/roles
+Completed 302 Found in 4ms (ActiveRecord: 0.6ms)
+Started GET "/roles" for 127.0.0.1 at 2015-02-23 17:25:50 -0300
+Processing by RolesController#index as HTML
+  [1m[36mRole Load (0.1ms)[0m  [1mSELECT "roles".* FROM "roles"[0m
+  Rendered roles/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 5ms (Views: 4.6ms | ActiveRecord: 0.1ms)
+  [1m[35m (0.6ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (1.5ms)[0m  [1mCREATE TABLE "features" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar NOT NULL, "controller" varchar NOT NULL, "action" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.5ms)[0m  [1mCREATE  INDEX "index_features_on_description" ON "features" ("description")[0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.2ms)[0m  [1mCREATE  INDEX "index_roles_on_name" ON "roles" ("name")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "roles_features" ("role_id" integer NOT NULL, "feature_id" integer NOT NULL) 
+  [1m[36m (1.3ms)[0m  [1mCREATE UNIQUE INDEX "roles_features_ids" ON "roles_features" ("role_id", "feature_id")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "roles_users" ("role_id" integer NOT NULL, "user_id" integer NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE UNIQUE INDEX "roles_users_ids" ON "roles_users" ("role_id", "user_id")[0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar NOT NULL, "name" varchar NOT NULL, "active" boolean DEFAULT 't', "username" varchar, "crypted_password" varchar, "salt" varchar, "created_at" datetime, "updated_at" datetime, "reset_password_token" varchar, "reset_password_token_expires_at" datetime, "reset_password_email_sent_at" datetime, "last_login_at" datetime, "last_logout_at" datetime, "last_activity_at" datetime, "last_login_from_ip_address" varchar) 
+  [1m[36m (1.0ms)[0m  [1mCREATE  INDEX "index_users_on_last_logout_at_and_last_activity_at" ON "users" ("last_logout_at", "last_activity_at")[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+
+  [1m[36m (1.2ms)[0m  [1mCREATE  INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+[0m
+  [1m[35m (1.1ms)[0m  CREATE UNIQUE INDEX "index_users_on_username" ON "users" ("username")
+  [1m[36m (1.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (1.3ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174609')
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051127')[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051128')
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051129')[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051130')
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150223174607')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174608')
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+--------------------------------------
+CreateRoleTest: test_create_a_new_role
+--------------------------------------
+Started GET "/roles/new" for 127.0.0.1 at 2015-02-23 17:27:19 -0300
+Processing by RolesController#new as HTML
+  Rendered roles/_form.html.erb (24.7ms)
+  Rendered roles/new.html.erb within layouts/application (32.7ms)
+Completed 200 OK in 93ms (Views: 73.4ms | ActiveRecord: 0.4ms)
+Started POST "/roles" for 127.0.0.1 at 2015-02-23 17:27:19 -0300
+Processing by RolesController#create as HTML
+  Parameters: {"role"=>{"name"=>"Admin"}}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "roles" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Admin"], ["created_at", "2015-02-23 20:27:19.442422"], ["updated_at", "2015-02-23 20:27:19.442422"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/roles
+Completed 302 Found in 8ms (ActiveRecord: 0.8ms)
+Started GET "/roles" for 127.0.0.1 at 2015-02-23 17:27:19 -0300
+Processing by RolesController#index as HTML
+  [1m[36mRole Load (0.1ms)[0m  [1mSELECT "roles".* FROM "roles"[0m
+  Rendered roles/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 5ms (Views: 4.9ms | ActiveRecord: 0.1ms)
+  [1m[35m (0.6ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------
+CurupiraTest: test_truth
+------------------------
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------------------------------
+InstallGeneratorTest: test_model_user_is_created
+------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+-----------------------------------------------------------
+InstallGeneratorTest: test_roles_users_migration_is_created
+-----------------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+---------------------------------------------------
+InstallGeneratorTest: test_model_feature_is_created
+---------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+----------------------------------------------------
+InstallGeneratorTest: test_user_migration_is_created
+----------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+----------------------------------------------------
+InstallGeneratorTest: test_role_migration_is_created
+----------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+--------------------------------------------------------------
+InstallGeneratorTest: test_roles_features_migration_is_created
+--------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+-------------------------------------------------------
+InstallGeneratorTest: test_feature_migration_is_created
+-------------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------------------------------
+InstallGeneratorTest: test_model_role_is_created
+------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("name", "email", "username", "salt", "crypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["name", "User 1"], ["email", "email1@curupira.com"], ["username", "user_1"], ["salt", "VAz2yMoj6TgYW7Qq3mpE"], ["crypted_password", "$2a$10$8cVlT9LZ8hyGV4UXD3RqIe77Ds4d/P2kFV8pxp2ryybFczUJDyW82"], ["created_at", "2015-02-23 20:27:19.914653"], ["updated_at", "2015-02-23 20:27:19.914653"]]
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("name", "email", "username", "salt", "crypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "User 2"], ["email", "email2@curupira.com"], ["username", "user_2"], ["salt", "VwtDHfDfRGpyws8FpUxf"], ["crypted_password", "$2a$10$bBUGhW.k.YWYldD.HDcCPerd/iYRDRCL790k3ZisVQ1sdLhe0Iqry"], ["created_at", "2015-02-23 20:27:20.133840"], ["updated_at", "2015-02-23 20:27:20.133840"]]
+  [1m[35m (2.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("name", "email", "username", "salt", "crypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["name", "User 3"], ["email", "email3@curupira.com"], ["username", "user_3"], ["salt", "6r555vcYSEESfsPyH7rW"], ["crypted_password", "$2a$10$bNNCDeezg.8b2uRxwFyisebio7rnAgyj86uYeXYwEJCwebm2roOru"], ["created_at", "2015-02-23 20:27:20.344765"], ["updated_at", "2015-02-23 20:27:20.344765"]]
+  [1m[36m (2.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("name", "email", "username", "salt", "crypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "User 4"], ["email", "email4@curupira.com"], ["username", "user_4"], ["salt", "s75uwgxhWUpcxs88yVn3"], ["crypted_password", "$2a$10$APnKHyD0vFs0ftmw9gaoSu.As32SReoW4yBN8ktHTvLbmIpcE1Acq"], ["created_at", "2015-02-23 20:27:20.560201"], ["updated_at", "2015-02-23 20:27:20.560201"]]
+  [1m[35m (2.6ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (2.5ms)[0m  [1mCREATE TABLE "features" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar NOT NULL, "controller" varchar NOT NULL, "action" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.5ms)[0m  [1mCREATE  INDEX "index_features_on_description" ON "features" ("description")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE  INDEX "index_roles_on_name" ON "roles" ("name")[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "roles_features" ("role_id" integer NOT NULL, "feature_id" integer NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE UNIQUE INDEX "roles_features_ids" ON "roles_features" ("role_id", "feature_id")[0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "roles_users" ("role_id" integer NOT NULL, "user_id" integer NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "roles_users_ids" ON "roles_users" ("role_id", "user_id")[0m
+  [1m[35m (1.8ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar NOT NULL, "name" varchar NOT NULL, "active" boolean DEFAULT 't', "username" varchar, "crypted_password" varchar, "salt" varchar, "created_at" datetime, "updated_at" datetime, "reset_password_token" varchar, "reset_password_token_expires_at" datetime, "reset_password_email_sent_at" datetime, "last_login_at" datetime, "last_logout_at" datetime, "last_activity_at" datetime, "last_login_from_ip_address" varchar) 
+  [1m[36m (1.0ms)[0m  [1mCREATE  INDEX "index_users_on_last_logout_at_and_last_activity_at" ON "users" ("last_logout_at", "last_activity_at")[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+
+  [1m[36m (1.1ms)[0m  [1mCREATE  INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+[0m
+  [1m[35m (1.1ms)[0m  CREATE UNIQUE INDEX "index_users_on_username" ON "users" ("username")
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (1.1ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174609')
+  [1m[36m (2.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051127')[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051128')
+  [1m[36m (2.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051129')[0m
+  [1m[35m (2.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051130')
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150223174607')[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174608')
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (1.4ms)[0m  [1mCREATE TABLE "features" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar NOT NULL, "controller" varchar NOT NULL, "action" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.4ms)[0m  [1mCREATE  INDEX "index_features_on_description" ON "features" ("description")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.3ms)[0m  [1mCREATE  INDEX "index_roles_on_name" ON "roles" ("name")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "roles_features" ("role_id" integer NOT NULL, "feature_id" integer NOT NULL) 
+  [1m[36m (1.3ms)[0m  [1mCREATE UNIQUE INDEX "roles_features_ids" ON "roles_features" ("role_id", "feature_id")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "roles_users" ("role_id" integer NOT NULL, "user_id" integer NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "roles_users_ids" ON "roles_users" ("role_id", "user_id")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar NOT NULL, "name" varchar NOT NULL, "active" boolean DEFAULT 't', "username" varchar, "crypted_password" varchar, "salt" varchar, "created_at" datetime, "updated_at" datetime, "reset_password_token" varchar, "reset_password_token_expires_at" datetime, "reset_password_email_sent_at" datetime, "last_login_at" datetime, "last_logout_at" datetime, "last_activity_at" datetime, "last_login_from_ip_address" varchar) 
+  [1m[36m (1.0ms)[0m  [1mCREATE  INDEX "index_users_on_last_logout_at_and_last_activity_at" ON "users" ("last_logout_at", "last_activity_at")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+
+  [1m[36m (1.2ms)[0m  [1mCREATE  INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+[0m
+  [1m[35m (1.5ms)[0m  CREATE UNIQUE INDEX "index_users_on_username" ON "users" ("username")
+  [1m[36m (1.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (1.1ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174609')
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051127')[0m
+  [1m[35m (1.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051128')
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051129')[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051130')
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150223174607')[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174608')
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (1.3ms)[0m  [1mCREATE TABLE "features" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar NOT NULL, "controller" varchar NOT NULL, "action" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  select sqlite_version(*)
+  [1m[36m (2.0ms)[0m  [1mCREATE  INDEX "index_features_on_description" ON "features" ("description")[0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.9ms)[0m  [1mCREATE  INDEX "index_roles_on_name" ON "roles" ("name")[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "roles_features" ("role_id" integer NOT NULL, "feature_id" integer NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "roles_features_ids" ON "roles_features" ("role_id", "feature_id")[0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "roles_users" ("role_id" integer NOT NULL, "user_id" integer NOT NULL) 
+  [1m[36m (1.2ms)[0m  [1mCREATE UNIQUE INDEX "roles_users_ids" ON "roles_users" ("role_id", "user_id")[0m
+  [1m[35m (1.4ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar NOT NULL, "name" varchar NOT NULL, "active" boolean DEFAULT 't', "username" varchar, "crypted_password" varchar, "salt" varchar, "created_at" datetime, "updated_at" datetime, "reset_password_token" varchar, "reset_password_token_expires_at" datetime, "reset_password_email_sent_at" datetime, "last_login_at" datetime, "last_logout_at" datetime, "last_activity_at" datetime, "last_login_from_ip_address" varchar) 
+  [1m[36m (1.2ms)[0m  [1mCREATE  INDEX "index_users_on_last_logout_at_and_last_activity_at" ON "users" ("last_logout_at", "last_activity_at")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+
+  [1m[36m (1.0ms)[0m  [1mCREATE  INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+[0m
+  [1m[35m (1.0ms)[0m  CREATE UNIQUE INDEX "index_users_on_username" ON "users" ("username")
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (1.1ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174609')
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051127')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051128')
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051129')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051130')
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150223174607')[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174608')
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (1.6ms)[0m  [1mCREATE TABLE "features" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar NOT NULL, "controller" varchar NOT NULL, "action" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.2ms)[0m  [1mCREATE  INDEX "index_features_on_description" ON "features" ("description")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.2ms)[0m  [1mCREATE  INDEX "index_roles_on_name" ON "roles" ("name")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "roles_features" ("role_id" integer NOT NULL, "feature_id" integer NOT NULL) 
+  [1m[36m (1.3ms)[0m  [1mCREATE UNIQUE INDEX "roles_features_ids" ON "roles_features" ("role_id", "feature_id")[0m
+  [1m[35m (4.9ms)[0m  CREATE TABLE "roles_users" ("role_id" integer NOT NULL, "user_id" integer NOT NULL) 
+  [1m[36m (1.6ms)[0m  [1mCREATE UNIQUE INDEX "roles_users_ids" ON "roles_users" ("role_id", "user_id")[0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar NOT NULL, "name" varchar NOT NULL, "active" boolean DEFAULT 't', "username" varchar, "crypted_password" varchar, "salt" varchar, "created_at" datetime, "updated_at" datetime, "reset_password_token" varchar, "reset_password_token_expires_at" datetime, "reset_password_email_sent_at" datetime, "last_login_at" datetime, "last_logout_at" datetime, "last_activity_at" datetime, "last_login_from_ip_address" varchar) 
+  [1m[36m (1.0ms)[0m  [1mCREATE  INDEX "index_users_on_last_logout_at_and_last_activity_at" ON "users" ("last_logout_at", "last_activity_at")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+
+  [1m[36m (1.1ms)[0m  [1mCREATE  INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+[0m
+  [1m[35m (1.3ms)[0m  CREATE UNIQUE INDEX "index_users_on_username" ON "users" ("username")
+  [1m[36m (1.6ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (1.4ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174609')
+  [1m[36m (2.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051127')[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051128')
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051129')[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051130')
+  [1m[36m (1.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150223174607')[0m
+  [1m[35m (0.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174608')
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (1.8ms)[0m  [1mCREATE TABLE "features" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar NOT NULL, "controller" varchar NOT NULL, "action" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.2ms)[0m  [1mCREATE  INDEX "index_features_on_description" ON "features" ("description")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.2ms)[0m  [1mCREATE  INDEX "index_roles_on_name" ON "roles" ("name")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "roles_features" ("role_id" integer NOT NULL, "feature_id" integer NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE UNIQUE INDEX "roles_features_ids" ON "roles_features" ("role_id", "feature_id")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "roles_users" ("role_id" integer NOT NULL, "user_id" integer NOT NULL) 
+  [1m[36m (1.3ms)[0m  [1mCREATE UNIQUE INDEX "roles_users_ids" ON "roles_users" ("role_id", "user_id")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar NOT NULL, "name" varchar NOT NULL, "active" boolean DEFAULT 't', "username" varchar, "crypted_password" varchar, "salt" varchar, "created_at" datetime, "updated_at" datetime, "reset_password_token" varchar, "reset_password_token_expires_at" datetime, "reset_password_email_sent_at" datetime, "last_login_at" datetime, "last_logout_at" datetime, "last_activity_at" datetime, "last_login_from_ip_address" varchar) 
+  [1m[36m (1.0ms)[0m  [1mCREATE  INDEX "index_users_on_last_logout_at_and_last_activity_at" ON "users" ("last_logout_at", "last_activity_at")[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+
+  [1m[36m (1.3ms)[0m  [1mCREATE  INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+[0m
+  [1m[35m (1.2ms)[0m  CREATE UNIQUE INDEX "index_users_on_username" ON "users" ("username")
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (1.1ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174609')
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051127')[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051128')
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051129')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051130')
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150223174607')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174608')
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "users" ("name", "email", "username", "salt", "crypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "User 1"], ["email", "email1@curupira.com"], ["username", "user_1"], ["salt", "ezPeBW2aTWU9xQnkEeyq"], ["crypted_password", "$2a$10$8rQPvPJBfxvigR4Ogr09Iean.s.IedFYWbm8HDZfaZEufkFeITbom"], ["created_at", "2015-02-23 20:55:58.136329"], ["updated_at", "2015-02-23 20:55:58.136329"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("name", "email", "username", "salt", "crypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["name", "User 2"], ["email", "email2@curupira.com"], ["username", "user_2"], ["salt", "jUWmEiJqLNzab6zS5BjV"], ["crypted_password", "$2a$10$X7jeTSjEN//ofeKMypY7D.QU/wcCYejgVrP0VeEwVJBvM6RAi6URS"], ["created_at", "2015-02-23 20:55:58.352000"], ["updated_at", "2015-02-23 20:55:58.352000"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by Curupira::UsersController#index as HTML
+  Rendered curupira/users/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 45ms (Views: 44.1ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.7ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("name", "email", "username", "salt", "crypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "User 3"], ["email", "email3@curupira.com"], ["username", "user_3"], ["salt", "tsE7nSGR3G6zRuhqPAqR"], ["crypted_password", "$2a$10$L.70kvE8io9EPCe51cQO4eUAGVEAkyyrwWghhmMySSXVuhRs58g02"], ["created_at", "2015-02-23 20:55:58.621160"], ["updated_at", "2015-02-23 20:55:58.621160"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("name", "email", "username", "salt", "crypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["name", "User 4"], ["email", "email4@curupira.com"], ["username", "user_4"], ["salt", "q9pFQQJpi1ysz3eixdiT"], ["crypted_password", "$2a$10$oUFAHl7i8BGHPBZaAuf7SOcYIpIQU4M0WKWLUsYu6e.lIAy07Cvme"], ["created_at", "2015-02-23 20:55:58.841540"], ["updated_at", "2015-02-23 20:55:58.841540"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by Curupira::UsersController#index as HTML
+  Rendered curupira/users/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 1ms (Views: 1.2ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users"
+  [1m[36m (2.0ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (2.8ms)[0m  [1mCREATE TABLE "features" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar NOT NULL, "controller" varchar NOT NULL, "action" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  select sqlite_version(*)
+  [1m[36m (1.6ms)[0m  [1mCREATE  INDEX "index_features_on_description" ON "features" ("description")[0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mCREATE  INDEX "index_roles_on_name" ON "roles" ("name")[0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "roles_features" ("role_id" integer NOT NULL, "feature_id" integer NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "roles_features_ids" ON "roles_features" ("role_id", "feature_id")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "roles_users" ("role_id" integer NOT NULL, "user_id" integer NOT NULL) 
+  [1m[36m (1.2ms)[0m  [1mCREATE UNIQUE INDEX "roles_users_ids" ON "roles_users" ("role_id", "user_id")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar NOT NULL, "name" varchar NOT NULL, "active" boolean DEFAULT 't', "username" varchar, "crypted_password" varchar, "salt" varchar, "created_at" datetime, "updated_at" datetime, "reset_password_token" varchar, "reset_password_token_expires_at" datetime, "reset_password_email_sent_at" datetime, "last_login_at" datetime, "last_logout_at" datetime, "last_activity_at" datetime, "last_login_from_ip_address" varchar) 
+  [1m[36m (1.2ms)[0m  [1mCREATE  INDEX "index_users_on_last_logout_at_and_last_activity_at" ON "users" ("last_logout_at", "last_activity_at")[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+
+  [1m[36m (1.1ms)[0m  [1mCREATE  INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+[0m
+  [1m[35m (1.2ms)[0m  CREATE UNIQUE INDEX "index_users_on_username" ON "users" ("username")
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (1.0ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174609')
+  [1m[36m (1.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051127')[0m
+  [1m[35m (1.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051128')
+  [1m[36m (1.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051129')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051130')
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150223174607')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174608')
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "users" ("name", "email", "username", "salt", "crypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "User 1"], ["email", "email1@curupira.com"], ["username", "user_1"], ["salt", "StUzNptny5z2qrLaQqZa"], ["crypted_password", "$2a$10$bvFMb9f.IW/GlRPMkqM3ju78j4NN9bybGv.aO0G5Y9o1ZJej/st7W"], ["created_at", "2015-02-23 20:56:55.331132"], ["updated_at", "2015-02-23 20:56:55.331132"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("name", "email", "username", "salt", "crypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["name", "User 2"], ["email", "email2@curupira.com"], ["username", "user_2"], ["salt", "HFNdxjuWpPvJmWiydcos"], ["crypted_password", "$2a$10$1WV3zP9CcVdGRrqjyL/Ste3DmiQY8jzCSDxDWRspNYcLQOFzjkG0S"], ["created_at", "2015-02-23 20:56:55.560476"], ["updated_at", "2015-02-23 20:56:55.560476"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by Curupira::UsersController#index as HTML
+  Rendered curupira/users/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 43ms (Views: 42.4ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.7ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("name", "email", "username", "salt", "crypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "User 3"], ["email", "email3@curupira.com"], ["username", "user_3"], ["salt", "syUmZ9d9J3dzuf4r3Fxj"], ["crypted_password", "$2a$10$7MTZJViA3iUdGlgq9oNYsuoQlG.R9DJZuzGMNIuvsPg2HcLBQL8oW"], ["created_at", "2015-02-23 20:56:55.837630"], ["updated_at", "2015-02-23 20:56:55.837630"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("name", "email", "username", "salt", "crypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["name", "User 4"], ["email", "email4@curupira.com"], ["username", "user_4"], ["salt", "bgFszpbG1PtuvyZYwuVp"], ["crypted_password", "$2a$10$FXIsssrC4uRwrr7jMJtfHOP6fOiPl3hMyoj1d/Lm72sX/IYU8GM1m"], ["created_at", "2015-02-23 20:56:56.050934"], ["updated_at", "2015-02-23 20:56:56.050934"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by Curupira::UsersController#index as HTML
+  Rendered curupira/users/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 1ms (Views: 1.0ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users"
+  [1m[36m (0.6ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (2.8ms)[0m  [1mCREATE TABLE "features" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar NOT NULL, "controller" varchar NOT NULL, "action" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.2ms)[0m  [1mCREATE  INDEX "index_features_on_description" ON "features" ("description")[0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE  INDEX "index_roles_on_name" ON "roles" ("name")[0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "roles_features" ("role_id" integer NOT NULL, "feature_id" integer NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE UNIQUE INDEX "roles_features_ids" ON "roles_features" ("role_id", "feature_id")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "roles_users" ("role_id" integer NOT NULL, "user_id" integer NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "roles_users_ids" ON "roles_users" ("role_id", "user_id")[0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar NOT NULL, "name" varchar NOT NULL, "active" boolean DEFAULT 't', "username" varchar, "crypted_password" varchar, "salt" varchar, "created_at" datetime, "updated_at" datetime, "reset_password_token" varchar, "reset_password_token_expires_at" datetime, "reset_password_email_sent_at" datetime, "last_login_at" datetime, "last_logout_at" datetime, "last_activity_at" datetime, "last_login_from_ip_address" varchar) 
+  [1m[36m (1.0ms)[0m  [1mCREATE  INDEX "index_users_on_last_logout_at_and_last_activity_at" ON "users" ("last_logout_at", "last_activity_at")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+
+  [1m[36m (1.1ms)[0m  [1mCREATE  INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_last_logout_at_and_last_activity_at' AND type='index'
+[0m
+  [1m[35m (1.1ms)[0m  CREATE UNIQUE INDEX "index_users_on_username" ON "users" ("username")
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (1.0ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174609')
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051127')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051128')
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150220051129')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150220051130')
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150223174607')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150223174608')
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "users" ("name", "email", "username", "salt", "crypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "User 1"], ["email", "email1@curupira.com"], ["username", "user_1"], ["salt", "bWNQaZqqxV5KoaqSaMJ8"], ["crypted_password", "$2a$10$4J60oftiNMINVT7oCs2Xz.smeoWZ3p/8FntWhF4YAmzZQR05bKCDK"], ["created_at", "2015-02-23 20:57:10.990179"], ["updated_at", "2015-02-23 20:57:10.990179"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("name", "email", "username", "salt", "crypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["name", "User 2"], ["email", "email2@curupira.com"], ["username", "user_2"], ["salt", "zHbwrA5ytfCwYn8JtNWJ"], ["crypted_password", "$2a$10$wSPp/tAPGpeC3h7AFFie4e.9T0aaaV2GT8o9xc2kbtKfnC1Fa/rNi"], ["created_at", "2015-02-23 20:57:11.203299"], ["updated_at", "2015-02-23 20:57:11.203299"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by Curupira::UsersController#index as HTML
+  Rendered curupira/users/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 36ms (Views: 36.1ms | ActiveRecord: 0.0ms)
+  [1m[35m (2.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("name", "email", "username", "salt", "crypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "User 3"], ["email", "email3@curupira.com"], ["username", "user_3"], ["salt", "5bmzYqnWmHZXX2Qq5sW5"], ["crypted_password", "$2a$10$QJl1Z9j.eXXA8px/i3Ftseld5Uw2Lw2YYHHvSqJOx0W357HRJ6doO"], ["created_at", "2015-02-23 20:57:11.465421"], ["updated_at", "2015-02-23 20:57:11.465421"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("name", "email", "username", "salt", "crypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["name", "User 4"], ["email", "email4@curupira.com"], ["username", "user_4"], ["salt", "EUUmPr3is3fk29rQzuFx"], ["crypted_password", "$2a$10$iW0UWgOFS1en9Kin0mB8..iJMqVLySXG6gGu7lomXhPJcCYQberma"], ["created_at", "2015-02-23 20:57:11.681417"], ["updated_at", "2015-02-23 20:57:11.681417"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by Curupira::UsersController#index as HTML
+  Rendered curupira/users/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users"
+  [1m[36m (2.0ms)[0m  [1mrollback transaction[0m
