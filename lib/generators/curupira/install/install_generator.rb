@@ -23,18 +23,30 @@ module Curupira
       end
 
       def create_user_model
-        # if File.exist? "app/models/user.rb"
-        #   inject_into_file(
-        #     "app/models/user.rb",
-        #     "has_and_belongs_to_many :roles\n\n",
-        #     after: "class User < ActiveRecord::Base\n"
-        #   )
-        # else
-        #   copy_file 'user.rb', 'app/models/user.rb'
-        # end
+        copy_file 'models/user.rb', 'app/models/user.rb' unless model_exists?
+      end
+
+      def inject_curupira_content
+        content = model_content.split("\n").map { |line| "  "  + line.strip! } .join("\n") << "\n"
+        inject_into_class(model_path, User, content) if model_exists?
       end
 
       private
+
+      def model_content
+        <<-CONTENT
+          authenticates_with_sorcery!
+          validates_presence_of :email
+        CONTENT
+      end
+
+      def model_path
+        @model_path ||= File.join("app", "models", "user.rb")
+      end
+
+      def model_exists?
+        File.exists?(File.join(destination_root, model_path))
+      end
 
       def copy_migration(migration_name, config = {})
         # unless migration_exists?(migration_name)
