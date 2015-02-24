@@ -9,14 +9,14 @@ module Curupira
       g.helper false
     end
 
-    initialize "curupira.load_app_instance_data" do |app|
+    initializer "curupira.load_app_instance_data" do |app|
       Curupira.setup do |config|
         config.app_root = app.root
       end
     end
 
 
-    initialize "curupira.load_static_assets" do |app|
+    initializer "curupira.load_static_assets" do |app|
       app.middleware.use ::ActionDispatch::Static, "#{root}/public"
     end
   end
