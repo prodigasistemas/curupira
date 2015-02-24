@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150220051130) do
+ActiveRecord::Schema.define(version: 20150223174609) do
 
   create_table "features", force: :cascade do |t|
     t.string   "description", null: false
@@ -46,16 +46,25 @@ ActiveRecord::Schema.define(version: 20150220051130) do
   add_index "roles_users", ["role_id", "user_id"], name: "roles_users_ids", unique: true
 
   create_table "users", force: :cascade do |t|
-    t.string   "name",                           null: false
-    t.string   "email",                          null: false
-    t.string   "encrypted_password", limit: 128, null: false
-    t.string   "confirmation_token", limit: 128
-    t.string   "remember_token",     limit: 128, null: false
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.string   "email",                                          null: false
+    t.string   "name",                                           null: false
+    t.boolean  "active",                          default: true
+    t.string   "username"
+    t.string   "crypted_password"
+    t.string   "salt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "reset_password_token"
+    t.datetime "reset_password_token_expires_at"
+    t.datetime "reset_password_email_sent_at"
+    t.datetime "last_login_at"
+    t.datetime "last_logout_at"
+    t.datetime "last_activity_at"
+    t.string   "last_login_from_ip_address"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email"
-  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
+  add_index "users", ["last_logout_at", "last_activity_at"], name: "index_users_on_last_logout_at_and_last_activity_at"
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token"
+  add_index "users", ["username"], name: "index_users_on_username", unique: true
 
 end
