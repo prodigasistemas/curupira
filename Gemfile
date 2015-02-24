@@ -12,6 +12,7 @@ gemspec
 
 # To use a debugger
 gem 'byebug', group: [:development, :test]
+gem 'pry-rails', group: [:development, :test]
 
 platforms :ruby do
   gem "sqlite3"
