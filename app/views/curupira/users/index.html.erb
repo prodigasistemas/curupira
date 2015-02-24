@@ -1,16 +1,16 @@
-<h1>Users</h1>
+<h1>Usuários</h1>
 
 <div class="actions">
-  <%= link_to "New", new_user_path %>
+  <%= link_to "Novo", new_user_path %>
 </div>
 
 <table>
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Nome</th>
       <th>Email</th>
-      <th>Username</th>
-      <th>Active</th>
+      <th>Nome de usuário</th>
+      <th>Ativo</th>
       <th></th>
     </tr>
   </thead>
@@ -21,7 +21,7 @@
         <td><%= link_to user.email, user %></td>
         <td><%= link_to user.username, user %></td>
         <td><%= user.active %></td>
-        <td><%= link_to :edit, edit_user_path(user) %></td>
+        <td><%= link_to "Editar", edit_user_path(user) %></td>
       </tr>
     <% end %>
   </tbody>

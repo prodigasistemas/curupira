@@ -1,7 +1,7 @@
-<h1>User</h1>
+<h1>Usuário</h1>
 
 <div class="actions">
-  <%= link_to :edit, edit_user_path(@user) %>
+  <%= link_to "Editar", edit_user_path(@user) %>
 </div>
 
 <ul>
@@ -11,4 +11,4 @@
   <li>Active: <%= @user.active %></li>
 </ul>
 
-<%= link_to :back, users_path %>
+<%= link_to "Voltar", users_path %>
