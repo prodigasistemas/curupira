@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
   curupira_routes
-  resources :roles
+
+  root to: "home#index"
 end

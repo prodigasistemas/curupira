@@ -1,0 +1,7 @@
+<div id="curupira-session-links">
+  <% if current_user %>
+    <%= link_to "Sair", destroy_session_path %>
+  <% else %>
+    <%= link_to "Entrar", new_session_path %>
+  <% end %>
+</div>

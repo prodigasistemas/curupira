@@ -13,38 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20150223174609) do
 
-  create_table "features", force: :cascade do |t|
-    t.string   "description", null: false
-    t.string   "controller",  null: false
-    t.string   "action",      null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "features", ["description"], name: "index_features_on_description"
-
-  create_table "roles", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "roles", ["name"], name: "index_roles_on_name"
-
-  create_table "roles_features", id: false, force: :cascade do |t|
-    t.integer "role_id",    null: false
-    t.integer "feature_id", null: false
-  end
-
-  add_index "roles_features", ["role_id", "feature_id"], name: "roles_features_ids", unique: true
-
-  create_table "roles_users", id: false, force: :cascade do |t|
-    t.integer "role_id", null: false
-    t.integer "user_id", null: false
-  end
-
-  add_index "roles_users", ["role_id", "user_id"], name: "roles_users_ids", unique: true
-
   create_table "users", force: :cascade do |t|
     t.string   "email",                                          null: false
     t.string   "name",                                           null: false

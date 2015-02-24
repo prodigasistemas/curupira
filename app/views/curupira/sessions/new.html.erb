@@ -1,0 +1,15 @@
+<h1>Entrar</h1>
+
+<%= form_for @user, url: session_path do |f| %>
+  <div class="field">
+    <%= f.label :username, "Email ou Nome de usuário" %><br>
+    <%= f.text_field :username %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password, "Senha" %><br>
+    <%= f.password_field :password %>
+  </div>
+
+  <%= f.submit "Entrar" %>
+<% end %>

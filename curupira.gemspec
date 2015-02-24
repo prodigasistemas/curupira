@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.name        = "curupira"
   s.version     = Curupira::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["Paulo Moura" "Felipe Iketani"]
+  s.authors     = ["Paulo Moura", "Felipe Iketani"]
   s.email       = ["paulociecomp@gmail.com"]
   s.homepage    = "TODO"
   s.summary     = "Curupira!"
@@ -28,5 +28,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'capybara'
   s.add_development_dependency 'factory_girl_rails'
+  s.add_development_dependency 'pry-rails'
+
   # s.add_dependency("railties", ">= 3.2.6", "< 5")
 end

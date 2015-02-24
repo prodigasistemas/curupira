@@ -1,1 +1,1 @@
-resources :roles
+curupira_routes

@@ -1,9 +1,11 @@
 require "rails_helper"
 
 describe Curupira::UsersController do
+  let(:user) { FactoryGirl.create :user }
+
   describe "GET index" do
     before do
-      FactoryGirl.create :user
+      login_user(user)
       FactoryGirl.create :user
     end
 

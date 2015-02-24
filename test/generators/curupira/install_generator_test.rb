@@ -11,44 +11,9 @@ class InstallGeneratorTest < Rails::Generators::TestCase
     copy_routes
   end
 
-  test "model user is created" do
+  test "route generation for simple model names" do
     run_generator
-    assert_file "app/models/user.rb"
-  end
-
-  test "user migration is created" do
-    run_generator
-    assert_migration "db/migrate/create_users.rb"
-  end
-
-  test "model role is created" do
-    run_generator
-    assert_file "app/models/role.rb"
-  end
-
-  test "role migration is created" do
-    run_generator
-    assert_migration "db/migrate/create_roles.rb"
-  end
-
-  test "roles_users migration is created" do
-    run_generator
-    assert_migration "db/migrate/create_roles_users.rb"
-  end
-
-  test "model feature is created" do
-    run_generator
-    assert_file "app/models/feature.rb"
-  end
-
-  test "feature migration is created" do
-    run_generator
-    assert_migration "db/migrate/create_features.rb"
-  end
-
-  test "roles_features migration is created" do
-    run_generator
-    assert_migration "db/migrate/create_roles_features.rb"
+    assert_file "config/routes.rb", /curupira_routes/
   end
 
   def copy_routes
