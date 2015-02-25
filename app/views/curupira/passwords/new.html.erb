@@ -1,0 +1,14 @@
+<h1>Esqueci minha senha</h1>
+
+<%= form_for @user, url: passwords_path do |f| %>
+  <div class="field">
+    <%= f.label :email, "Email" %>
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Me envie instruções por email" %>
+  </div>
+<% end %>
+
+<%= link_to "Cancelar", new_session_path%>

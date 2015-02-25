@@ -6,6 +6,7 @@ module ActionDispatch::Routing
         resource :session, only: [:new, :create] do
           get :destroy, as: :destroy
         end
+        resources :passwords, only: [:new, :create, :edit, :update]
       end
     end
   end

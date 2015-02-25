@@ -2,8 +2,7 @@
 # The default is nothing which will include only core features (password encryption, login/logout).
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me,
 # :reset_password, :session_timeout, :brute_force_protection, :activity_logging, :external
-# :reset_password
-Rails.application.config.sorcery.submodules = [:activity_logging]
+Rails.application.config.sorcery.submodules = [:reset_password, :activity_logging]
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
@@ -333,13 +332,13 @@ Rails.application.config.sorcery.configure do |config|
     # mailer class. Needed.
     # Default: `nil`
     #
-    # user.reset_password_mailer =
+    user.reset_password_mailer = Curupira::ResetPasswordMailer
 
 
     # reset password email method on your mailer class.
     # Default: `:reset_password_email`
     #
-    # user.reset_password_email_method_name =
+    user.reset_password_email_method_name = :instructions
 
 
     # when true sorcery will not automatically

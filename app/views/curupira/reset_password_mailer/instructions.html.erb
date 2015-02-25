@@ -1,0 +1,19 @@
+<p>
+  Olá <%= @user.name %>,
+</p>
+
+<p>
+  Este é um email automático.
+</p>
+
+<p>
+  Você solicitou instruções para recuperar sua senha.
+</p>
+
+<p>
+  <%= link_to "Clique aqui para crirar uma nova senha", edit_password_url(id: @user.reset_password_token) %>
+</p>
+
+<p>
+  Caso você não tenha feito esta solicitação, por favor, desconsidere este email.
+</p>

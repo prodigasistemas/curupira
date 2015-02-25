@@ -1,0 +1,14 @@
+<h1>Reiniciar senha</h1>
+
+<%= form_for @user, url: password_path(id: @user.reset_password_token) do |f| %>
+  <div class="field">
+    <%= f.label :password, "Nova senha" %>
+    <%= f.password_field :password %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Criar nova senha" %>
+  </div>
+<% end %>
+
+<%= link_to "Cancelar", new_session_path%>
