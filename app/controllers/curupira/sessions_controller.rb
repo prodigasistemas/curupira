@@ -1,4 +1,6 @@
 class Curupira::SessionsController < ApplicationController
+  before_filter :redirect_to_root_with_errors, if: :current_user, except: :destroy
+
   def new
     @user = User.new
   end
@@ -18,5 +20,11 @@ class Curupira::SessionsController < ApplicationController
   def destroy
     logout
     redirect_to new_session_path
+  end
+
+  private
+
+  def redirect_to_root_with_errors
+    redirect_to root_path, alert: "Você já está logado"
   end
 end
