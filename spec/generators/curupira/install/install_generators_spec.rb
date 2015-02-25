@@ -42,11 +42,40 @@ describe Curupira::Generators::InstallGenerator, :generator do
     end
   end
 
+  describe "role_model" do
+    context "no existing role class" do
+      it "generates role" do
+        run_generator
+        role_class = file("app/models/role.rb")
+
+        expect(role_class).to exist
+        expect(role_class).to have_correct_syntax
+      end
+
+      it "adds validations" do
+        run_generator
+
+        role_class = file("app/models/role.rb")
+
+        expect(role_class).to contain("validates_presence_of :name")
+      end
+    end
+
+    context "role class already exists" do
+      it "includes validations" do
+        run_generator
+        user_class = file("app/models/role.rb")
+
+        expect(user_class).to exist
+        expect(user_class).to have_correct_syntax
+        expect(user_class).to contain("validates_presence_of :name")
+      end
+    end
+  end
+
   describe "user_model" do
     context "no existing user class" do
-      it "creates a user class including Clearance::User" do
-        # provide_existing_application_controller
-
+      it "creates a user class Curupira configurations" do
         run_generator
         user_class = file("app/models/user.rb")
 
@@ -58,7 +87,7 @@ describe Curupira::Generators::InstallGenerator, :generator do
     end
 
     context "user class already exists" do
-      it "includes Clearance::User" do
+      it "includes Curupira configurations" do
         provide_existing_user_class
 
         run_generator

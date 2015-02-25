@@ -27,6 +27,11 @@ module Curupira
         # invoke "curupira:views"
       end
 
+      def create_role_model
+        copy_file 'models/role.rb', 'app/models/role.rb' unless model_exists?("app/models/role.rb")
+        inject_into_class("app/models/role.rb", "Role", "  validates_presence_of :name\n")
+      end
+
       def create_user_model
         copy_file 'models/user.rb', 'app/models/user.rb' unless model_exists?
       end
