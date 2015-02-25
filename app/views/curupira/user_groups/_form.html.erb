@@ -1,0 +1,16 @@
+<%= form_for @group do |f| %>
+  <div class="field">
+    <%= f.label :name, "Nome" %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :active, "Ativo" %><br>
+    <%= f.check_box :active %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %><br>
+    or <%= link_to "Cancelar", user_groups_path %>
+  </div>
+<% end %>

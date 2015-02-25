@@ -10,6 +10,11 @@ module Curupira
         invoke "curupira:routes"
       end
 
+      def create_user_groups
+        invoke("active_record:model", ["user_group", "name:string", "active:boolean"]) unless model_exists?("app/models/user_groups.rb")
+        inject_into_class("app/models/user_group.rb", "UserGroup", "  validates_presence_of :name\n")
+      end
+
       def copy_initializer
         copy_file 'sorcery.rb', 'config/initializers/sorcery.rb'
       end
@@ -28,7 +33,7 @@ module Curupira
 
       def inject_curupira_content
         content = model_content.split("\n").map { |line| "  "  + line.strip! } .join("\n") << "\n"
-        inject_into_class(model_path, User, content) if model_exists?
+        inject_into_class("app/models/user.rb", User, content) if model_exists?
       end
 
       private
@@ -40,11 +45,7 @@ module Curupira
         CONTENT
       end
 
-      def model_path
-        @model_path ||= File.join("app", "models", "user.rb")
-      end
-
-      def model_exists?
+      def model_exists?(model_path = "app/models/user.rb")
         File.exists?(File.join(destination_root, model_path))
       end
 

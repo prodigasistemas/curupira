@@ -3,6 +3,10 @@ require "generators/curupira/install/install_generator"
 
 describe Curupira::Generators::InstallGenerator, :generator do
 
+  before :all do
+    Object.send(:remove_const, :UserGroup) if defined?(UserGroup)
+  end
+
   before do
     provide_existing_routes_file
   end
@@ -15,6 +19,26 @@ describe Curupira::Generators::InstallGenerator, :generator do
       expect(initializer).to exist
       expect(initializer).to have_correct_syntax
       expect(initializer).to contain("Rails.application.config.sorcery.configure do |config|")
+    end
+  end
+
+  describe "user_group" do
+    context "no existing user group class" do
+      it "generates user group" do
+        run_generator
+
+        user_group = file("app/models/user_group.rb")
+
+        expect(user_group).to exist
+      end
+    end
+
+    it "adds validations" do
+      run_generator
+
+      user_group = file("app/models/user_group.rb")
+
+      expect(user_group).to contain("validates_presence_of :name")
     end
   end
 

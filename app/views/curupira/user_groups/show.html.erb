@@ -1,0 +1,12 @@
+<h1>Grupo de Usuário</h1>
+
+<div class="actions">
+  <%= link_to "Editar", edit_user_group_path(@group) %>
+</div>
+
+<ul>
+  <li>Name: <%= @group.name %></li>
+  <li>Active: <%= @group.active %></li>
+</ul>
+
+<%= link_to "Voltar", user_groups_path %>
