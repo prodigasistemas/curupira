@@ -101,12 +101,25 @@ describe Curupira::Generators::InstallGenerator, :generator do
     end
   end
 
+  describe "role migration" do
+    context "roles table does not exist" do
+      it "creates a migration to create the roles table" do
+        allow(ActiveRecord::Base.connection).to receive(:table_exists?).and_return(false)
+
+        run_generator
+        migration = migration_file("db/migrate/create_roles.rb")
+
+        expect(migration).to exist
+        expect(migration).to have_correct_syntax
+        expect(migration).to contain("create_table :roles")
+      end
+    end
+  end
+
   describe "user migration" do
     context "users table does not exist" do
       it "creates a migration to create the users table" do
-        allow(ActiveRecord::Base.connection).to receive(:table_exists?).
-          with(:users).
-          and_return(false)
+        allow(ActiveRecord::Base.connection).to receive(:table_exists?).and_return(false)
 
         run_generator
         migration = migration_file("db/migrate/sorcery_core.rb")
