@@ -88,6 +88,14 @@ module Curupira
         @group_indexes ||= {}
       end
 
+      def feature_columns
+        @feature_columns ||= {}
+      end
+
+      def feature_indexes
+        @feature_indexes ||= {}
+      end
+
       def user_indexes
         @user_indexes ||= {
           index_users_on_username: 'add_index :users, :username, unique: true',
@@ -118,6 +126,12 @@ module Curupira
       end
 
       def role_model_content
+        <<-CONTENT
+          validates_presence_of :name
+        CONTENT
+      end
+
+      def feature_model_content
         <<-CONTENT
           validates_presence_of :name
         CONTENT
