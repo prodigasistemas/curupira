@@ -47,32 +47,6 @@ module Curupira
 
       private
 
-      def create_model(model_name)
-        copy_file "models/#{model_name}.rb", "app/models/#{model_name}.rb" unless model_exists?("app/models/#{model_name}.rb")
-        content = self.send("#{model_name}_model_content").split("\n").map { |line| "  "  + line.strip! } .join("\n") << "\n"
-        inject_into_class("app/models/#{model_name}.rb", model_name.camelize, content)
-      end
-
-      def user_model_content
-        <<-CONTENT
-          authenticates_with_sorcery!
-          validates_presence_of :email
-        CONTENT
-      end
-
-      def group_model_content
-        <<-CONTENT
-          validates_presence_of :name
-          scope :active, -> { where active: true }
-        CONTENT
-      end
-
-      def role_model_content
-        <<-CONTENT
-          validates_presence_of :name
-        CONTENT
-      end
-
       def self.next_migration_number(dir)
         ActiveRecord::Generators::Base.next_migration_number(dir)
       end
