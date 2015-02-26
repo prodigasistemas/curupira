@@ -17,6 +17,11 @@ module Curupira
         copy_file 'sorcery.rb', 'config/initializers/sorcery.rb'
       end
 
+      def create_authorization
+        create_model "authorization"
+        create_migration_to("authorization")
+      end
+
       def create_feature
         create_model "feature"
         create_migration_to("feature")

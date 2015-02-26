@@ -96,6 +96,14 @@ module Curupira
         @feature_indexes ||= {}
       end
 
+      def authorization_columns
+        @authorization_columns ||= {}
+      end
+
+      def authorization_indexes
+        @authorization_indexes ||= {}
+      end
+
       def user_indexes
         @user_indexes ||= {
           index_users_on_username: 'add_index :users, :username, unique: true',
@@ -109,6 +117,13 @@ module Curupira
         copy_file "models/#{model_name}.rb", "app/models/#{model_name}.rb" unless model_exists?("app/models/#{model_name}.rb")
         content = self.send("#{model_name}_model_content").split("\n").map { |line| "  "  + line.strip! } .join("\n") << "\n"
         inject_into_class("app/models/#{model_name}.rb", model_name.camelize, content)
+      end
+
+      def authorization_model_content
+        <<-CONTENT
+          belongs_to :feature
+          belongs_to :role
+        CONTENT
       end
 
       def user_model_content
