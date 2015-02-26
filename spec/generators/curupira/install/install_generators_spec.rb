@@ -3,10 +3,6 @@ require "generators/curupira/install/install_generator"
 
 describe Curupira::Generators::InstallGenerator, :generator do
 
-  before :all do
-    Object.send(:remove_const, :UserGroup) if defined?(UserGroup)
-  end
-
   before do
     provide_existing_routes_file
   end
@@ -22,23 +18,49 @@ describe Curupira::Generators::InstallGenerator, :generator do
     end
   end
 
-  describe "user_group" do
+  describe "group" do
     context "no existing user group class" do
-      it "generates user group" do
+      it "generates group" do
         run_generator
 
-        user_group = file("app/models/user_group.rb")
+        group = file("app/models/group.rb")
 
-        expect(user_group).to exist
+        expect(group).to exist
       end
     end
 
     it "adds validations" do
       run_generator
 
-      user_group = file("app/models/user_group.rb")
-
+      user_group = file("app/models/group.rb")
       expect(user_group).to contain("validates_presence_of :name")
+      expect(user_group).to contain("scope :active, -> { where active: true }")
+    end
+
+    context "group class already exists" do
+      it "includes validations" do
+        run_generator
+        user_class = file("app/models/group.rb")
+
+        expect(user_class).to exist
+        expect(user_class).to have_correct_syntax
+        expect(user_class).to contain("validates_presence_of :name")
+      end
+    end
+  end
+
+  describe "group migration" do
+    context "group table does not exist" do
+      it "creates a migration to create the group table" do
+        allow(ActiveRecord::Base.connection).to receive(:table_exists?).and_return(false)
+
+        run_generator
+        migration = migration_file("db/migrate/create_groups.rb")
+
+        expect(migration).to exist
+        expect(migration).to have_correct_syntax
+        expect(migration).to contain("create_table :groups")
+      end
     end
   end
 

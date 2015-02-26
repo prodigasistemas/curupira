@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Curupira::UserGroupsController do
+describe Curupira::GroupsController do
   let(:user) { FactoryGirl.create :user }
 
   before do
@@ -9,8 +9,8 @@ describe Curupira::UserGroupsController do
 
   describe "GET index" do
     before do
-      FactoryGirl.create :user_group
-      FactoryGirl.create :user_group
+      FactoryGirl.create :group
+      FactoryGirl.create :group
     end
 
     it "should get index" do
@@ -25,7 +25,7 @@ describe Curupira::UserGroupsController do
   end
 
   describe "GET show" do
-    let(:group) { FactoryGirl.create :user_group }
+    let(:group) { FactoryGirl.create :group }
 
     context "when group exists" do
       it "should get show" do
@@ -61,7 +61,7 @@ describe Curupira::UserGroupsController do
   end
 
   describe "GET edit" do
-    let(:group) { FactoryGirl.create :user_group }
+    let(:group) { FactoryGirl.create :group }
 
     context "when group exists" do
       it "should get edit" do
@@ -89,19 +89,19 @@ describe Curupira::UserGroupsController do
       let(:params)  { { name: "Group Name", active: false } }
 
       it "should redirect to new group" do
-        post :create, user_group: params
+        post :create, group: params
         expect(flash[:notice]).to eql "Grupo criado com sucesso"
       end
 
       it "should redirect to new group" do
-        post :create, user_group: params
+        post :create, group: params
         expect(response).to redirect_to assigns(:group)
       end
 
       it "creates group" do
         expect {
-          post :create, user_group: params
-        }.to change { UserGroup.count }.by(1)
+          post :create, group: params
+        }.to change { Group.count }.by(1)
       end
     end
 
@@ -110,35 +110,35 @@ describe Curupira::UserGroupsController do
 
       it "does not create group" do
         expect {
-          post :create, user_group: params
-        }.to change { UserGroup.count }.by(0)
+          post :create, group: params
+        }.to change { Group.count }.by(0)
       end
 
       it "should render new" do
-        post :create, user_group: params
+        post :create, group: params
         expect(response).to render_template :new
       end
     end
   end
 
   describe "PUT update" do
-    let(:group) { FactoryGirl.create :user_group }
+    let(:group) { FactoryGirl.create :group }
 
     context "when group is valid" do
       let(:params)  { { name: "New group name", active: false } }
 
       it "sets flash message" do
-        put :update, id: group, user_group: params
+        put :update, id: group, group: params
         expect(flash[:notice]).to eql "Grupo atualizado com sucesso"
       end
 
       it "redirects to group" do
-        put :update, id: group, user_group: params
+        put :update, id: group, group: params
         expect(response).to redirect_to assigns(:group)
       end
 
       it "updates group" do
-        put :update, id: group, user_group: params
+        put :update, id: group, group: params
         expect(assigns(:group).name).to   eql "New group name"
         expect(assigns(:group).active).to eql false
       end
@@ -148,13 +148,13 @@ describe Curupira::UserGroupsController do
       let(:params)  { { name: "", active: false } }
 
       it "does not create group" do
-        put :update, id: group, user_group: params
+        put :update, id: group, group: params
         expect(assigns(:group).reload.name).to eql group.name
         expect(assigns(:group).active).to      eql true
       end
 
       it "should render edit" do
-        put :update, id: group, user_group: params
+        put :update, id: group, group: params
         expect(response).to render_template :edit
       end
     end

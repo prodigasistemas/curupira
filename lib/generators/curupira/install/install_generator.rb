@@ -13,11 +13,6 @@ module Curupira
         invoke "curupira:routes"
       end
 
-      def create_user_groups
-        invoke("active_record:model", ["user_group", "name:string", "active:boolean"]) unless model_exists?("app/models/user_groups.rb")
-        inject_into_class("app/models/user_group.rb", "UserGroup", "  validates_presence_of :name\n")
-      end
-
       def copy_initializer
         copy_file 'sorcery.rb', 'config/initializers/sorcery.rb'
       end
@@ -28,6 +23,12 @@ module Curupira
 
       def create_views # TEST ME
         # invoke "curupira:views"
+      end
+
+      def create_groups_model
+        copy_file 'models/group.rb', 'app/models/group.rb' unless model_exists?("app/models/group.rb")
+        content = group_model_content.split("\n").map { |line| "  "  + line.strip! } .join("\n") << "\n"
+        inject_into_class("app/models/group.rb", "Group", content)
       end
 
       def create_role_model
@@ -48,6 +49,10 @@ module Curupira
         create_migration_to("role")
       end
 
+      def create_groups_migration
+        create_migration_to("group")
+      end
+
       def create_user_migration
         if table_exists?("user")
           create_add_columns_migration_to("user")    
@@ -62,6 +67,13 @@ module Curupira
         <<-CONTENT
           authenticates_with_sorcery!
           validates_presence_of :email
+        CONTENT
+      end
+
+      def group_model_content
+        <<-CONTENT
+          validates_presence_of :name
+          scope :active, -> { where active: true }
         CONTENT
       end
 

@@ -72,6 +72,22 @@ module Curupira
         }.reject { |column| existing_columns_to("user").include?(column.to_s) }
       end
 
+      def role_columns
+        @role_columns ||= {}
+      end
+
+      def role_indexes
+        @role_indexes ||= {}
+      end
+
+      def group_columns
+        @group_columns ||= {}
+      end
+
+      def group_indexes
+        @group_indexes ||= {}
+      end
+
       def user_indexes
         @user_indexes ||= {
           index_users_on_username: 'add_index :users, :username, unique: true',

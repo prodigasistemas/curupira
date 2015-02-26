@@ -1,22 +1,22 @@
-class Curupira::UserGroupsController < Curupira::AuthorizedController
+class Curupira::GroupsController < Curupira::AuthorizedController
   def index
-    @groups = UserGroup.all
+    @groups = Group.all
   end
 
   def show
-    @group = UserGroup.find(params[:id])
+    @group = Group.find(params[:id])
   end
 
   def new
-    @group = UserGroup.new
+    @group = Group.new
   end
 
   def edit
-    @group = UserGroup.find(params[:id])
+    @group = Group.find(params[:id])
   end
 
   def create
-    @group = UserGroup.new(group_params)
+    @group = Group.new(group_params)
 
     if @group.save
       redirect_to @group, notice: "Grupo criado com sucesso"
@@ -26,7 +26,7 @@ class Curupira::UserGroupsController < Curupira::AuthorizedController
   end
 
   def update
-    @group = UserGroup.find(params[:id])
+    @group = Group.find(params[:id])
 
     if @group.update group_params
       redirect_to @group, notice: "Grupo atualizado com sucesso"
@@ -38,6 +38,6 @@ class Curupira::UserGroupsController < Curupira::AuthorizedController
   private
 
   def group_params
-    params.require(:user_group).permit(:name, :active)
+    params.require(:group).permit(:name, :active)
   end
 end

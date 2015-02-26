@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150226132249) do
+ActiveRecord::Schema.define(version: 20150226170655) do
 
   create_table "features", force: :cascade do |t|
     t.string   "description"
@@ -24,19 +24,24 @@ ActiveRecord::Schema.define(version: 20150226132249) do
 
   create_table "group_users", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "user_group_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "group_users", ["user_group_id"], name: "index_group_users_on_user_group_id"
+  add_index "group_users", ["group_id"], name: "index_group_users_on_group_id"
   add_index "group_users", ["user_id"], name: "index_group_users_on_user_id"
 
-  create_table "user_groups", force: :cascade do |t|
+  create_table "groups", force: :cascade do |t|
     t.string   "name"
     t.boolean  "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string  "name",                  null: false
+    t.boolean "active", default: true
   end
 
   create_table "users", force: :cascade do |t|

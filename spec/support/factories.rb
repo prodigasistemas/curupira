@@ -9,13 +9,13 @@ FactoryGirl.define do
     active true
   end
 
-  factory :user_group do
+  factory :group do
     sequence(:name) { |n| "Group #{n}" }
     active true
   end
 
   factory :group_user do
-    user_group
+    group
     user
   end
 end

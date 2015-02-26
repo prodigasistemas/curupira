@@ -1,7 +1,7 @@
 <h1>Grupo de Usuário</h1>
 
 <div class="actions">
-  <%= link_to "Editar", edit_user_group_path(@group) %>
+  <%= link_to "Editar", edit_group_path(@group) %>
 </div>
 
 <ul>
@@ -9,4 +9,4 @@
   <li>Ativo: <%= @group.active %></li>
 </ul>
 
-<%= link_to "Voltar", user_groups_path %>
+<%= link_to "Voltar", groups_path %>
