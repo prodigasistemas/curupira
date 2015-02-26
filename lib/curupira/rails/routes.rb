@@ -6,6 +6,8 @@ module ActionDispatch::Routing
         resource :session, only: [:new, :create] do
           get :destroy, as: :destroy
         end
+        #verificar quais acoes usaremos no controller Action
+        resources :features
       end
     end
   end

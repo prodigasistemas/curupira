@@ -36,7 +36,6 @@ class Curupira::UsersController < Curupira::AuthorizedController
   end
 
   private
-
   def user_params
     params.require(:user).permit(:email, :name, :username, :password)
   end

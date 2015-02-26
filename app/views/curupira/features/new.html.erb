@@ -1,0 +1,19 @@
+<h1>Cadastrar Nova Caracteristica</h1>
+
+<%= form_for @feature do |f| %>
+    <div class="field">
+    	<%= f.label :description, "Descrição" %><br>  
+    	<%= f.text_field :description %>	
+    </div>
+    <div class="field">
+    	<%= f.label :path_info, "URL" %><br>  
+    	<%= f.text_field :path_info %>	
+    </div>
+    <div class="field">
+		<%= f.label :request_method, "Método" %><br> 
+    	<%= f.text_field :request_method %>	
+    </div>
+    <div class="features">
+		<%= f.submit %> or <%= link_to :cancel, features_path %>
+    </div>
+<%end%>
