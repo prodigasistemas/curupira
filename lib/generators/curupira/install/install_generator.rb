@@ -17,32 +17,16 @@ module Curupira
         copy_file 'sorcery.rb', 'config/initializers/sorcery.rb'
       end
 
-      def create_controlers # TEST ME
-        # invoke "curupira:controllers"
-      end
-
-      def create_views # TEST ME
-        # invoke "curupira:views"
-      end
-
       def create_groups_model
-        copy_file 'models/group.rb', 'app/models/group.rb' unless model_exists?("app/models/group.rb")
-        content = group_model_content.split("\n").map { |line| "  "  + line.strip! } .join("\n") << "\n"
-        inject_into_class("app/models/group.rb", "Group", content)
+        create_model "group"
       end
 
       def create_role_model
-        copy_file 'models/role.rb', 'app/models/role.rb' unless model_exists?("app/models/role.rb")
-        inject_into_class("app/models/role.rb", "Role", "  validates_presence_of :name\n")
+        create_model "role"
       end
 
       def create_user_model
-        copy_file 'models/user.rb', 'app/models/user.rb' unless model_exists?("app/models/user.rb")
-      end
-
-      def inject_curupira_content
-        content = model_content.split("\n").map { |line| "  "  + line.strip! } .join("\n") << "\n"
-        inject_into_class("app/models/user.rb", User, content) if model_exists?("app/models/user.rb")
+        create_model "user"
       end
 
       def create_role_migration
@@ -62,20 +46,6 @@ module Curupira
       end
 
       private
-
-      def model_content
-        <<-CONTENT
-          authenticates_with_sorcery!
-          validates_presence_of :email
-        CONTENT
-      end
-
-      def group_model_content
-        <<-CONTENT
-          validates_presence_of :name
-          scope :active, -> { where active: true }
-        CONTENT
-      end
 
       def self.next_migration_number(dir)
         ActiveRecord::Generators::Base.next_migration_number(dir)

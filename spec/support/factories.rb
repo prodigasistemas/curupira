@@ -24,5 +24,10 @@ FactoryGirl.define do
       sequence(:path_info)      {|n| "edit"}
       sequence(:request_method) {|n| "POST"}
       active true
+  end 
+  
+  factory :role do
+    sequence(:name)     { |n| "Role #{n}" }
+    active true
   end
 end

@@ -4,6 +4,7 @@ module ActionDispatch::Routing
       scope module: 'curupira' do
         resources :users, except: :destroy
         resources :groups, except: :destroy
+        resources :roles, except: :destroy
         resource :session, only: [:new, :create] do
           get :destroy, as: :destroy
         end
