@@ -1,0 +1,9 @@
+<div class="nested-fields">
+  <% if f.object.user_group.blank? || f.object.user_group.active? %>
+    <%= f.select :user_group_id, active_user_groups_select_options %>
+  <% else %>
+    <%= f.object.user_group.name %>
+  <% end %>
+
+  <%= link_to_remove_association "Remover", f %>
+</div>

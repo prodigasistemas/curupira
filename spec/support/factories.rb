@@ -13,4 +13,9 @@ FactoryGirl.define do
     sequence(:name) { |n| "Group #{n}" }
     active true
   end
+
+  factory :group_user do
+    user_group
+    user
+  end
 end

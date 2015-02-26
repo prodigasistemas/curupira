@@ -81,10 +81,12 @@ describe Curupira::UsersController do
 
   describe "POST create" do
     context "when user is valid" do
+      let(:group)   { FactoryGirl.create :user_group, name: "Apple Corp" }
       let(:params)  { { email: "new_email@mail.com",
                         username: "new_username",
                         name: "New Name",
-                        password: 12345678 } }
+                        password: 12345678,
+                        group_users_attributes: { "0": { user_group_id: group.id } } } }
 
       it "should redirect to new user" do
         post :create, user: params
@@ -100,6 +102,11 @@ describe Curupira::UsersController do
         expect {
           post :create, user: params
         }.to change { User.count }.by(1)
+
+        expect(assigns[:user].email).to eql "new_email@mail.com"
+        expect(assigns[:user].username).to eql "new_username"
+        expect(assigns[:user].name).to eql "New Name"
+        expect(assigns[:user].user_groups.first.name).to eql "Apple Corp"
       end
     end
 
@@ -123,10 +130,14 @@ describe Curupira::UsersController do
 
   describe "PUT update" do
     context "when user is valid" do
+      let(:group)   { FactoryGirl.create :user_group }
+      let!(:group_user)   { FactoryGirl.create :group_user, user: user, user_group: group }
+
       let(:params)  { { email: "new_email@mail.com",
                         username: "new_username",
                         name: "New Name",
-                        password: 12345678 } }
+                        password: 12345678,
+                        group_users_attributes: { "0": { id: group.id, _destroy: true } } } }
 
       it "sets flash message" do
         put :update, id: user, user: params
@@ -139,10 +150,13 @@ describe Curupira::UsersController do
       end
 
       it "updates user" do
+        expect(user.user_groups).to_not    be_empty
+
         put :update, id: user, user: params
         expect(assigns(:user).email).to    eql "new_email@mail.com"
         expect(assigns(:user).username).to eql "new_username"
         expect(assigns(:user).name).to     eql "New Name"
+        expect(user.user_groups).to        be_empty
       end
     end
 

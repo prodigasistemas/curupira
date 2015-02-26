@@ -11,4 +11,14 @@
   <li>Active: <%= @user.active %></li>
 </ul>
 
+<div id="user_groups">
+  <h3>Grupos</h3>
+
+  <ul>
+    <% @user.user_groups.each do |group| %>
+      <li><%= group.name %></li>
+    <% end %>
+  </ul>
+</div>
+
 <%= link_to "Voltar", users_path %>

@@ -24,6 +24,18 @@
     <%= f.check_box :active %>
   </div>
 
+  <div class="group_users">
+    <h3>Grupos</h3>
+
+    <%= f.fields_for :group_users do |b| %>
+      <%= render 'group_user_fields', :f => b %>
+    <% end %>
+
+    <div class="links">
+      <%= link_to_add_association 'Adicionar grupo', f, :group_users %>
+    </div>
+  </div>
+
   <div class="actions">
     <%= f.submit %><br>
     or <%= link_to :cancel, users_path %>

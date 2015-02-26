@@ -15,9 +15,14 @@ module Curupira
       end
     end
 
-
     initializer "curupira.load_static_assets" do |app|
       app.middleware.use ::ActionDispatch::Static, "#{root}/public"
+    end
+
+    initializer 'curupira.action_controller' do |app|
+      ActiveSupport.on_load :action_controller do
+        helper Curupira::RelationshipSelectOptionsHelper
+      end
     end
   end
 end
