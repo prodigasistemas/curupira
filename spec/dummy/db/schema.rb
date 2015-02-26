@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150224203113) do
+ActiveRecord::Schema.define(version: 20150225165521) do
 
   create_table "features", force: :cascade do |t|
     t.string   "description"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(version: 20150224203113) do
     t.datetime "updated_at"
   end
 
+  create_table "user_groups", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                                          null: false
     t.string   "name",                                           null: false
@@ -29,8 +36,6 @@ ActiveRecord::Schema.define(version: 20150224203113) do
     t.string   "username"
     t.string   "crypted_password"
     t.string   "salt"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "reset_password_token"
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
@@ -38,9 +43,12 @@ ActiveRecord::Schema.define(version: 20150224203113) do
     t.datetime "last_logout_at"
     t.datetime "last_activity_at"
     t.string   "last_login_from_ip_address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "users", ["last_logout_at", "last_activity_at"], name: "index_users_on_last_logout_at_and_last_activity_at"
+  add_index "users", ["last_activity_at"], name: "index_users_on_last_activity_at"
+  add_index "users", ["last_logout_at"], name: "index_users_on_last_logout_at"
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token"
   add_index "users", ["username"], name: "index_users_on_username", unique: true
 

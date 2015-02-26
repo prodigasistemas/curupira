@@ -11,6 +11,16 @@ describe Curupira::SessionsController do
       get :new
       expect(assigns(:user)).to be_new_record
     end
+
+    context "when user is already logged in" do
+      it "redirects to root path" do
+        login_user(FactoryGirl.create :user)
+
+        get :new
+        expect(response).to redirect_to root_path
+        expect(flash[:alert]).to eql "Você já está logado"
+      end
+    end
   end
 
   describe "POST create" do
@@ -43,6 +53,16 @@ describe Curupira::SessionsController do
         post :create, user: { username: user.email, password: 123456 }
 
         expect(flash[:notice]).to eql "Bem vindo!"
+      end
+
+      context "when user is already logged in" do
+        it "redirects to root path" do
+          login_user(FactoryGirl.create :user)
+
+          post :create, user: { username: user.email, password: 123456 }
+          expect(response).to redirect_to root_path
+          expect(flash[:alert]).to eql "Você já está logado"
+        end
       end
     end
 

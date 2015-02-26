@@ -1,0 +1,7 @@
+<% if current_user %>
+  <div id="curupira-model-links">
+    <%= link_to "Usuários", users_path %><br>
+    <%= link_to "Grupos de Usuário", user_groups_path %><br>
+    <%= link_to "Características", features_path %>
+  </div>
+<% end %>

@@ -1,5 +1,5 @@
 module GeneratorSpecHelpers
-  TEMPLATE_PATH = File.expand_path("../../dummy", __FILE__)
+  TEMPLATE_PATH = File.expand_path("../../app_templates", __FILE__)
 
   def provide_existing_routes_file
     copy_to_generator_root("config", "routes.rb")
@@ -13,6 +13,12 @@ module GeneratorSpecHelpers
     copy_to_generator_root("app/models", "user.rb")
     allow(File).to receive(:exist?).and_call_original
     allow(File).to receive(:exist?).with("app/models/user.rb").and_return(true)
+  end
+
+  def provide_existing_class(class_name)
+    copy_to_generator_root("app/models", "#{class_name}.rb")
+    allow(File).to receive(:exist?).and_call_original
+    allow(File).to receive(:exist?).with("app/models/#{class_name}.rb").and_return(true)
   end
 
   private
