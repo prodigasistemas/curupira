@@ -17,32 +17,23 @@ module Curupira
         copy_file 'sorcery.rb', 'config/initializers/sorcery.rb'
       end
 
-      def create_feature_model
+      def create_feature
         create_model "feature"
-      end
-
-      def create_feature_migration
         create_migration_to("feature")
       end
 
-      def create_groups_model
+      def create_groups
         create_model "group"
+        create_migration_to("group")
       end
 
-      def create_role_model
+      def create_role
         create_model "role"
+        create_migration_to("role")
       end
 
       def create_user_model
         create_model "user"
-      end
-
-      def create_role_migration
-        create_migration_to("role")
-      end
-
-      def create_groups_migration
-        create_migration_to("group")
       end
 
       def create_user_migration
