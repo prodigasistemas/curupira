@@ -18,4 +18,11 @@ FactoryGirl.define do
     group
     user
   end
+
+  factory :feature do
+      sequence(:description)    {|n| "Editar cadarteristica"}
+      sequence(:path_info)      {|n| "edit"}
+      sequence(:request_method) {|n| "POST"}
+      active true
+  end
 end

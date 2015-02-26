@@ -15,7 +15,7 @@ class Curupira::FeaturesController < Curupira::AuthorizedController
 		@feature = Feature.new feature_params
 
 		if @feature.save 
-			redirect_to @feature, notice: "Nova ação cadastrada" 
+			redirect_to @feature, notice: "Nova Caracteristica cadastrada" 
 		else
 			render :new
 		end
