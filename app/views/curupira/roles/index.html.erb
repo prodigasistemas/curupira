@@ -1,0 +1,24 @@
+<h1>Perfis</h1>
+
+<div class="actions">
+  <%= link_to "Novo Perfil", new_role_path %>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Ativo</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @roles.each do |role| %>
+      <tr>
+        <td><%= link_to role.name, role %></td>
+        <td><%= role.active %></td>
+        <td><%= link_to "Editar", edit_role_path(role) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

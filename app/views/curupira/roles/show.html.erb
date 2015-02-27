@@ -1,0 +1,22 @@
+<h1>Perfil</h1>
+
+<div class="actions">
+  <%= link_to "Editar", edit_role_path(@role) %>
+</div>
+
+<ul>
+  <li>Name: <%= @role.name %></li>
+  <li>Active: <%= @role.active %></li>
+</ul>
+
+<div id="user_groups">
+  <h3>Funcionalidades</h3>
+
+  <ul>
+    <% @role.features.each do |feature| %>
+      <li><%= feature.description %></li>
+    <% end %>
+  </ul>
+</div>
+
+<%= link_to "Voltar", roles_path %>

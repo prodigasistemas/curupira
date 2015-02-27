@@ -1,0 +1,23 @@
+<%= form_for @role do |f| %>
+  <div class="field">
+    <%= f.label :name, "Nome" %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="features">
+    <h3>Funcionalidades</h3>
+
+    <%= f.fields_for :authorizations do |b| %>
+      <%= render 'authorization_fields', :f => b %>
+    <% end %>
+
+    <div class="links">
+      <%= link_to_add_association 'Adicionar funcionalidade', f, :authorizations %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %><br>
+    or <%= link_to :cancel, roles_path %>
+  </div>
+<% end %>
