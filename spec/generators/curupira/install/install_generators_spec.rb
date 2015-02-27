@@ -64,37 +64,6 @@ describe Curupira::Generators::InstallGenerator, :generator do
     end
   end
 
-  describe "role_model" do
-    context "no existing role class" do
-      it "generates role" do
-        run_generator
-        role_class = file("app/models/role.rb")
-
-        expect(role_class).to exist
-        expect(role_class).to have_correct_syntax
-      end
-
-      it "adds validations" do
-        run_generator
-
-        role_class = file("app/models/role.rb")
-
-        expect(role_class).to contain("validates_presence_of :name")
-      end
-    end
-
-    context "role class already exists" do
-      it "includes validations" do
-        run_generator
-        user_class = file("app/models/role.rb")
-
-        expect(user_class).to exist
-        expect(user_class).to have_correct_syntax
-        expect(user_class).to contain("validates_presence_of :name")
-      end
-    end
-  end
-
   describe "user_model" do
     context "no existing user class" do
       it "creates a user class Curupira configurations" do
@@ -119,21 +88,6 @@ describe Curupira::Generators::InstallGenerator, :generator do
         expect(user_class).to have_correct_syntax
         expect(user_class).to contain("authenticates_with_sorcery!")
         expect(user_class).to contain("validates_presence_of :email")
-      end
-    end
-  end
-
-  describe "role migration" do
-    context "roles table does not exist" do
-      it "creates a migration to create the roles table" do
-        allow(ActiveRecord::Base.connection).to receive(:table_exists?).and_return(false)
-
-        run_generator
-        migration = migration_file("db/migrate/create_roles.rb")
-
-        expect(migration).to exist
-        expect(migration).to have_correct_syntax
-        expect(migration).to contain("create_table :roles")
       end
     end
   end
