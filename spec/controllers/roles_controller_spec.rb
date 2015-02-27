@@ -81,7 +81,17 @@ describe Curupira::RolesController  do
 
   describe "POST create" do
     context "when role is valid" do
-      let(:params) { FactoryGirl.build(:role, name: 'Minha Role').attributes }
+      let!(:feature) { FactoryGirl.create(:feature, description: "Cadastrar") }
+      let(:params) do
+        {
+          name: "Minha Role",
+          authorizations_attributes: {
+            "0": {
+              feature_id: feature.id
+            }
+          }
+        }
+      end
 
       it "should redirect to new user" do
         post :create, role: params
@@ -99,6 +109,7 @@ describe Curupira::RolesController  do
         }.to change { Role.count }.by(1)
 
         expect(assigns[:role].name).to eql "Minha Role"
+        expect(assigns[:role].features.first.description).to eq("Cadastrar")
       end
     end
 
@@ -108,7 +119,7 @@ describe Curupira::RolesController  do
       it "does not create user" do
         expect {
           post :create, role: params
-        }.to change { User.count }.by(0)
+        }.to change { Role.count }.by(0)
       end
 
       it "should render new" do

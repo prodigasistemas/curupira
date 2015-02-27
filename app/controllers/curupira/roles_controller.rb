@@ -17,7 +17,7 @@ class Curupira::RolesController < Curupira::AuthorizedController
 
   def create
     @role = Role.new role_params
-
+    
     if @role.save
       redirect_to @role, notice: "Perfil criado com sucesso"
     else
@@ -38,6 +38,6 @@ class Curupira::RolesController < Curupira::AuthorizedController
   private
 
   def role_params
-    params.require(:role).permit(:name, :active)
+    params.require(:role).permit(:name, :active, authorizations_attributes: [:id, :feature_id, :_destroy])
   end
 end

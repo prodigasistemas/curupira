@@ -14,7 +14,7 @@ describe Curupira::Generators::InstallGenerator, :generator do
 
         expect(feature_class).to exist
         expect(feature_class).to have_correct_syntax
-        expect(feature_class).to contain("validates_presence_of :name")
+        expect(feature_class).to contain("validates_presence_of :description")
       end
     end
 
@@ -27,7 +27,7 @@ describe Curupira::Generators::InstallGenerator, :generator do
 
         expect(feature_class).to exist
         expect(feature_class).to have_correct_syntax
-        expect(feature_class).to contain("validates_presence_of :name")
+        expect(feature_class).to contain("validates_presence_of :description")
       end
     end
   end

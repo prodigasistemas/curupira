@@ -20,10 +20,10 @@ FactoryGirl.define do
   end
 
   factory :feature do
-      sequence(:description)    {|n| "Editar cadarteristica"}
-      sequence(:path_info)      {|n| "edit"}
-      sequence(:request_method) {|n| "POST"}
-      active true
+    sequence(:description)    {|n| "Editar cadarteristica"}
+    sequence(:path_info)      {|n| "edit"}
+    sequence(:request_method) {|n| "POST"}
+    active true
   end 
   
   factory :role do

@@ -152,7 +152,7 @@ module Curupira
 
       def feature_model_content
         <<-CONTENT
-          validates_presence_of :name
+          validates_presence_of :description
         CONTENT
       end
 
