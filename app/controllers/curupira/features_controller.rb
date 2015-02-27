@@ -28,14 +28,15 @@ class Curupira::FeaturesController < Curupira::AuthorizedController
 	def update
     @feature = Feature.find(params[:id])
 
-    	if @feature.update feature_params
-      		redirect_to @feature, notice: "Caracteristica atualizada com sucesso"
-    	else
-      		render :edit
-    	end
+  	if @feature.update feature_params
+    		redirect_to @feature, notice: "Caracteristica atualizada com sucesso"
+  	else
+    		render :edit
   	end
+	end
 
-	private 
+	private
+  
 	def feature_params
 		params.require(:feature).permit(:description, :path_info, :request_method)
 	end

@@ -15,4 +15,5 @@ test/dummy/tmp/
 test/dummy/.sass-cache
 test/tmp/*
 .rvmrc
-
+.ruby-version
+.ruby-gemset
