@@ -119,6 +119,14 @@ module Curupira
         inject_into_class("app/models/#{model_name}.rb", model_name.camelize, content)
       end
 
+      def permission_model_content
+        <<-CONTENT
+          belongs_to :user
+          belongs_to :role
+          belongs_to :group
+        CONTENT
+      end
+
       def authorization_model_content
         <<-CONTENT
           belongs_to :feature
