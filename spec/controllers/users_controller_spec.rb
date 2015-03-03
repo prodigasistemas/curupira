@@ -81,12 +81,13 @@ describe Curupira::UsersController do
 
   describe "POST create" do
     context "when user is valid" do
-      let(:group)   { FactoryGirl.create :group, name: "Apple Corp" }
-      let(:params)  { { email: "new_email@mail.com",
+      let(:group) { FactoryGirl.create :group, name: "Apple Corp" }
+      let(:role) { FactoryGirl.create :role, name: 'Minha Role' }
+      let(:params) { { email: "new_email@mail.com",
                         username: "new_username",
                         name: "New Name",
                         password: 12345678,
-                        group_users_attributes: { "0": { group_id: group.id } } } }
+                        group_users_attributes: { "0": { group_id: group.id, permissions_attributes: { "0": { role_id: role.id } } } } } }
 
       it "should redirect to new user" do
         post :create, user: params
@@ -107,6 +108,7 @@ describe Curupira::UsersController do
         expect(assigns[:user].username).to eql "new_username"
         expect(assigns[:user].name).to eql "New Name"
         expect(assigns[:user].groups.first.name).to eql "Apple Corp"
+        expect(assigns[:user].permissions.first.role.name).to eql "Minha Role"
       end
     end
 
