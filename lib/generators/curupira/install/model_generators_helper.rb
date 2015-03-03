@@ -129,9 +129,8 @@ module Curupira
 
       def permission_model_content
         <<-CONTENT
-          belongs_to :user
+          belongs_to :group_user
           belongs_to :role
-          belongs_to :group
         CONTENT
       end
 

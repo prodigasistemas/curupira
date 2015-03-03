@@ -14,9 +14,8 @@ describe Curupira::Generators::InstallGenerator, :generator do
 
         expect(authorization_class).to exist
         expect(authorization_class).to have_correct_syntax
-        expect(authorization_class).to contain("belongs_to :user")
+        expect(authorization_class).to contain("belongs_to :group_user")
         expect(authorization_class).to contain("belongs_to :role")
-        expect(authorization_class).to contain("belongs_to :group")
       end
     end
 
@@ -29,9 +28,8 @@ describe Curupira::Generators::InstallGenerator, :generator do
 
         expect(authorization_class).to exist
         expect(authorization_class).to have_correct_syntax
-        expect(authorization_class).to contain("belongs_to :user")
+        expect(authorization_class).to contain("belongs_to :group_user")
         expect(authorization_class).to contain("belongs_to :role")
-        expect(authorization_class).to contain("belongs_to :group")
       end
     end
   end
