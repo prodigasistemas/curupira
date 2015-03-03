@@ -25,7 +25,8 @@ ActiveRecord::Schema.define(version: 20150303134756) do
 
   create_table "features", force: :cascade do |t|
     t.string   "description"
-    t.string   "path_info"
+    t.string   "controller"
+    t.string   "action"
     t.string   "request_method"
     t.boolean  "active",         default: true
     t.datetime "created_at"

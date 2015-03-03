@@ -21,7 +21,8 @@ FactoryGirl.define do
 
   factory :feature do
     sequence(:description)    {|n| "Editar cadarteristica"}
-    sequence(:path_info)      {|n| "edit"}
+    controller "users"
+    action "create"
     sequence(:request_method) {|n| "POST"}
     active true
   end 
