@@ -15,8 +15,12 @@
   <h3>Grupos</h3>
 
   <ul>
-    <% @user.user_groups.each do |group| %>
-      <li><%= group.name %></li>
+    <% @user.group_users.each do |group_user| %>
+      <li><%= group_user.group.name %>
+        <% group_user.permissions.each do |permission|%>
+          <p><%= permission.role.name %></p>
+        <% end %>
+      </li>
     <% end %>
   </ul>
 </div>

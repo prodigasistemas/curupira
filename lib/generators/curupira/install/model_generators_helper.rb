@@ -104,6 +104,14 @@ module Curupira
         @authorization_indexes ||= {}
       end
 
+      def permission_columns
+        @permission_columns ||= {}
+      end
+
+      def permission_indexes
+        @permission_indexes ||= {}
+      end
+
       def user_indexes
         @user_indexes ||= {
           index_users_on_username: 'add_index :users, :username, unique: true',
@@ -127,6 +135,13 @@ module Curupira
         inject_into_class("app/models/#{model_name}.rb", model_name.camelize, content)
       end
 
+      def permission_model_content
+        <<-CONTENT
+          belongs_to :group_user
+          belongs_to :role
+        CONTENT
+      end
+
       def authorization_model_content
         <<-CONTENT
           belongs_to :feature
@@ -138,6 +153,10 @@ module Curupira
         <<-CONTENT
           authenticates_with_sorcery!
           validates_presence_of :email
+          has_many :group_users
+          has_many :groups, through: :group_users
+          has_many :permissions, through: :group_users
+          accepts_nested_attributes_for :group_users, reject_if: :all_blank, allow_destroy: :true
         CONTENT
       end
 
