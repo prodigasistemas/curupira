@@ -9,4 +9,15 @@
   <li>Ativo: <%= @group.active %></li>
 </ul>
 
+<div id="role_groups">
+  <h3>Perfis</h3>
+
+  <ul>
+    <% @group.role_groups.each do |g| %>
+      <li><%= g.role.name %></li>
+    <% end %>
+  </ul>
+</div>
+
+
 <%= link_to "Voltar", groups_path %>

@@ -38,6 +38,6 @@ class Curupira::GroupsController < Curupira::AuthorizedController
   private
 
   def group_params
-    params.require(:group).permit(:name, :active)
+    params.require(:group).permit(:name, :active, role_groups_attributes: [:id, :role_id, :_destroy])
   end
 end
