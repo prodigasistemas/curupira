@@ -7,7 +7,7 @@ class CreateGroupUsers < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    add_foreign_key :group_users, :group
-    add_foreign_key :group_users, :user
+    add_foreign_key :group_users, :groups
+    add_foreign_key :group_users, :users
   end
 end
