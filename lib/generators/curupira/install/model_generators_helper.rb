@@ -113,9 +113,17 @@ module Curupira
         }.reject { |index| existing_indexes_to("user").include?(index.to_s) }
       end
 
+      def group_user_columns
+        @group_user_columns ||= {}
+      end
+
+      def group_user_indexes
+        @ggroup_user_indexes ||= {}
+      end
+
       def create_model(model_name)
         copy_file "models/#{model_name}.rb", "app/models/#{model_name}.rb" unless model_exists?("app/models/#{model_name}.rb")
-        content = self.send("#{model_name}_model_content").split("\n").map { |line| "  "  + line.strip! } .join("\n") << "\n"
+        content = self.send("#{model_name}_model_content").split("\n").map { |line| "  " + line.strip! } .join("\n") << "\n"
         inject_into_class("app/models/#{model_name}.rb", model_name.camelize, content)
       end
 
@@ -153,6 +161,16 @@ module Curupira
       def feature_model_content
         <<-CONTENT
           validates_presence_of :description
+        CONTENT
+      end
+
+      def group_user_model_content
+        <<-CONTENT
+          belongs_to :group
+          belongs_to :user
+          has_many :permissions
+          accepts_nested_attributes_for :permissions, reject_if: :all_blank, allow_destroy: :true
+          scope :active, -> { where active: true }
         CONTENT
       end
 
