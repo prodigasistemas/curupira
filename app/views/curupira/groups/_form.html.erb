@@ -9,6 +9,18 @@
     <%= f.check_box :active %>
   </div>
 
+  <div class="roles">
+    <h3>Perfis</h3>
+
+    <%= f.fields_for :role_groups do |b| %>
+      <%= render 'role_group_fields', :f => b %>
+    <% end %>
+
+    <div class="links">
+      <%= link_to_add_association 'Adicionar perfil', f, :role_groups %>
+    </div>
+  </div>
+
   <div class="actions">
     <%= f.submit %><br>
     or <%= link_to "Cancelar", groups_path %>
