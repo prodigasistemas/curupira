@@ -29,7 +29,7 @@ describe Curupira::Generators::InstallGenerator, :generator do
         expect(role_group_class).to exist
         expect(role_group_class).to have_correct_syntax
         expect(role_group_class).to contain("belongs_to :group")
-        expect(role_group_class).to contain("belongs_to :role")
+        expect(role_group_class).to contain("belongs_to :user")
       end
     end
   end
