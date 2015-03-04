@@ -31,4 +31,14 @@ FactoryGirl.define do
     sequence(:name)     { |n| "Role #{n}" }
     active true
   end
+
+  factory :authorization do
+    role
+    feature
+  end
+
+  factory :group_role do
+    group
+    role
+  end
 end
