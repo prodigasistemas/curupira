@@ -1,4 +1,6 @@
 class Curupira::UsersController < Curupira::AuthorizedController
+  before_filter :authorize
+
   def index
     @users = User.all
   end

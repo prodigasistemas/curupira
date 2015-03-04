@@ -22,6 +22,7 @@ module Curupira
     initializer 'curupira.action_controller' do |app|
       ActiveSupport.on_load :action_controller do
         helper Curupira::RelationshipSelectOptionsHelper
+        include Curupira::Authorizer
       end
     end
   end
