@@ -59,6 +59,11 @@ module Curupira
         create_migration_to("group_user")
       end
 
+      def create_role_group
+        create_model "role_group"
+        create_migration_to("role_group")
+      end
+
       private
 
       def self.next_migration_number(dir)

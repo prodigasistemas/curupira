@@ -193,6 +193,13 @@ module Curupira
         CONTENT
       end
 
+      def role_group_model_content
+        <<-CONTENT
+          belongs_to :role
+          belongs_to :group
+        CONTENT
+      end
+
       def columns_by(model_name)
         self.send("#{model_name}_columns")
       end
