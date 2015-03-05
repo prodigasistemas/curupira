@@ -8,8 +8,8 @@ describe BaseController, type: :controller do
   let!(:current_user) { FactoryGirl.create(:user) }
   let!(:feature) { FactoryGirl.create(:feature, controller: "base", action: "index") }
   let!(:authorization) { FactoryGirl.create(:authorization, feature: feature) }
-  let!(:group_role) { FactoryGirl.create(:group_role, role: authorization.role) }
-  let!(:group_user) { FactoryGirl.create(:group_user, user: current_user, group: group_role.group) }
+  let!(:role_group) { FactoryGirl.create(:role_group, role: authorization.role) }
+  let!(:group_user) { FactoryGirl.create(:group_user, user: current_user, group: role_group.group) }
 
   controller do
     def index

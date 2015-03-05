@@ -4,8 +4,8 @@ require "curupira/authorizer"
 describe Curupira::Authorizer do
   let!(:current_user) { FactoryGirl.create(:user) }
   let!(:authorization) { FactoryGirl.create(:authorization) }
-  let!(:group_role) { FactoryGirl.create(:group_role, role: authorization.role) }
-  let!(:group_user) { FactoryGirl.create(:group_user, user: current_user, group: group_role.group) }
+  let!(:role_group) { FactoryGirl.create(:role_group, role: authorization.role) }
+  let!(:group_user) { FactoryGirl.create(:group_user, user: current_user, group: role_group.group) }
   
   include Curupira::Authorizer
 

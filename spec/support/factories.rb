@@ -37,7 +37,7 @@ FactoryGirl.define do
     feature
   end
 
-  factory :group_role do
+  factory :role_group do
     group
     role
   end

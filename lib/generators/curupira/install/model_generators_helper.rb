@@ -174,8 +174,6 @@ module Curupira
           has_many :roles, through: :role_groups
           accepts_nested_attributes_for :role_groups, reject_if: :all_blank, allow_destroy: :true
           validates_presence_of :name
-          has_many :group_roles
-          has_many :roles, through: :group_roles
           scope :active, -> { where active: true }
         CONTENT
       end
