@@ -38,6 +38,6 @@ class Curupira::RolesController < Curupira::AuthorizedController
   private
 
   def role_params
-    params.require(:role).permit(:name, :active, authorizations_attributes: [:id, :group_id, :_destroy])
+    params.require(:role).permit(:name, :active, authorizations_attributes: [:id, :feature_id, :_destroy])
   end
 end

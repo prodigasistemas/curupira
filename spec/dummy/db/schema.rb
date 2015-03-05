@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150303134756) do
+ActiveRecord::Schema.define(version: 20150305011948) do
 
   create_table "authorizations", force: :cascade do |t|
     t.integer  "feature_id"
@@ -33,8 +33,9 @@ ActiveRecord::Schema.define(version: 20150303134756) do
   end
 
   create_table "group_users", force: :cascade do |t|
-    t.integer  "user_id"
     t.integer  "group_id"
+    t.integer  "user_id"
+    t.boolean  "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -62,6 +63,7 @@ ActiveRecord::Schema.define(version: 20150303134756) do
   create_table "role_groups", force: :cascade do |t|
     t.integer  "role_id"
     t.integer  "group_id"
+    t.boolean  "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -72,13 +74,6 @@ ActiveRecord::Schema.define(version: 20150303134756) do
   create_table "roles", force: :cascade do |t|
     t.string  "name",                  null: false
     t.boolean "active", default: true
-  end
-
-  create_table "user_groups", force: :cascade do |t|
-    t.string   "name"
-    t.boolean  "active"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
