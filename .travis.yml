@@ -1,0 +1,19 @@
+language: ruby
+
+rvm:
+  - 2.2
+
+script: "bundle exec rake spec"
+
+addons:
+  code_climate:
+    repo_token: c683c82066fc6a0297ffa32a791058ebfa2bf120fae7924192e885e9d8887d54
+
+notifications:
+  email:
+    recipients:
+      - paulo.moura@prodigasistemas.com.br
+      - felipe.iketani@prodigasistemas.com.br
+      - rcasseb@prodigasistemas.com.br
+      - luizsanches@prodigasistemas.com.br
+    on_success: never

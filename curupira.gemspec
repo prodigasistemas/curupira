@@ -1,15 +1,13 @@
 $:.push File.expand_path("../lib", __FILE__)
 
-# Maintain your gem's version:
 require "curupira/version"
 
-# Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
   s.name        = "curupira"
   s.version     = Curupira::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["Paulo Moura", "Felipe Iketani"]
-  s.email       = ["paulociecomp@gmail.com", "felipeiketani@gmail.com"]
+  s.authors     = ["Paulo Moura", "Felipe Iketani", "Ricardo Casseb", "Luiz Sanches"]
+  s.email       = ["paulociecomp@gmail.com", "felipeiketani@gmail.com", "rcasseb@gmail.com", "luizgrsanches@gmail.com"]
   s.homepage    = "https://rubygems.org/gems/curupira"
   s.summary     = "Curupira!"
   s.description = "Easy way to authentication and authorization"
