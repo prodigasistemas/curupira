@@ -112,6 +112,14 @@ module Curupira
         @permission_indexes ||= {}
       end
 
+      def role_group_columns
+        @role_group_columns ||= {}
+      end
+
+      def role_group_indexes
+        @role_group_indexes ||= {}
+      end
+
       def user_indexes
         @user_indexes ||= {
           index_users_on_username: 'add_index :users, :username, unique: true',
@@ -162,6 +170,9 @@ module Curupira
 
       def group_model_content
         <<-CONTENT
+          has_many :role_groups
+          has_many :roles, through: :role_groups
+          accepts_nested_attributes_for :role_groups, reject_if: :all_blank, allow_destroy: :true
           validates_presence_of :name
           scope :active, -> { where active: true }
         CONTENT
@@ -190,6 +201,13 @@ module Curupira
           has_many :permissions
           accepts_nested_attributes_for :permissions, reject_if: :all_blank, allow_destroy: :true
           scope :active, -> { where active: true }
+        CONTENT
+      end
+
+      def role_group_model_content
+        <<-CONTENT
+          belongs_to :role
+          belongs_to :group
         CONTENT
       end
 

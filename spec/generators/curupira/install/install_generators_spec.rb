@@ -26,25 +26,26 @@ describe Curupira::Generators::InstallGenerator, :generator do
         group = file("app/models/group.rb")
 
         expect(group).to exist
+        expect(group).to contain("validates_presence_of :name")
+        expect(group).to contain("has_many :role_groups")
+        expect(group).to contain("has_many :roles, through: :role_groups")
+        expect(group).to contain("accepts_nested_attributes_for :role_groups, reject_if: :all_blank, allow_destroy: :true")
+        expect(group).to contain("scope :active, -> { where active: true }")
       end
-    end
-
-    it "adds validations" do
-      run_generator
-
-      user_group = file("app/models/group.rb")
-      expect(user_group).to contain("validates_presence_of :name")
-      expect(user_group).to contain("scope :active, -> { where active: true }")
     end
 
     context "group class already exists" do
       it "includes validations" do
         run_generator
-        user_class = file("app/models/group.rb")
+        group = file("app/models/group.rb")
 
-        expect(user_class).to exist
-        expect(user_class).to have_correct_syntax
-        expect(user_class).to contain("validates_presence_of :name")
+        expect(group).to exist
+        expect(group).to have_correct_syntax
+        expect(group).to contain("validates_presence_of :name")
+        expect(group).to contain("has_many :role_groups")
+        expect(group).to contain("has_many :roles, through: :role_groups")
+        expect(group).to contain("accepts_nested_attributes_for :role_groups, reject_if: :all_blank, allow_destroy: :true")
+        expect(group).to contain("scope :active, -> { where active: true }")
       end
     end
   end
