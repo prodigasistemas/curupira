@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150305011948) do
+ActiveRecord::Schema.define(version: 20150305021426) do
 
   create_table "authorizations", force: :cascade do |t|
     t.integer  "feature_id"
