@@ -5,7 +5,6 @@ class BaseController < ApplicationController
 end
 
 describe BaseController, type: :controller do
-<<<<<<< HEAD
   let!(:current_user)   { FactoryGirl.create(:user) }
   let!(:group_a) { FactoryGirl.create(:group, name: "Group A") }
   let!(:role_a) { FactoryGirl.create(:role, name: "Role A") }
@@ -14,13 +13,6 @@ describe BaseController, type: :controller do
   let!(:role_group) { FactoryGirl.create(:role_group, role: role_a, group: group_a) }
   let!(:group_user) { FactoryGirl.create(:group_user, user: current_user, group: group_a) }
   let!(:permission) { FactoryGirl.create(:permission, role: role_a, group_user: group_user) }
-=======
-  let!(:current_user) { FactoryGirl.create(:user) }
-  let!(:feature) { FactoryGirl.create(:feature, controller: "base", action: "index") }
-  let!(:authorization) { FactoryGirl.create(:authorization, feature: feature) }
-  let!(:role_group) { FactoryGirl.create(:role_group, role: authorization.role) }
-  let!(:group_user) { FactoryGirl.create(:group_user, user: current_user, group: role_group.group) }
->>>>>>> fix tests
 
   controller do
     def index

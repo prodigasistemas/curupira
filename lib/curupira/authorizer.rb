@@ -2,6 +2,12 @@ module Curupira
   module Authorizer
     extend ActiveSupport::Concern
 
+    def authorize_for_group
+      unless has_authorization_for_group?
+        deny_access
+      end
+    end
+
     def authorize
       unless has_authorization?
         deny_access

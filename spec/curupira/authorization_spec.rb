@@ -2,14 +2,7 @@ require 'rails_helper'
 require "curupira/authorizer"
 
 describe Curupira::Authorizer do
-<<<<<<< HEAD
   subject!(:current_user)   { FactoryGirl.create(:user) }
-=======
-  let!(:current_user) { FactoryGirl.create(:user) }
-  let!(:authorization) { FactoryGirl.create(:authorization) }
-  let!(:role_group) { FactoryGirl.create(:role_group, role: authorization.role) }
-  let!(:group_user) { FactoryGirl.create(:group_user, user: current_user, group: role_group.group) }
->>>>>>> fix tests
   
   include Curupira::Authorizer
 
