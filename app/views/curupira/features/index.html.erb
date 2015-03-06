@@ -21,6 +21,7 @@
         <td><%= feature.description %></td>
         <td><%= feature.controller %></td>
         <td><%= feature.action %></td>
+        <td><%= link_to feature.description, feature %></td>
         <td><%= feature.request_method %></td>
         <td><%= feature.active %></td>
         <td><%= link_to "Editar", edit_feature_path(feature) %></td>
