@@ -19,5 +19,14 @@
   </ul>
 </div>
 
+<div id="group_users">
+  <h3>Usuários vinculados</h3>
+
+  <ul>
+    <% @group.group_users.each do |g| %>
+      <li><%= link_to g.user.name, g.user %></li>
+    <% end %>
+  </ul>
+</div>
 
 <%= link_to "Voltar", groups_path %>
