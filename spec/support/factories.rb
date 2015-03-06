@@ -41,4 +41,9 @@ FactoryGirl.define do
     group
     role
   end
+
+  factory :permission do
+    group_user
+    role
+  end
 end

@@ -2,6 +2,12 @@ module Curupira
   module Authorizer
     extend ActiveSupport::Concern
 
+    def authorize_for_group
+      unless has_authorization_for_group?
+        deny_access
+      end
+    end
+
     def authorize
       unless has_authorization?
         deny_access
@@ -14,7 +20,7 @@ module Curupira
 
     def has_authorization?
       result = User.joins(
-                groups: [roles: [:features]]
+                permissions: { role: :features } 
               )
               .where(
                 features: { controller: params[:controller], action: params[:action]  },
