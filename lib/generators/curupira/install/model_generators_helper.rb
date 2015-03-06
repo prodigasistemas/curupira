@@ -172,6 +172,8 @@ module Curupira
         <<-CONTENT
           has_many :role_groups
           has_many :roles, through: :role_groups
+          has_many :group_users
+          has_many :users, through: :group_users
           accepts_nested_attributes_for :role_groups, reject_if: :all_blank, allow_destroy: :true
           validates_presence_of :name
           scope :active, -> { where active: true }
@@ -182,8 +184,11 @@ module Curupira
         <<-CONTENT
           has_many :authorizations
           has_many :features, through: :authorizations
+          has_many :permissions
+          has_many :group_users, through: :permissions
+          has_many :role_groups
+          has_many :groups, through: :role_groups
           accepts_nested_attributes_for :authorizations, reject_if: :all_blank, allow_destroy: :true
-          
           validates_presence_of :name
         CONTENT
       end

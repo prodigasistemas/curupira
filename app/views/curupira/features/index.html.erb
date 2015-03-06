@@ -17,7 +17,7 @@
   <tbody>
     <% @features.each do |feature| %>
       <tr>
-        <td><%= feature.description %></td>
+        <td><%= link_to feature.description, feature %></td>
         <td><%= feature.path_info %></td>
         <td><%= feature.request_method %></td>
         <td><%= feature.active %></td>
