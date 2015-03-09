@@ -43,6 +43,11 @@ describe Curupira::Generators::InstallGenerator, :generator do
         expect(migration).to exist
         expect(migration).to have_correct_syntax
         expect(migration).to contain("create_table :features")
+        expect(migration).to contain("t.string :description")
+        expect(migration).to contain("t.string :controller")
+        expect(migration).to contain("t.string :action")
+        expect(migration).to contain("t.string :request_method")
+        expect(migration).to contain("t.boolean :active, default: true")
       end
     end
   end

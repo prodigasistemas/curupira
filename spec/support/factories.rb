@@ -21,7 +21,8 @@ FactoryGirl.define do
 
   factory :feature do
     sequence(:description)    {|n| "Editar cadarteristica"}
-    sequence(:path_info)      {|n| "edit"}
+    controller "users"
+    action "create"
     sequence(:request_method) {|n| "POST"}
     active true
   end 
@@ -29,5 +30,20 @@ FactoryGirl.define do
   factory :role do
     sequence(:name)     { |n| "Role #{n}" }
     active true
+  end
+
+  factory :authorization do
+    role
+    feature
+  end
+
+  factory :role_group do
+    group
+    role
+  end
+
+  factory :permission do
+    group_user
+    role
   end
 end

@@ -1,4 +1,6 @@
 require "active_support/dependencies"
+require 'rails'
+require 'curupira/authorizer'
 
 module Curupira
   mattr_accessor :app_root

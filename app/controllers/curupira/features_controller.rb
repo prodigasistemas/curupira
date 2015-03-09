@@ -38,6 +38,6 @@ class Curupira::FeaturesController < Curupira::AuthorizedController
 	private
   
 	def feature_params
-		params.require(:feature).permit(:description, :path_info, :request_method, :active)
+		params.require(:feature).permit(:description, :controller, :action, :request_method)
 	end
 end
