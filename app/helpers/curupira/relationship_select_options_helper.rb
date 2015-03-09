@@ -10,4 +10,8 @@ module Curupira::RelationshipSelectOptionsHelper
   def active_roles_select_options
     [["Selecione um perfil", nil]] + Role.all.map { |r| [r.name, r.id] }
   end
+
+  def group_roles_select_options
+    [["Selecione um perfil", nil]] + Role.all.map { |r| [r.name, r.id] }
+  end
 end
