@@ -28,7 +28,7 @@
     <h3>Grupos</h3>
 
     <%= f.fields_for :group_users do |b| %>
-      <%= render 'group_user_fields', :f => b %>
+      <%= render 'group_user_fields', f: b %>
     <% end %>
 
     <div class="links">
