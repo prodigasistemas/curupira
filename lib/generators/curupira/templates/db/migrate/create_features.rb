@@ -4,7 +4,6 @@ class CreateFeatures < ActiveRecord::Migration
       t.string :description
       t.string :controller
       t.string :action
-      t.string :request_method
       t.boolean :active, default: true
 
       t.timestamps

@@ -27,8 +27,7 @@ ActiveRecord::Schema.define(version: 20150305021426) do
     t.string   "description"
     t.string   "controller"
     t.string   "action"
-    t.string   "request_method"
-    t.boolean  "active",         default: true
+    t.boolean  "active",      default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
