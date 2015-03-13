@@ -196,6 +196,24 @@ module Curupira
       def feature_model_content
         <<-CONTENT
           validates_presence_of :name
+          has_many :feature_services
+          has_many :services, through: :feature_services
+          has_many :feature_action_labels
+          has_many :action_labels, through: :feature_action_labels
+        CONTENT
+      end
+
+      def feature_service_model_content
+        <<-CONTENT
+          belongs_to :feature
+          belongs_to :service
+        CONTENT
+      end
+
+      def feature_action_label_model_content
+        <<-CONTENT
+          belongs_to :feature
+          belongs_to :action_label
         CONTENT
       end
 

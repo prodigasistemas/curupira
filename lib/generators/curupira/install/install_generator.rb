@@ -64,6 +64,26 @@ module Curupira
         create_migration_to("role_group")
       end
 
+      def create_service
+        create_model "service"
+        create_migration_to("service")
+      end
+
+      def create_action_label
+        create_model "action_label"
+        create_migration_to("action_label")
+      end
+
+      def create_feature_service
+        create_model "feature_service"
+        create_migration_to("feature_service")
+      end
+
+      def create_feature_action_label
+        create_model "feature_action_label"
+        create_migration_to("feature_action_label")
+      end      
+
       private
 
       def self.next_migration_number(dir)
