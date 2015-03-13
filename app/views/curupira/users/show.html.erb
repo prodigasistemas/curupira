@@ -17,8 +17,8 @@
   <ul>
     <% @user.group_users.each do |group_user| %>
       <li><%= group_user.group.name %>
-        <% group_user.permissions.each do |permission|%>
-          <p><%= permission.role.name %></p>
+        <% group_user.role_group_users.each do |role_group_user|%>
+          <p><%= role_group_user.role.name %></p>
         <% end %>
       </li>
     <% end %>

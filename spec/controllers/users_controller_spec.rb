@@ -87,7 +87,7 @@ describe Curupira::UsersController do
                         username: "new_username",
                         name: "New Name",
                         password: 12345678,
-                        group_users_attributes: { "0": { group_id: group.id, permissions_attributes: { "0": { role_id: role.id } } } } } }
+                        group_users_attributes: { "0": { group_id: group.id, role_group_users_attributes: { "0": { role_id: role.id } } } } } }
 
       it "should redirect to new user" do
         post :create, user: params
@@ -108,7 +108,7 @@ describe Curupira::UsersController do
         expect(assigns[:user].username).to eql "new_username"
         expect(assigns[:user].name).to eql "New Name"
         expect(assigns[:user].groups.first.name).to eql "Apple Corp"
-        expect(assigns[:user].permissions.first.role.name).to eql "Minha Role"
+        expect(assigns[:user].role_group_users.first.role.name).to eql "Minha Role"
       end
     end
 

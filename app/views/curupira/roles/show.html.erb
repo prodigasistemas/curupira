@@ -14,7 +14,7 @@
 
   <ul>
     <% @role.features.each do |feature| %>
-      <li><%= link_to feature.description, feature %></li>
+      <li><%= link_to feature.name, feature %></li>
     <% end %>
   </ul>
 </div>

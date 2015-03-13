@@ -81,7 +81,7 @@ describe Curupira::RolesController  do
 
   describe "POST create" do
     context "when role is valid" do
-      let!(:feature) { FactoryGirl.create(:feature, description: "Cadastrar") }
+      let!(:feature) { FactoryGirl.create(:feature, name: "Cadastrar") }
       let(:params) do
         {
           name: "Minha Role",
@@ -109,7 +109,7 @@ describe Curupira::RolesController  do
         }.to change { Role.count }.by(1)
 
         expect(assigns[:role].name).to eql "Minha Role"
-        expect(assigns[:role].features.first.description).to eq("Cadastrar")
+        expect(assigns[:role].features.first.name).to eq("Cadastrar")
       end
     end
 

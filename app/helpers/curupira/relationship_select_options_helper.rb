@@ -4,7 +4,7 @@ module Curupira::RelationshipSelectOptionsHelper
   end
 
   def active_features_select_options
-    [["Selecione uma funcionalidade", nil]] + Feature.all.map { |f| [f.description, f.id] }
+    [["Selecione uma funcionalidade", nil]] + Feature.all.map { |f| [f.name, f.id] }
   end
 
   def active_roles_select_options

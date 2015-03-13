@@ -17,9 +17,9 @@ module Curupira
         copy_file 'sorcery.rb', 'config/initializers/sorcery.rb'
       end
 
-      def create_permission
-        create_model "permission"
-        create_migration_to("permission")
+      def create_role_group_user
+        create_model "role_group_user"
+        create_migration_to("role_group_user")
       end
 
       def create_authorization

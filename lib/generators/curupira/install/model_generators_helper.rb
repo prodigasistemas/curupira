@@ -104,12 +104,12 @@ module Curupira
         @authorization_indexes ||= {}
       end
 
-      def permission_columns
-        @permission_columns ||= {}
+      def role_group_user_columns
+        @role_group_user_columns ||= {}
       end
 
-      def permission_indexes
-        @permission_indexes ||= {}
+      def role_group_user_indexes
+        @role_group_user_indexes ||= {}
       end
 
       def role_group_columns
@@ -143,7 +143,7 @@ module Curupira
         inject_into_class("app/models/#{model_name}.rb", model_name.camelize, content)
       end
 
-      def permission_model_content
+      def role_group_user_model_content
         <<-CONTENT
           belongs_to :group_user
           belongs_to :role
@@ -163,7 +163,7 @@ module Curupira
           validates_presence_of :email
           has_many :group_users
           has_many :groups, through: :group_users
-          has_many :permissions, through: :group_users
+          has_many :role_group_users, through: :group_users
           accepts_nested_attributes_for :group_users, reject_if: :all_blank, allow_destroy: :true
         CONTENT
       end
@@ -184,8 +184,8 @@ module Curupira
         <<-CONTENT
           has_many :authorizations
           has_many :features, through: :authorizations
-          has_many :permissions
-          has_many :group_users, through: :permissions
+          has_many :role_group_users
+          has_many :group_users, through: :role_group_users
           has_many :role_groups
           has_many :groups, through: :role_groups
           accepts_nested_attributes_for :authorizations, reject_if: :all_blank, allow_destroy: :true
@@ -195,7 +195,7 @@ module Curupira
 
       def feature_model_content
         <<-CONTENT
-          validates_presence_of :description
+          validates_presence_of :name
         CONTENT
       end
 
@@ -203,8 +203,8 @@ module Curupira
         <<-CONTENT
           belongs_to :group
           belongs_to :user
-          has_many :permissions
-          accepts_nested_attributes_for :permissions, reject_if: :all_blank, allow_destroy: :true
+          has_many :role_group_users
+          accepts_nested_attributes_for :role_group_users, reject_if: :all_blank, allow_destroy: :true
           scope :active, -> { where active: true }
         CONTENT
       end

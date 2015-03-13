@@ -1,5 +1,4 @@
 <div class="nested-fields">
-  
   <% if f.object.role.blank? || f.object.role.active? %>
 
     <%= f.select :role_id, active_roles_select_options %>

@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150305021426) do
+ActiveRecord::Schema.define(version: 20150312183617) do
+
+  create_table "action_labels", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "authorizations", force: :cascade do |t|
     t.integer  "feature_id"
@@ -23,13 +30,25 @@ ActiveRecord::Schema.define(version: 20150305021426) do
   add_index "authorizations", ["feature_id"], name: "index_authorizations_on_feature_id"
   add_index "authorizations", ["role_id"], name: "index_authorizations_on_role_id"
 
+  create_table "feature_action_labels", force: :cascade do |t|
+    t.integer  "feature_id"
+    t.integer  "action_label_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "feature_services", force: :cascade do |t|
+    t.integer  "feature_id"
+    t.integer  "service_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "features", force: :cascade do |t|
-    t.string   "description"
-    t.string   "controller"
-    t.string   "action"
-    t.boolean  "active",      default: true
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "name"
+    t.boolean  "active",     default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "group_users", force: :cascade do |t|
@@ -50,15 +69,15 @@ ActiveRecord::Schema.define(version: 20150305021426) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "permissions", force: :cascade do |t|
+  create_table "role_group_users", force: :cascade do |t|
     t.integer  "role_id"
     t.integer  "group_user_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
 
-  add_index "permissions", ["group_user_id"], name: "index_permissions_on_group_user_id"
-  add_index "permissions", ["role_id"], name: "index_permissions_on_role_id"
+  add_index "role_group_users", ["group_user_id"], name: "index_role_group_users_on_group_user_id"
+  add_index "role_group_users", ["role_id"], name: "index_role_group_users_on_role_id"
 
   create_table "role_groups", force: :cascade do |t|
     t.integer  "role_id"
@@ -74,6 +93,13 @@ ActiveRecord::Schema.define(version: 20150305021426) do
   create_table "roles", force: :cascade do |t|
     t.string  "name",                  null: false
     t.boolean "active", default: true
+  end
+
+  create_table "services", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
