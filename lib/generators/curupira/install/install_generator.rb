@@ -77,12 +77,7 @@ module Curupira
       def create_feature_service
         create_model "feature_service"
         create_migration_to("feature_service")
-      end
-
-      def create_feature_action_label
-        create_model "feature_action_label"
-        create_migration_to("feature_action_label")
-      end      
+      end   
 
       private
 

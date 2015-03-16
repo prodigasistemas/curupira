@@ -15,10 +15,13 @@ ActiveRecord::Schema.define(version: 20150312183617) do
 
   create_table "action_labels", force: :cascade do |t|
     t.string   "name"
+    t.integer  "feature_id"
     t.boolean  "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "action_labels", ["feature_id"], name: "index_action_labels_on_feature_id"
 
   create_table "authorizations", force: :cascade do |t|
     t.integer  "feature_id"
