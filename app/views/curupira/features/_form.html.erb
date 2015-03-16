@@ -1,0 +1,40 @@
+<%= form_for @feature do |f| %>
+  <div class="field">
+    <%= f.label :name, "Descrição" %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :active, "Ativo" %><br>
+    <%= f.check_box :active %>
+  </div>
+
+  <div class="services">
+    <h3>Serviços</h3>
+
+    <%= f.fields_for :feature_services do |b| %>
+      <%= render 'feature_service_fields', :f => b %>
+    <% end %>
+
+    <div class="links">
+      <%= link_to_add_association 'Adicionar serviço', f, :feature_services %>
+    </div>
+  </div>
+
+  <div class="action">
+    <h3>Ações</h3>
+
+    <%= f.fields_for :feature_action_labels do |b| %>
+      <%= render 'feature_action_label_fields', :f => b %>
+    <% end %>
+
+    <div class="links">
+      <%= link_to_add_association 'Adicionar ação', f, :feature_action_labels %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %><br>
+    or <%= link_to :cancel, features_path %>
+  </div>
+<% end %>
