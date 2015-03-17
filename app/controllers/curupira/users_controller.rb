@@ -22,6 +22,8 @@ class Curupira::UsersController < Curupira::AuthorizedController
   def create
     @user = User.new(user_params)
 
+    authorize_to_group
+
     if @user.save
       redirect_to @user, notice: "Usuário criado com sucesso"
     else
@@ -32,6 +34,8 @@ class Curupira::UsersController < Curupira::AuthorizedController
   def update
     @user = User.find(params[:id])
 
+    authorize_to_group
+
     if @user.update user_params
       redirect_to @user, notice: "Usuário atualizado com sucesso"
     else
@@ -40,6 +44,15 @@ class Curupira::UsersController < Curupira::AuthorizedController
   end
 
   private
+
+  def authorize_to_group
+    @user.groups.each do |group|
+      binding.pry
+      current_user.role_group_users.joins(group_user: :group, 
+                                          role: { authorizations: { feature: [:services, :action_labels]}}).
+                                    where(groups: { id: @group }, services: { name: controller_name }, action_labels: { name: action_name }).any?
+    end
+  end
   
   def user_params
     params.require(:user).permit(:email, :name, :username, :password, group_users_attributes: [:id, :group_id, :_destroy, role_group_users_attributes: [:id, :role_id]])

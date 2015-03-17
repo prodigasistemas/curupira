@@ -16,7 +16,7 @@
 
   <ul>
     <% @user.group_users.each do |group_user| %>
-      <li><%= group_user.group.name %>
+      <li><%= group_user.group.name %> <%= link_to "Editar grupo", edit_user_path(@user) %>
         <% group_user.role_group_users.each do |role_group_user|%>
           <p><%= role_group_user.role.name %></p>
         <% end %>
