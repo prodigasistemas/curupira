@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150312183617) do
+ActiveRecord::Schema.define(version: 20150312181747) do
 
   create_table "action_labels", force: :cascade do |t|
     t.string   "name"
@@ -33,22 +33,9 @@ ActiveRecord::Schema.define(version: 20150312183617) do
   add_index "authorizations", ["feature_id"], name: "index_authorizations_on_feature_id"
   add_index "authorizations", ["role_id"], name: "index_authorizations_on_role_id"
 
-  create_table "feature_action_labels", force: :cascade do |t|
-    t.integer  "feature_id"
-    t.integer  "action_label_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
-  create_table "feature_services", force: :cascade do |t|
-    t.integer  "feature_id"
-    t.integer  "service_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "features", force: :cascade do |t|
     t.string   "name"
+    t.string   "controller"
     t.boolean  "active",     default: true
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
@@ -96,13 +83,6 @@ ActiveRecord::Schema.define(version: 20150312183617) do
   create_table "roles", force: :cascade do |t|
     t.string  "name",                  null: false
     t.boolean "active", default: true
-  end
-
-  create_table "services", force: :cascade do |t|
-    t.string   "name"
-    t.boolean  "active"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

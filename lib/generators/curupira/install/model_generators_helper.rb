@@ -137,28 +137,12 @@ module Curupira
         @group_user_indexes ||= {}
       end
 
-      def service_columns
-        @service_columns ||= {}
-      end
-
-      def service_indexes
-        @service_indexes ||= {}
-      end
-
       def action_label_columns
         @action_label_columns ||= {}
       end
 
       def action_label_indexes
         @action_label_indexes ||= {}
-      end
-
-      def feature_service_columns
-        @feature_service_columns ||= {}
-      end
-
-      def feature_service_indexes
-        @feature_service_indexes ||= {}
       end
 
       def create_model(model_name)
@@ -227,20 +211,6 @@ module Curupira
         CONTENT
       end
 
-      def feature_service_model_content
-        <<-CONTENT
-          belongs_to :feature
-          belongs_to :service
-        CONTENT
-      end
-
-      def feature_action_label_model_content
-        <<-CONTENT
-          belongs_to :feature
-          belongs_to :action_label
-        CONTENT
-      end
-
       def group_user_model_content
         <<-CONTENT
           belongs_to :group
@@ -255,13 +225,6 @@ module Curupira
         <<-CONTENT
           belongs_to :role
           belongs_to :group
-        CONTENT
-      end
-
-      def service_model_content
-        <<-CONTENT
-          has_many :feature_services
-          has_many :services, through: :feature_services
         CONTENT
       end
 

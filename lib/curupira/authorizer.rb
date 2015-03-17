@@ -30,10 +30,10 @@ module Curupira
 
     def query(params)
       User.joins(
-        role_group_users: { role: { features: [:services, :action_labels] } } 
+        role_group_users: { role: { features: [:action_labels] } } 
       )
       .where(
-        services: { name: params[:controller] },
+        features: { controller: params[:controller] },
         action_labels: { name: params[:action] },
         id: current_user
       )
