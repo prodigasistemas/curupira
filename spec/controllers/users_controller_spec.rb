@@ -8,9 +8,7 @@ describe Curupira::UsersController do
   end
 
   describe "GET index" do
-    before do
-      FactoryGirl.create :user
-    end
+    let!(:group) { FactoryGirl.create(:group, users: [user, FactoryGirl.create(:user)]) }
 
     it "should get index" do
       get :index
