@@ -1,6 +1,6 @@
 class Curupira::UsersController < Curupira::AuthorizedController
   def index
-    @users = User.all
+    @users = User.all_belonging_to(current_user)
   end
 
   def show
