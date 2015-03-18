@@ -1,7 +1,7 @@
 module Curupira
   module Generators
     class ViewsGenerator < Rails::Generators::Base
-      source_root File.expand_path("../" * 4, __FILE__)
+      source_root File.expand_path("../" * 5, __FILE__)
 
       def create_views
         views.each do |view|
