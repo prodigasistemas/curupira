@@ -1,3 +1,4 @@
+require "sorcery"
 require "active_support/dependencies"
 require 'rails'
 require 'curupira/authorizer'
