@@ -62,7 +62,7 @@ describe Curupira::FeaturesController do
 
   	describe "POST create" do
     	context "when feature is valid" do
-      		let(:params)  { { description:"Cadastrar Grupo", paht_info:"group", request_method:"post" } }
+      		let(:params)  { { name:"leitura" } }
 
       		it "should redirect to new feature" do
         		post :create, feature: params
@@ -86,7 +86,7 @@ describe Curupira::FeaturesController do
      	let(:feature) { FactoryGirl.create :feature }
 
      	context "when feature is valid" do
-     		let(:params)  { { description:"Cadastrar material", paht_info:"tool/new", request_method:"post" } }
+     		let(:params)  { { name:"leitura" } }
 
        		it "sets flash message" do
          			put :update, id: feature, feature: params
@@ -100,7 +100,7 @@ describe Curupira::FeaturesController do
 
       		it "updates feature" do
         			put :update, id: feature, feature: params
-        			expect(assigns(:feature).description).to   eql "Cadastrar material"
+        			expect(assigns(:feature).name).to   eql "leitura"
         			expect(assigns(:feature).active).to eql true
       		end
     		

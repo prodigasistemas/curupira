@@ -6,13 +6,10 @@ end
 
 describe BaseController, type: :controller do
   let!(:current_user)   { FactoryGirl.create(:user) }
-  let!(:group_a) { FactoryGirl.create(:group, name: "Group A") }
-  let!(:role_a) { FactoryGirl.create(:role, name: "Role A") }
-  let!(:feature_a) { FactoryGirl.create(:feature, description: "Feature A", controller: "base", action: "index") }
-  let!(:authorization) { FactoryGirl.create(:authorization, role: role_a, feature: feature_a) }
-  let!(:role_group) { FactoryGirl.create(:role_group, role: role_a, group: group_a) }
-  let!(:group_user) { FactoryGirl.create(:group_user, user: current_user, group: group_a) }
-  let!(:permission) { FactoryGirl.create(:permission, role: role_a, group_user: group_user) }
+
+  before do
+    setup_authorization(current_user, "base", "index")
+  end
 
   controller do
     def index

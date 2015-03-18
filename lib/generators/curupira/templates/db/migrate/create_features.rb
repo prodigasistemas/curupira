@@ -1,10 +1,8 @@
 class CreateFeatures < ActiveRecord::Migration
   def change
     create_table :features do |t|
-      t.string :description
+      t.string :name
       t.string :controller
-      t.string :action
-      t.string :request_method
       t.boolean :active, default: true
 
       t.timestamps

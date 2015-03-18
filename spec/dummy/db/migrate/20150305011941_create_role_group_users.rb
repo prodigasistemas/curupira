@@ -1,6 +1,6 @@
-class CreatePermissions < ActiveRecord::Migration
+class CreateRoleGroupUsers < ActiveRecord::Migration
   def change
-    create_table :permissions do |t|
+    create_table :role_group_users do |t|
       t.belongs_to :role, index: true
       t.belongs_to :group_user, index: true
 

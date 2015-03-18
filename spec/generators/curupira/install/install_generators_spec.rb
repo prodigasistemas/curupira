@@ -77,8 +77,9 @@ describe Curupira::Generators::InstallGenerator, :generator do
         expect(user_class).to contain("validates_presence_of :email")
         expect(user_class).to contain("has_many :group_users")
         expect(user_class).to contain("has_many :groups, through: :group_users")
-        expect(user_class).to contain("has_many :permissions, through: :group_users")
+        expect(user_class).to contain("has_many :role_group_users, through: :group_users")
         expect(user_class).to contain("accepts_nested_attributes_for :group_users, reject_if: :all_blank, allow_destroy: :true")
+        expect(user_class).to contain("scope :all_belonging_to, -> (user) { includes(group_users: :group).where(groups: { id: user.groups }) }")
       end
     end
 
@@ -95,8 +96,9 @@ describe Curupira::Generators::InstallGenerator, :generator do
         expect(user_class).to contain("validates_presence_of :email")
         expect(user_class).to contain("has_many :group_users")
         expect(user_class).to contain("has_many :groups, through: :group_users")
-        expect(user_class).to contain("has_many :permissions, through: :group_users")
+        expect(user_class).to contain("has_many :role_group_users, through: :group_users")
         expect(user_class).to contain("accepts_nested_attributes_for :group_users, reject_if: :all_blank, allow_destroy: :true")
+        expect(user_class).to contain("scope :all_belonging_to, -> (user) { includes(group_users: :group).where(groups: { id: user.groups }) }")
       end
     end
   end
@@ -150,6 +152,7 @@ describe Curupira::Generators::InstallGenerator, :generator do
         expect(migration).to contain("add_index :users, :reset_password_token")
         expect(migration).not_to contain("t.string :username")
         expect(migration).not_to contain("add_index :users, :index_users_on_username")
+        expect(migration).to contain("t.boolean :admin, default: false")
       end
     end
   end

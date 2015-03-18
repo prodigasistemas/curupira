@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150305021426) do
+ActiveRecord::Schema.define(version: 20150312181747) do
+
+  create_table "action_labels", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "feature_id"
+    t.boolean  "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "action_labels", ["feature_id"], name: "index_action_labels_on_feature_id"
 
   create_table "authorizations", force: :cascade do |t|
     t.integer  "feature_id"
@@ -24,13 +34,11 @@ ActiveRecord::Schema.define(version: 20150305021426) do
   add_index "authorizations", ["role_id"], name: "index_authorizations_on_role_id"
 
   create_table "features", force: :cascade do |t|
-    t.string   "description"
+    t.string   "name"
     t.string   "controller"
-    t.string   "action"
-    t.string   "request_method"
-    t.boolean  "active",         default: true
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.boolean  "active",     default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "group_users", force: :cascade do |t|
@@ -51,15 +59,15 @@ ActiveRecord::Schema.define(version: 20150305021426) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "permissions", force: :cascade do |t|
+  create_table "role_group_users", force: :cascade do |t|
     t.integer  "role_id"
     t.integer  "group_user_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
 
-  add_index "permissions", ["group_user_id"], name: "index_permissions_on_group_user_id"
-  add_index "permissions", ["role_id"], name: "index_permissions_on_role_id"
+  add_index "role_group_users", ["group_user_id"], name: "index_role_group_users_on_group_user_id"
+  add_index "role_group_users", ["role_id"], name: "index_role_group_users_on_role_id"
 
   create_table "role_groups", force: :cascade do |t|
     t.integer  "role_id"
@@ -78,8 +86,8 @@ ActiveRecord::Schema.define(version: 20150305021426) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                                          null: false
-    t.string   "name",                                           null: false
+    t.string   "email",                                           null: false
+    t.string   "name",                                            null: false
     t.boolean  "active",                          default: true
     t.string   "username"
     t.string   "crypted_password"
@@ -91,6 +99,7 @@ ActiveRecord::Schema.define(version: 20150305021426) do
     t.datetime "last_logout_at"
     t.datetime "last_activity_at"
     t.string   "last_login_from_ip_address"
+    t.boolean  "admin",                           default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

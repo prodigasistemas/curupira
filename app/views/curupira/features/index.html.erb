@@ -8,9 +8,6 @@
   <thead>
     <tr>
       <th>Descrição</th>
-      <th>Controller</th>
-      <th>Action</th>
-      <th>Método</th>
       <th>Ativo</th>
       <th></th>
     </tr>
@@ -18,11 +15,8 @@
   <tbody>
     <% @features.each do |feature| %>
       <tr>
-        <td><%= feature.description %></td>
-        <td><%= feature.controller %></td>
-        <td><%= feature.action %></td>
-        <td><%= link_to feature.description, feature %></td>
-        <td><%= feature.request_method %></td>
+        <td><%= feature.name %></td>
+        <td><%= link_to feature.name, feature %></td>
         <td><%= feature.active %></td>
         <td><%= link_to "Editar", edit_feature_path(feature) %></td>
       </tr>

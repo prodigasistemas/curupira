@@ -1,0 +1,16 @@
+<%= form_for @feature do |f| %>
+  <div class="field">
+    <%= f.label :name, "Descrição" %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :active, "Ativo" %><br>
+    <%= f.check_box :active %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %><br>
+    or <%= link_to :cancel, features_path %>
+  </div>
+<% end %>

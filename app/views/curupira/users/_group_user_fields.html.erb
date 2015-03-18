@@ -1,18 +1,18 @@
 <div class="nested-fields">
   <% if f.object.group.blank? || f.object.group.active? %>
-    <%= f.select :group_id, active_user_groups_select_options %>
+    <%= f.select :group_id, active_user_groups_select_options(current_user) %>
   <% else %>
     <%= f.object.user_group.name %>
   <% end %>
 
   <div style="margin: 50px">
     <h4>Perfis</h4>
-    <%= f.fields_for :permissions do |permission| %>
-      <%= render "permission_fields", f: permission %>
+    <%= f.fields_for :role_group_users do |role_group_user| %>
+      <%= render "role_group_user_fields", f: role_group_user %>
     <% end %>
   
     <div class="links">
-      <%= link_to_add_association 'Adicionar Permissão', f, :permissions %>
+      <%= link_to_add_association 'Adicionar Permissão', f, :role_group_users %>
     </div>
 
     <%= link_to_remove_association "Remover", f %>

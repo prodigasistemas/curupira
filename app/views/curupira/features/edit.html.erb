@@ -1,33 +1,3 @@
 <h1>Editar Caracteristica</h1>
 
-<%= form_for @feature do |f| %>
-  <div class="field">
-    <%= f.label :description, "Descrição" %><br>
-    <%= f.text_field :description %>
-  </div>
-
-  <div class="field">
-    <%= f.label :controller, "controller" %><br>
-    <%= f.text_field :controller %>
-  </div>
-
-  <div class="field">
-    <%= f.label :action, "action" %><br>
-    <%= f.text_field :action %>
-  </div>
-
-  <div class="field">
-    <%= f.label :request_method, "Método" %><br>
-    <%= f.text_field :request_method %>
-  </div>
-
-  <div class="field">
-    <%= f.label :active, "Ativo" %><br>
-    <%= f.check_box :active %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %><br>
-    or <%= link_to :cancel, features_path %>
-  </div>
-<% end %>
+<%= render "form %>

@@ -1,3 +1,3 @@
 class Feature < ActiveRecord::Base
-  validates_presence_of :description
+  has_many :action_labels
 end

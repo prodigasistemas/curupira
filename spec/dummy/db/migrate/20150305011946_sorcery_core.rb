@@ -14,6 +14,7 @@ class SorceryCore < ActiveRecord::Migration
       t.datetime :last_logout_at,                   default: nil
       t.datetime :last_activity_at,                 default: nil
       t.string   :last_login_from_ip_address,       default: nil
+      t.boolean  :admin,                            default: false
 
       t.timestamps
     end
