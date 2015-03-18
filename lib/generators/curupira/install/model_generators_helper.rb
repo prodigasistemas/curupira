@@ -68,7 +68,8 @@ module Curupira
           last_login_at: 't.datetime :last_login_at, default: nil',
           last_logout_at: 't.datetime :last_logout_at, default: nil',
           last_activity_at: 't.datetime :last_activity_at, default: nil',
-          last_login_from_ip_address: 't.string :last_login_from_ip_address, default: nil'
+          last_login_from_ip_address: 't.string :last_login_from_ip_address, default: nil',
+          admin: 't.boolean :admin, default: false'
         }.reject { |column| existing_columns_to("user").include?(column.to_s) }
       end
 

@@ -152,6 +152,7 @@ describe Curupira::Generators::InstallGenerator, :generator do
         expect(migration).to contain("add_index :users, :reset_password_token")
         expect(migration).not_to contain("t.string :username")
         expect(migration).not_to contain("add_index :users, :index_users_on_username")
+        expect(migration).to contain("t.boolean :admin, default: false")
       end
     end
   end

@@ -15,6 +15,7 @@ module Curupira
     end
 
     def has_authorization?
+      return true if current_user.admin?
       query(params).present?
     end
 

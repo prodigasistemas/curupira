@@ -86,8 +86,8 @@ ActiveRecord::Schema.define(version: 20150312181747) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                                          null: false
-    t.string   "name",                                           null: false
+    t.string   "email",                                           null: false
+    t.string   "name",                                            null: false
     t.boolean  "active",                          default: true
     t.string   "username"
     t.string   "crypted_password"
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 20150312181747) do
     t.datetime "last_logout_at"
     t.datetime "last_activity_at"
     t.string   "last_login_from_ip_address"
+    t.boolean  "admin",                           default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
