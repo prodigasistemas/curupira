@@ -1,4 +1,4 @@
-class CreateRoleGroupUser < ActiveRecord::Migration
+class CreateRoleGroupUsers < ActiveRecord::Migration
   def change
     create_table :role_group_users do |t|
       t.belongs_to :role, index: true

@@ -44,6 +44,7 @@ describe Curupira::Generators::InstallGenerator, :generator do
         
         expect(migration).to exist
         expect(migration).to have_correct_syntax
+        expect(migration).to contain("class CreateRoleGroupUsers < ActiveRecord::Migration")
         expect(migration).to contain("create_table :role_group_users")
       end
     end
