@@ -1,6 +1,10 @@
 class Curupira::UsersController < Curupira::AuthorizedController
   def index
-    @users = User.all_belonging_to(current_user)
+    if current_user.admin?
+      @users = User.all
+    else
+      @users = User.all_belonging_to(current_user)
+    end
   end
 
   def show
