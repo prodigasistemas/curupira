@@ -6,12 +6,4 @@ class Group < ActiveRecord::Base
   has_many :users, through: :group_users
   accepts_nested_attributes_for :role_groups, reject_if: :all_blank, allow_destroy: :true
   scope :active, -> { where active: true }
-
-  def self.all_by(user)
-  	if user.admin
-  		all
-  	else
-  		joins(:users).where(users: { id: user }, active: true)
-  	end	
-  end
 end
