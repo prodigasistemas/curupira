@@ -63,6 +63,20 @@ If the customization at the views level is not enough, you can customize each co
 rails generate curupira:controllers
 ```
 
+## Partials
+
+You should add in application.html.erb partials for menu, and helper for dispaly flash messages:
+
+```ruby
+<%- flash.each do |name, msg| -%>
+  <%= content_tag :div, msg, id: "flash_#{name}" %>
+<%- end -%>
+
+<%= render "curupira/shared/session_links" %>
+<%= render "curupira/shared/model_links" %>
+<%= yield %>
+```
+
 * Add to your application.js
 //= require jquery
 //= require cocoon
