@@ -1,6 +1,10 @@
 module Curupira::RelationshipSelectOptionsHelper
   def active_user_groups_select_options(user)
-    [["Selecione um grupo", nil]] + Group.joins(:users).where(users: { id: user }, active: true).map { |g| [g.name, g.id] }
+    if user.admin
+      [["Selecione um grupo", nil]] + Group.all.map { |g| [g.name, g.id] } 
+    else   
+      [["Selecione um grupo", nil]] + Group.joins(:users).where(users: { id: user }, active: true).map { |g| [g.name, g.id] }
+    end
   end
 
   def active_features_select_options
