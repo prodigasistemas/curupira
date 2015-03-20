@@ -35,7 +35,7 @@ module Curupira
       )
       .where(
         features: { controller: params[:controller] },
-        action_labels: { name: params[:action] },
+        action_labels: { name: [params[:action], 'manage'] },
         id: current_user
       )
     end
