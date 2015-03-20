@@ -1,137 +1,37 @@
-feature = Feature.create name: "Cadastrar usuário", controller: "curupira/users"
+Rails.application.eager_load!
 
-action_1 = ActionLabel.create name: "new"
-action_2 = ActionLabel.create name: "create"
+def eval_curupira_action(controller, action)
+  case action.to_s
+  when "index", "show", "search"
+    feature_desc = I18n.t("curupira.features.#{controller}.show")
+  when "create", "new"
+    feature_desc = I18n.t("curupira.features.#{controller}.create")
+  when "edit", "update"
+    feature_desc = I18n.t("curupira.features.#{controller}.edit")
+  when "delete", "destroy"
+    feature_desc = I18n.t("curupira.features.#{controller}.delete")
+  else
+    feature_desc = "Other: " << action.to_s
+  end
+  return feature_desc
+end
 
-feature.action_labels = [action_1, action_2]
+Curupira::AuthorizedController.subclasses.each do |controller|
+  p clazz = controller.to_s.underscore.gsub("_controller", "")
 
-feature.save
+  feature = Feature.create name: I18n.t("curupira.features.#{clazz}.manage"), controller: clazz
+  feature.action_labels << ActionLabel.create(name: "manage")
 
-feature = Feature.create name: "Visualizar usuário", controller: "curupira/users"
+  controller.action_methods.each do |action|
+    feature_description = eval_curupira_action(clazz, action)
 
-action_1 = ActionLabel.create name: "index"
-action_2 = ActionLabel.create name: "show"
+    feature = Feature.find_by(name: feature_description)
 
-feature.action_labels = [action_1, action_2]
-
-feature.save
-
-feature = Feature.create name: "Editar usuário", controller: "curupira/users"
-
-action_1 = ActionLabel.create name: "edit"
-action_2 = ActionLabel.create name: "update"
-
-feature.action_labels = [action_1, action_2]
-
-feature = Feature.create name: "Deletar usuário", controller: "curupira/users"
-
-action_1 = ActionLabel.create name: "destroy"
-
-feature.action_labels = [action_1]
-
-feature.save
-
-###############################################
-
-feature = Feature.create name: "Cadastrar Perfis", controller: "curupira/roles"
-
-action_1 = ActionLabel.create name: "new"
-action_2 = ActionLabel.create name: "create"
-
-feature.action_labels = [action_1, action_2]
-
-feature.save
-
-feature = Feature.create name: "Visualizar Perfis", controller: "curupira/roles"
-
-action_1 = ActionLabel.create name: "index"
-action_2 = ActionLabel.create name: "show"
-
-feature.action_labels = [action_1, action_2]
-
-feature.save
-
-feature = Feature.create name: "Editar Perfis", controller: "curupira/roles"
-
-action_1 = ActionLabel.create name: "edit"
-action_2 = ActionLabel.create name: "update"
-
-feature.action_labels = [action_1, action_2]
-
-feature = Feature.create name: "Deletar Perfis", controller: "curupira/roles"
-
-action_1 = ActionLabel.create name: "destroy"
-
-feature.action_labels = [action_1]
-
-feature.save
-
-###############################################
-
-feature = Feature.create name: "Cadastrar Grupos", controller: "curupira/groups"
-
-action_1 = ActionLabel.create name: "new"
-action_2 = ActionLabel.create name: "create"
-
-feature.action_labels = [action_1, action_2]
-
-feature.save
-
-feature = Feature.create name: "Visualizar Grupos", controller: "curupira/groups"
-
-action_1 = ActionLabel.create name: "index"
-action_2 = ActionLabel.create name: "show"
-
-feature.action_labels = [action_1, action_2]
-
-feature.save
-
-feature = Feature.create name: "Editar Grupos", controller: "curupira/groups"
-
-action_1 = ActionLabel.create name: "edit"
-action_2 = ActionLabel.create name: "update"
-
-feature.action_labels = [action_1, action_2]
-
-feature = Feature.create name: "Deletar Grupos", controller: "curupira/groups"
-
-action_1 = ActionLabel.create name: "destroy"
-
-feature.action_labels = [action_1]
-
-feature.save
-
-###############################################
-
-feature = Feature.create name: "Cadastrar Grupos", controller: "curupira/groups"
-
-action_1 = ActionLabel.create name: "new"
-action_2 = ActionLabel.create name: "create"
-
-feature.action_labels = [action_1, action_2]
-
-feature.save
-
-feature = Feature.create name: "Visualizar Grupos", controller: "curupira/groups"
-
-action_1 = ActionLabel.create name: "index"
-action_2 = ActionLabel.create name: "show"
-
-feature.action_labels = [action_1, action_2]
-
-feature.save
-
-feature = Feature.create name: "Editar Grupos", controller: "curupira/groups"
-
-action_1 = ActionLabel.create name: "edit"
-action_2 = ActionLabel.create name: "update"
-
-feature.action_labels = [action_1, action_2]
-
-feature = Feature.create name: "Deletar Grupos", controller: "curupira/groups"
-
-action_1 = ActionLabel.create name: "destroy"
-
-feature.action_labels = [action_1]
-
-feature.save
+    if feature.present?
+      feature.action_labels << ActionLabel.create(name: action)
+    else
+      feature = Feature.create name: feature_description, controller: clazz
+      feature.action_labels << ActionLabel.create(name: action)
+    end
+  end
+end

@@ -20,4 +20,24 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  hello: 'OLA'
+  curupira:
+    features:
+      curupira/users:
+        create: "Create Users"
+        show: "Show Users"
+        edit: "Edit User"
+        delete: "Remove User"
+        manage: "Manage User"
+      curupira/groups:
+        create: "Create Groups"
+        show: "Show Groups"
+        edit: "Edit Group"
+        delete: "Remove Group"
+        manage: "Manage Groups"
+      curupira/roles:
+        create: "Create Roles"
+        show: "Show Roles"
+        edit: "Edit Role"
+        delete: "Remove Role"
+        manage: "Manage Roles"
