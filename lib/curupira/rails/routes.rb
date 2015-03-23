@@ -2,7 +2,10 @@ module ActionDispatch::Routing
   class Mapper
     def curupira_routes
       scope module: 'curupira' do
-        resources :users, except: :destroy
+        resources :users, except: :destroy do
+          get 'groups/:group_id/roles', to: 'users#permission',as: 'permission', action: :permission, controller: :users
+        end
+        
         resources :groups, except: :destroy
         resources :roles, except: :destroy
         resource :session, only: [:new, :create] do

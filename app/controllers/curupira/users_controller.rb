@@ -39,6 +39,12 @@ class Curupira::UsersController < Curupira::AuthorizedController
     end
   end
 
+  def permission
+    @user = User.find(params[:user_id])
+    @group_user = @user.group_users.find_by(group_id: params[:group_id])
+    @group = @group_user.group
+  end
+
   private
 
   def user_params
