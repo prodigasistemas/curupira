@@ -6,7 +6,7 @@ class CreateRoleGroupUsers < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    add_foreign_key :authorizations, :group_users
-    add_foreign_key :authorizations, :roles
+    add_foreign_key :role_group_users, :group_users
+    add_foreign_key :role_group_users, :roles
   end
 end
