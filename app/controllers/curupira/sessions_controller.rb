@@ -1,4 +1,4 @@
-class Curupira::SessionsController < ApplicationController
+class Curupira::SessionsController < ActionController::Base
   before_filter :redirect_to_root_with_errors, if: :current_user, except: :destroy
 
   def new
@@ -9,7 +9,7 @@ class Curupira::SessionsController < ApplicationController
     @user = login(params[:user][:username], params[:user][:password])
 
     if @user
-      redirect_back_or_to(root_path, notice: 'Bem vindo!')
+      redirect_to(root_path, notice: 'Bem vindo!')
     else
       @user = User.new username: params[:user][:username]
       flash[:alert] = "Login ou senha inválidos"

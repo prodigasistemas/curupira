@@ -1,4 +1,4 @@
-class Curupira::AuthorizedController < ApplicationController
+class Curupira::AuthorizedController < ActionController::Base
   before_filter :require_login
 
   private
