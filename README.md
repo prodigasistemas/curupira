@@ -60,6 +60,14 @@ Then run:
 rake db:seed
 ```
 
+Run the following task:
+
+```console
+rake curupira:db:generate_features
+```
+
+Replace your en.yml file by curupira/spec/dummy/config/locales/en.yml
+
 ## Root path
 
 If you dont't have root path configurations on your applications, follow these step:
