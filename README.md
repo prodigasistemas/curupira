@@ -21,6 +21,19 @@ And run:
 bundle install
 ```
 
+## Environment preparation
+It's necessary to setup user and password on database.yml. Ex:
+```ruby
+user: "postgres"
+password: "postgres"
+```
+
+After this, run:
+
+```console
+rake db:create
+```
+
 ## Rails Configuration
 
 ```console
@@ -29,9 +42,52 @@ rails generate curupira:install
 
 The generator will install an initializer which describes ALL of Sorcery's configuration options, models and migrations for authentication and authorization solution.
 
+So, run migrations:
+
+```console
+rake db:migrate
+```
+
+You have to add an admin user to application. Edit the seeds.rb file:
+
+```ruby
+User.create(username: "user", name: "Default Admin User", email: "user@mail.com", password: "123456", admin: true)
+```
+
+Then run:
+
+```console
+rake db:seed
+```
+
+## Root path
+
+If you dont't have root path configurations on your applications, follow these step:
+
+Add this line to routes.rb file:
+
+```ruby
+root to: "home#index"
+```
+
+Create the home controller:
+
+```ruby
+class HomeController < ApplicationController
+  def index
+  end
+end
+```
+
+Create the index home page:
+
+```ruby
+app/views/home/index.html.erb
+```
+
 ## Controller filters and helpers
 
-Curupira will provide some helpers to use inside controllers and views. To setup controller with user authentication, just this add before_action:
+Curupira will provide some helpers to use inside controllers and views. To setup controller with user authentication, just add this before_action:
 
 ```ruby
 before_action :require_login
@@ -53,7 +109,7 @@ Curupira will generate views to add users, roles, groups and features in databas
 rails generate curupira:views
 ```
 
-For dafault, the curupira views use coccon for nested forms.
+For default, the curupira views use coccon for nested forms.
 
 ## Configuring controllers
 
@@ -65,7 +121,7 @@ rails generate curupira:controllers
 
 ## Partials
 
-You should add in application.html.erb partials for menu, and helper for dispaly flash messages:
+You should add in application.html.erb partials for menu, and helper for display flash messages:
 
 ```ruby
 <%- flash.each do |name, msg| -%>
@@ -80,6 +136,10 @@ You should add in application.html.erb partials for menu, and helper for dispaly
 * Add to your application.js
 //= require jquery
 //= require cocoon
+
+## Using curupira
+
+Open http://localhost:3000/sessions/new and inform the same user configured on seed file.
 
 ## License
 
