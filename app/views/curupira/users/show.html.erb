@@ -16,12 +16,22 @@
 
   <ul>
     <% @user.group_users.each do |group_user| %>
-      <li><%= group_user.group.name %> <%= link_to "Vincular perfis do grupo", user_permission_path(@user,group_user.group) %>
+      <li><%= group_user.group.name %> <%= link_to "Vincular perfis do grupo", user_permission_path(@user, group_user) %>
         <% group_user.role_group_users.each do |role_group_user|%>
           <p><%= role_group_user.role.name %></p>
         <% end %>
       </li>
     <% end %>
+  </ul>
+</div>
+
+<div>
+  <h3>Perfis</h3>
+
+  <ul>
+    <% @user.role_group_users.each do |permission| %>
+      <li><%= permission.role.name %></li>
+     <% end -%>
   </ul>
 </div>
 

@@ -4,17 +4,22 @@ Usuário <%= @user.name %>
 
 Grupo <%= @group.name %>
 
-<%= form_for @user do |f| %>
+<%= form_for @group_user, url: permissions_path(@group_user) do |f| %>
   <div class="group_users">
     <h3>Perfil</h3>
 
-	<%= f.fields_for :role_group_users do |b| %>
-		<%= render "role_group_user_fields", f: b %>
-	<% end %>
+  	<%= f.fields_for :role_group_users do |b| %>
+  		<%= render "role_group_user_fields", f: b %>
+  	<% end %>
 
     <div class="links">
       <%= link_to_add_association 'Adicionar perfil', f, :role_group_users %>
     </div>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %><br>
+    or <%= link_to :cancel, users_path %>
   </div>
 <% end %>
 
