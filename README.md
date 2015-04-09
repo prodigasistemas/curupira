@@ -142,8 +142,10 @@ You should add in application.html.erb partials for menu, and helper for display
 ```
 
 * Add to your application.js
+```ruby
 //= require jquery
 //= require cocoon
+```
 
 ## Using curupira
 
