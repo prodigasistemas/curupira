@@ -22,16 +22,18 @@
 <div id="user_groups">
   <h3>Usuários vinculados</h3>
 
-  <ul>
-    <% @role.group_users.group(:group_id).each do |gu| %>
-      <h4>Grupo <%= link_to gu.group.name, gu.group %></h4>
-      <% @role.group_users.where(group_id:gu.group_id).each do |group_user|%>      
-        <ul>
-        <li><%= link_to group_user.user.name, group_user.user %></li>
-        </ul>  
+  <% if @role.group_users.present? %>
+    <ul>
+      <% @role.group_users.group(:group_id).each do |gu| %>
+        <h4>Grupo <%= link_to gu.group.name, gu.group %></h4>
+        <% @role.group_users.where(group_id:gu.group_id).each do |group_user|%>      
+          <ul>
+          <li><%= link_to group_user.user.name, group_user.user %></li>
+          </ul>  
+        <% end %>
       <% end %>
-    <% end %>
-  </ul>
+    </ul>
+  <% end %>
 </div>
 
 <%= link_to "Voltar", roles_path %>
