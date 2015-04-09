@@ -147,7 +147,7 @@ You should add in application.html.erb partials for menu, and helper for display
 
 ## Using curupira
 
-Open http://localhost:3000/sessions/new and inform the same user configured on seed file.
+Open http://localhost:3000/session/new and inform the same user configured on seed file.
 
 ## License
 
