@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.test_files    = Dir["spec/**/*"]
   s.require_paths = ["lib"]
 
-  s.add_dependency "rails", "~> 4.2.0"
+  s.add_dependency "rails", "~> 4.2.3"
   s.add_dependency "sorcery"
   s.add_dependency "cocoon"
   s.add_dependency "jquery-rails"
