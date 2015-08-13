@@ -6,7 +6,7 @@ class Curupira::PasswordsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(params[:user])
+    @user = User.find_by(email: params[:user][:email])
     if @user.present?
       @user.deliver_reset_password_instructions!
       redirect_to new_session_path, notice: "Verifique seu email para receber instruções de recuperação de senha"
