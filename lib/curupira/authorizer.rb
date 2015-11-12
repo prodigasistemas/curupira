@@ -15,11 +15,11 @@ module Curupira
     end
 
     def has_authorization?
-      return true if current_user.admin?
-      query(params).present?
+      has_authorization_for(params)
     end
 
     def has_authorization_for(params)
+      return true if current_user.admin?
       query(params).present?
     end
 
@@ -31,7 +31,7 @@ module Curupira
 
     def query(params)
       User.joins(
-        role_group_users: { role: { features: [:action_labels] } } 
+        role_group_users: { role: { features: [:action_labels] } }
       )
       .where(
         features: { controller: params[:controller] },
