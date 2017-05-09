@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    curupira (0.1.6)
+    curupira (0.1.7)
       cocoon
       rails (~> 5.1, >= 5.1.0)
       sorcery
