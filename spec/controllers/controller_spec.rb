@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 class BaseController < ApplicationController
-  before_filter :authorize
+  before_action :authorize
 end
 
 describe BaseController, type: :controller do
@@ -34,7 +34,8 @@ describe BaseController, type: :controller do
   context "when user have authorization" do
     it "user access the resource" do
       get :index
-      expect(assigns(:success)).to be true
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
     end
   end 
 end

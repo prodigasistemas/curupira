@@ -25,7 +25,7 @@ describe Curupira::PermissionsController do
     end
 
     before do
-      patch :create, user_id: user, group_user_id: group_user, group_user: params
+      patch :create, params: { user_id: user, group_user_id: group_user, group_user: params }
     end 
 
     it "sets flash message" do

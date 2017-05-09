@@ -24,12 +24,12 @@ describe Curupira::RolesController  do
       let!(:role) { FactoryGirl.create(:role) }
 
       it "should get show" do
-        get :show, id: role
+        get :show, params: { id: role }
         expect(response).to be_success
       end
 
       it "returns role" do
-        get :show, id: user
+        get :show, params: { id: user }
         expect(assigns(:role)).to eql role
       end
     end
@@ -37,7 +37,7 @@ describe Curupira::RolesController  do
     context "when user does not exist" do
       it "renders 404" do
         expect {
-          get :show, id: "wrong id"
+          get :show, params: { id: "wrong id" }
         }.to raise_error ActiveRecord::RecordNotFound
       end
     end
@@ -60,12 +60,12 @@ describe Curupira::RolesController  do
       let!(:role) { FactoryGirl.create(:role) }
 
       it "should get edit" do
-        get :edit, id: role
+        get :edit, params: { id: role }
         expect(response).to be_success
       end
 
       it "returns role" do
-        get :edit, id: role
+        get :edit, params: { id: role }
         expect(assigns(:role)).to eql role
       end
     end
@@ -73,7 +73,7 @@ describe Curupira::RolesController  do
     context "when user does not exist" do
       it "renders 404" do
         expect {
-          get :edit, id: "wrong id"
+          get :edit, params: { id: "wrong id" }
         }.to raise_error ActiveRecord::RecordNotFound
       end
     end
@@ -94,18 +94,18 @@ describe Curupira::RolesController  do
       end
 
       it "should redirect to new user" do
-        post :create, role: params
+        post :create, params: { role: params }
         expect(flash[:notice]).to eql "Perfil criado com sucesso"
       end
 
       it "should redirect to new role" do
-        post :create, role: params
+        post :create, params: { role: params }
         expect(response).to redirect_to assigns(:role)
       end
 
       it "creates role" do
         expect {
-          post :create, role: params
+          post :create, params: { role: params }
         }.to change { Role.count }.by(1)
 
         expect(assigns[:role].name).to eql "Minha Role"
@@ -118,12 +118,12 @@ describe Curupira::RolesController  do
 
       it "does not create user" do
         expect {
-          post :create, role: params
+          post :create, params: { role: params }
         }.to change { Role.count }.by(0)
       end
 
       it "should render new" do
-        post :create, role: params
+        post :create, params: { role: params }
         expect(response).to render_template :new
       end
     end
@@ -136,17 +136,17 @@ describe Curupira::RolesController  do
       let(:params) { FactoryGirl.build(:role, name: 'Outra role').attributes }
 
       it "sets flash message" do
-        put :update, id: role, role: params
+        put :update, params: { id: role, role: params }
         expect(flash[:notice]).to eql "Perfil atualizado com sucesso"
       end
 
       it "redirects to user" do
-        put :update, id: role, role: params
+        put :update, params: { id: role, role: params }
         expect(response).to redirect_to assigns(:role)
       end
 
       it "updates role" do
-        put :update, id: role, role: params
+        put :update, params: { id: role, role: params }
         expect(assigns(:role).name).to eql "Outra role"
       end
     end
@@ -155,12 +155,12 @@ describe Curupira::RolesController  do
       let(:params) { FactoryGirl.build(:role, name: '').attributes }
 
       it "does not create role" do
-        put :update, id: role, role: params
+        put :update, params: { id: role, role: params }
         expect(assigns(:role).reload.name).to eql role.name
       end
 
       it "should render edit" do
-        put :update, id: role, role: params
+        put :update, params: { id: role, role: params }
         expect(response).to render_template :edit
       end
     end

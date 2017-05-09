@@ -29,12 +29,12 @@ describe Curupira::GroupsController do
 
     context "when group exists" do
       it "should get show" do
-        get :show, id: group
+        get :show, params: { id: group }
         expect(response).to be_success
       end
 
       it "returns group" do
-        get :show, id: group
+        get :show, params: { id: group }
         expect(assigns(:group)).to eql group
       end
     end
@@ -42,7 +42,7 @@ describe Curupira::GroupsController do
     context "when group does not exist" do
       it "renders 404" do
         expect {
-          get :show, id: "wrong id"
+          get :show, params: { id: "wrong id" }
         }.to raise_error ActiveRecord::RecordNotFound
       end
     end
@@ -65,12 +65,12 @@ describe Curupira::GroupsController do
 
     context "when group exists" do
       it "should get edit" do
-        get :edit, id: group
+        get :edit, params: { id: group }
         expect(response).to be_success
       end
 
       it "returns group" do
-        get :edit, id: group
+        get :edit, params: { id: group }
         expect(assigns(:group)).to eql group
       end
     end
@@ -78,7 +78,7 @@ describe Curupira::GroupsController do
     context "when group does not exist" do
       it "renders 404" do
         expect {
-          get :edit, id: "wrong id"
+          get :edit, params: { id: "wrong id" }
         }.to raise_error ActiveRecord::RecordNotFound
       end
     end
@@ -89,18 +89,18 @@ describe Curupira::GroupsController do
       let(:params)  { { name: "Group Name", active: false } }
 
       it "should redirect to new group" do
-        post :create, group: params
+        post :create, params: { group: params }
         expect(flash[:notice]).to eql "Grupo criado com sucesso"
       end
 
       it "should redirect to new group" do
-        post :create, group: params
+        post :create, params: { group: params }
         expect(response).to redirect_to assigns(:group)
       end
 
       it "creates group" do
         expect {
-          post :create, group: params
+          post :create, params: { group: params }
         }.to change { Group.count }.by(1)
       end
     end
@@ -110,12 +110,12 @@ describe Curupira::GroupsController do
 
       it "does not create group" do
         expect {
-          post :create, group: params
+          post :create, params: { group: params }
         }.to change { Group.count }.by(0)
       end
 
       it "should render new" do
-        post :create, group: params
+        post :create, params: { group: params }
         expect(response).to render_template :new
       end
     end
@@ -128,17 +128,17 @@ describe Curupira::GroupsController do
       let(:params)  { { name: "New group name", active: false } }
 
       it "sets flash message" do
-        put :update, id: group, group: params
+        put :update, params: { id: group, group: params }
         expect(flash[:notice]).to eql "Grupo atualizado com sucesso"
       end
 
       it "redirects to group" do
-        put :update, id: group, group: params
+        put :update, params: { id: group, group: params }
         expect(response).to redirect_to assigns(:group)
       end
 
       it "updates group" do
-        put :update, id: group, group: params
+        put :update, params: { id: group, group: params }
         expect(assigns(:group).name).to   eql "New group name"
         expect(assigns(:group).active).to eql false
       end
@@ -148,13 +148,13 @@ describe Curupira::GroupsController do
       let(:params)  { { name: "", active: false } }
 
       it "does not create group" do
-        put :update, id: group, group: params
+        put :update, params: { id: group, group: params }
         expect(assigns(:group).reload.name).to eql group.name
         expect(assigns(:group).active).to      eql true
       end
 
       it "should render edit" do
-        put :update, id: group, group: params
+        put :update, params: { id: group, group: params }
         expect(response).to render_template :edit
       end
     end

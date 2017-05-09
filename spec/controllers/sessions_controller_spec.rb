@@ -29,7 +29,7 @@ describe Curupira::SessionsController do
     context "when credentials are valid" do
       context "with email" do
         it "create session" do
-          post :create, user: { username: user.email, password: 123456 }
+          post :create, params: { user: { username: user.email, password: 123456 } }
 
           expect(User.find(session[:user_id])).to eql user
         end
@@ -37,20 +37,20 @@ describe Curupira::SessionsController do
 
       context "with username" do
         it "create session" do
-          post :create, user: { username: user.username, password: 123456 }
+          post :create, params: { user: { username: user.username, password: 123456 } }
 
           expect(User.find(session[:user_id])).to eql user
         end
       end
 
       it "redirects to root path" do
-        post :create, user: { username: user.email, password: 123456 }
+        post :create, params: { user: { username: user.email, password: 123456 } }
 
         expect(response).to redirect_to root_path
       end
 
       it "renders flash notice" do
-        post :create, user: { username: user.email, password: 123456 }
+        post :create, params: { user: { username: user.email, password: 123456 } }
 
         expect(flash[:notice]).to eql "Bem vindo!"
       end
@@ -59,7 +59,7 @@ describe Curupira::SessionsController do
         it "redirects to root path" do
           login_user(FactoryGirl.create :user)
 
-          post :create, user: { username: user.email, password: 123456 }
+          post :create, params: { user: { username: user.email, password: 123456 } }
           expect(response).to redirect_to root_path
           expect(flash[:alert]).to eql "Você já está logado"
         end
@@ -68,19 +68,19 @@ describe Curupira::SessionsController do
 
     context "when credentials are invalid" do
       it "renders flash alert" do
-        post :create, user: { username: user.email, password: "wrong pass" }
+        post :create, params: { user: { username: user.email, password: "wrong pass" } }
 
         expect(flash[:alert]).to eql "Login ou senha inválidos"
       end
 
       it "renders new" do
-        post :create, user: { username: user.email, password: "wrong pass" }
+        post :create, params: { user: { username: user.email, password: "wrong pass" } }
 
         expect(response).to render_template :new
       end
 
       it "returns new user" do
-        post :create, user: { username: user.email, password: "wrong pass" }
+        post :create, params: { user: { username: user.email, password: "wrong pass" } }
 
         expect(assigns[:user]).to be_new_record
         expect(assigns[:user].username).to eql user.email

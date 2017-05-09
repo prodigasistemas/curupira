@@ -1,5 +1,5 @@
 class Curupira::PasswordsController < ApplicationController
-  before_filter :redirect_to_root_with_errors, if: :current_user
+  before_action :redirect_to_root_with_errors, if: :current_user
 
   def new
     @user = User.new

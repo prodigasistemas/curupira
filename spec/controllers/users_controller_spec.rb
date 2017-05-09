@@ -24,12 +24,12 @@ describe Curupira::UsersController do
   describe "GET show" do
     context "when user exists" do
       it "should get show" do
-        get :show, id: user
+        get :show, params: { id: user }
         expect(response).to be_success
       end
 
       it "returns user" do
-        get :show, id: user
+        get :show, params: { id: user }
         expect(assigns(:user)).to eql user
       end
     end
@@ -37,7 +37,7 @@ describe Curupira::UsersController do
     context "when user does not exist" do
       it "renders 404" do
         expect {
-          get :show, id: "wrong id"
+          get :show, params: { id: "wrong id" }
         }.to raise_error ActiveRecord::RecordNotFound
       end
     end
@@ -58,12 +58,12 @@ describe Curupira::UsersController do
   describe "GET edit" do
     context "when user exists" do
       it "should get edit" do
-        get :edit, id: user
+        get :edit, params: { id: user }
         expect(response).to be_success
       end
 
       it "returns user" do
-        get :edit, id: user
+        get :edit, params: { id: user }
         expect(assigns(:user)).to eql user
       end
     end
@@ -71,7 +71,7 @@ describe Curupira::UsersController do
     context "when user does not exist" do
       it "renders 404" do
         expect {
-          get :edit, id: "wrong id"
+          get :edit, params: { id: "wrong id" }
         }.to raise_error ActiveRecord::RecordNotFound
       end
     end
@@ -88,18 +88,18 @@ describe Curupira::UsersController do
                         group_users_attributes: { "0": { group_id: group.id, role_group_users_attributes: { "0": { role_id: role.id } } } } } }
 
       it "should redirect to new user" do
-        post :create, user: params
+        post :create, params: { user: params }
         expect(flash[:notice]).to eql "Usuário criado com sucesso"
       end
 
       it "should redirect to new user" do
-        post :create, user: params
+        post :create, params: { user: params }
         expect(response).to redirect_to assigns(:user)
       end
 
       it "creates user" do
         expect {
-          post :create, user: params
+          post :create, params: { user: params }
         }.to change { User.count }.by(1)
 
         expect(assigns[:user].email).to eql "new_email@mail.com"
@@ -117,12 +117,12 @@ describe Curupira::UsersController do
 
       it "does not create user" do
         expect {
-          post :create, user: params
+          post :create, params: { user: params }
         }.to change { User.count }.by(0)
       end
 
       it "should render new" do
-        post :create, user: params
+        post :create, params: { user: params }
         expect(response).to render_template :new
       end
     end
@@ -140,19 +140,19 @@ describe Curupira::UsersController do
                         group_users_attributes: { "0": { id: group.id, _destroy: true } } } }
 
       it "sets flash message" do
-        put :update, id: user, user: params
+        put :update, params: { id: user, user: params }
         expect(flash[:notice]).to eql "Usuário atualizado com sucesso"
       end
 
       it "redirects to user" do
-        put :update, id: user, user: params
+        put :update, params: { id: user, user: params }
         expect(response).to redirect_to assigns(:user)
       end
 
       it "updates user" do
         expect(user.groups).to_not    be_empty
 
-        put :update, id: user, user: params
+        put :update, params: { id: user, user: params }
         expect(assigns(:user).email).to    eql "new_email@mail.com"
         expect(assigns(:user).username).to eql "new_username"
         expect(assigns(:user).name).to     eql "New Name"
@@ -167,14 +167,14 @@ describe Curupira::UsersController do
                         password: 12345678 } }
 
       it "does not create user" do
-        put :update, id: user, user: params
+        put :update, params: { id: user, user: params }
         expect(assigns(:user).reload.email).to    eql user.email
         expect(assigns(:user).reload.username).to eql user.username
         expect(assigns(:user).reload.name).to     eql user.name
       end
 
       it "should render edit" do
-        put :update, id: user, user: params
+        put :update, params: { id: user, user: params }
         expect(response).to render_template :edit
       end
     end

@@ -10,6 +10,7 @@ end
 group :test do
   gem 'ammeter'
   gem 'codeclimate-test-reporter', require: nil
+  gem 'rails-controller-testing'
 end
 
 platforms :ruby do

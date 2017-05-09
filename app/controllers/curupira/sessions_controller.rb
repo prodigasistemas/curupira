@@ -1,5 +1,5 @@
 class Curupira::SessionsController < ActionController::Base
-  before_filter :redirect_to_root_with_errors, if: :current_user, except: :destroy
+  before_action :redirect_to_root_with_errors, if: :current_user, except: :destroy
 
   def new
     @user = User.new
