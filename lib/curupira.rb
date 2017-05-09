@@ -13,4 +13,3 @@ end
 
 require "curupira/rails"
 require 'cocoon'
-require 'jquery-rails'

@@ -17,3 +17,4 @@ test/tmp/*
 .rvmrc
 .ruby-version
 .ruby-gemset
+.DS_Store

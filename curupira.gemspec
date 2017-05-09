@@ -18,11 +18,10 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency 'rails', '~> 5.1', '>= 5.1.0'
-  s.add_dependency "sorcery", '~> 0'
-  s.add_dependency "cocoon", '~> 0'
-  s.add_dependency "jquery-rails", '~> 0'
+  s.add_dependency "sorcery"
+  s.add_dependency "cocoon"
 
-  s.add_development_dependency 'rspec-rails', '~> 0'
-  s.add_development_dependency 'capybara', '~> 0'
-  s.add_development_dependency 'factory_girl_rails', '~> 0'
+  s.add_development_dependency 'rspec-rails', '~> 3.5'
+  s.add_development_dependency 'capybara', '>= 2.2.0'
+  s.add_development_dependency 'factory_girl_rails'
 end
