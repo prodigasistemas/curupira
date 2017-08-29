@@ -1,4 +1,4 @@
-class SorceryCore < ActiveRecord::Migration
+class SorceryCore < <%= migration_class_name %>
   def change
     create_table :users do |t|
       t.string   :email,                            null: false

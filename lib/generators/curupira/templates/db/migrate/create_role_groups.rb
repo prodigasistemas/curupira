@@ -1,4 +1,4 @@
-class CreateRoleGroups < ActiveRecord::Migration
+class CreateRoleGroups < <%= migration_class_name %>
 	def change
 		create_table :role_groups do |t|
       t.belongs_to :role, index: true
@@ -8,6 +8,6 @@ class CreateRoleGroups < ActiveRecord::Migration
   		t.timestamps null: false
   	end
   	add_foreign_key :role_groups, :roles
-  	add_foreign_key :role_groups, :groups  
+  	add_foreign_key :role_groups, :groups
   end
 end

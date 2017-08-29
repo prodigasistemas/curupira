@@ -33,7 +33,7 @@ module Curupira
 
       def create_user_migration
         if table_exists?("user")
-          create_add_columns_migration_to("user")    
+          create_add_columns_migration_to("user")
         else
           copy_migration 'sorcery_core.rb'
         end

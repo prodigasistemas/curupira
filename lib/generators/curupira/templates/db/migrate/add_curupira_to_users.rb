@@ -1,4 +1,4 @@
-class AddCurupiraToUsers < ActiveRecord::Migration
+class AddCurupiraToUsers < <%= migration_class_name %>
   def self.up
     change_table :users  do |t|
 <% @user_columns.values.each do |column| -%>

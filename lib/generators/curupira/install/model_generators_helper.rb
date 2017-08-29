@@ -13,13 +13,14 @@ module Curupira
             columns: columns_by(model_name),
             indexes: indexes_by(model_name)
           }
-          
+
           copy_migration("add_curupira_to_#{model_name.pluralize}.rb", config)
         end
       end
 
       def copy_migration(migration_name, config = {})
         unless migration_exists?(migration_name)
+          config[:migration_class_name] = migration_class_name
           migration_template(
             "db/migrate/#{migration_name}",
             "db/migrate/#{migration_name}",
@@ -30,7 +31,7 @@ module Curupira
 
       def create_migration_to(model_name)
         if table_exists?(model_name)
-          create_add_columns_migration_to(model_name)    
+          create_add_columns_migration_to(model_name)
         else
           copy_migration "create_#{model_name.pluralize}.rb"
         end
@@ -175,7 +176,6 @@ module Curupira
           has_many :role_group_users, through: :group_users
           accepts_nested_attributes_for :group_users, reject_if: :all_blank, allow_destroy: :true
           accepts_nested_attributes_for :role_group_users, reject_if: :all_blank, allow_destroy: :true
-          
           scope :all_belonging_to, -> (user) { includes(group_users: :group).where(groups: { id: user.groups }) }
         CONTENT
       end
@@ -256,6 +256,14 @@ module Curupira
 
       def existing_indexes_to(model_name)
         ActiveRecord::Base.connection.indexes(model_name.pluralize.to_sym).map(&:name)
+      end
+
+      def migration_class_name
+        if Rails::VERSION::MAJOR >= 5
+          "ActiveRecord::Migration[#{Rails::VERSION::MAJOR}.#{Rails::VERSION::MINOR}]"
+        else
+          'ActiveRecord::Migration'
+        end
       end
 
     end
